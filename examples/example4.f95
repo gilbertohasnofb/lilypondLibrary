@@ -1,8 +1,6 @@
 ! example of how to deal with accidentals
 ! examples of subroutine STYLE and BREAK
 
-include "lilypondLibrary.f95"
-
 program example4
 use lilypondLibrary
 implicit none

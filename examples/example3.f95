@@ -1,8 +1,6 @@
 ! simple example of how to algorithmically produce music
 ! examples of subroutines KEY, BAR_CHECK
 
-include "lilypondLibrary.f95"
-
 program example3
 use lilypondLibrary
 implicit none

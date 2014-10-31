@@ -1,8 +1,6 @@
 ! a simple piano example using notes and chords
 ! examples of subroutines BAR, CLEF, CHORD
 
-include "lilypondLibrary.f95"
-
 program example2
 use lilypondLibrary
 implicit none

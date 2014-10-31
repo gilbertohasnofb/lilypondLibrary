@@ -1,8 +1,6 @@
 ! minimal example
 ! example of subroutines HEADER, STAFF, NOTE, END_STAFF and SCORE
 
-include "lilypondLibrary.f95"
-
 program example1
 use lilypondLibrary
 implicit none

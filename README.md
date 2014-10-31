@@ -59,12 +59,14 @@ List of available subroutines
 Usage
 -----
 
-- copy the file "lilypondLibrary.f95" and the folder "subroutines" to the same directory as your Fortran project
-- immediately before the program block, add the line: include "lilypondLibrary.f95"
-- immediately after the program block, add the line: use lilypondLibrary
+- copy the files "lilypondlibrary.mod" and "lilypondLibrary.o" to the same directory as your Fortran project
+- compile your code with the following command:
+	$ gfortran yourcode.f95 lilypondLibrary.o
+- if you also wish to use a set of predefined constants as arguments for the subroutines, copy the file "arguments.f95" to your project's directory and add the following line in your code immediately before declaring your variables:
+	include "arguments.f95"
 
-Structure
----------
+Structure of .f95 file
+----------------------
 
 	include "lilypondLibrary.f95"
 	

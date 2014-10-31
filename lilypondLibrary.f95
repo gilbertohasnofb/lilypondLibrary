@@ -28,7 +28,7 @@
 module lilypondLibrary
 implicit none
 
-private :: LCASE, SNIPPET_SLASHEDGRACES, SNIPPET_REPEATBRACKET, SNIPPET_NATURALIZEMUSIC
+private :: LCASE, MIDI_PITCH_TO_LP, SNIPPET_SLASHEDGRACES, SNIPPET_REPEATBRACKET, SNIPPET_NATURALIZEMUSIC
 
 contains
 
@@ -57,7 +57,7 @@ contains
 	include "./subroutines/KEY.f95"
 	include "./subroutines/LCASE.f95" ! private subroutine
 	include "./subroutines/MARK.f95"
-	include "./subroutines/MIDI_PITCH_TO_LP.f95"
+	include "./subroutines/MIDI_PITCH_TO_LP.f95" ! private subroutine
  	include "./subroutines/NOTE.f95"
 	include "./subroutines/NOTEHEAD_STYLE.f95"          
 	include "./subroutines/NOTEHEAD_TRANSPARENT.f95"
@@ -67,9 +67,9 @@ contains
 	include "./subroutines/REPEAT.f95"
 	include "./subroutines/REPEATBRACKET.f95"
 	include "./subroutines/SNIPPET.f95"          
-	include "./subroutines/SNIPPET_REPEATBRACKET.f95"          ! private subroutine
-	include "./subroutines/SNIPPET_SLASHEDGRACES.f95"          ! private subroutine
-	include "./subroutines/SNIPPET_NATURALIZEMUSIC.f95"          ! private subroutine
+	include "./subroutines/SNIPPET_REPEATBRACKET.f95" ! private subroutine
+	include "./subroutines/SNIPPET_SLASHEDGRACES.f95" ! private subroutine
+	include "./subroutines/SNIPPET_NATURALIZEMUSIC.f95" ! private subroutine
 	include "./subroutines/SCORE.f95"
 	include "./subroutines/STAFF.f95"          
 	include "./subroutines/STAFF_LINE_COUNT.f95"

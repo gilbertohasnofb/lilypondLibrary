@@ -6,11 +6,11 @@
 ! IMPORTANT: CHORD creates N-note chords, where N is the size of pitch_array unless one or more elemants of pitch_array are equal to or smaller than 0. In that case, CHORD ignores any elements above the 0 element.
 ! That is, if pitch_array is dimension(4), but consists of (/60,64,67,0/), only a three note chord is created. The same is true for the dimension(6) pitch_arrayB=(/60,64,67,0,50,57/), which will also output a C major chord.
 
-subroutine CHORD(pitch_array,duration,D,A,H,S,P,text,trem,accidental,accidentalVector,quartertone,quartertoneVector,&
-tie,tieVector,beam)
+subroutine CHORD(pitch_array,duration,D,A,H,S,P,text,trem,accidental,accidentalVector,enharmonic,enharmonicVector,doubleAccidental,&
+doubleAccidentalVector,quartertone,quartertoneVector,tie,tieVector,beam)
 
 integer, intent(in), dimension(:) :: pitch_array ! in MIDI no., i.e., 60 = C4. Obviously, no rests can be used here (i.e., no pitches = 0)
-character (LEN=*), intent(in) :: duration ! Durations in LilyPond notation, such as "2." or "8.." or "64"
+character (LEN=*), optional, intent(in) :: duration ! Durations in LilyPond notation, such as "2." or "8.." or "64"
 character (LEN=*), optional, intent(in) :: D ! Dynamics: 
 ! should consist of two or more characters, such as "\p", "\fp", etc. For explicit positioning, use "^\p", "_\fp", etc.
 ! if using "arguments.f95", then it can be substituted by variables such as p, fp, etc.
@@ -32,13 +32,18 @@ integer, optional, intent(in) :: trem ! Tremolo:
 ! 0= no tremolo, 8 = tremolo of eighth notes (e.g., c'4:8), 16 = tremolo of sixteenth notes (e.g., g''1:16), and so on
 character (LEN=*), optional, intent(in) :: accidental ! if "is", "s" or "sharp, then the pitch will be notated with sharp accidental. If "es", "f" or "flat", then it will be notated as flat
 character (LEN=*), optional, intent(in), dimension(:) :: accidentalVector ! a vector with individual values for accidentals of individual pitches
+logical, optional, intent(in) :: enharmonic ! if .TRUE., then C and F will be notated as B# and E#, respectively, and B and E will be notated as Cb and Fb, respectively
+logical, optional, intent(in), dimension(:) :: enharmonicVector ! a vector with individual values for enharmonic accidentals of individual pitches
+character (LEN=*), optional, intent(in) :: doubleAccidental ! if "is","isis,", "s" or "sharp, then the pitch will be notated as a double sharp WHEN POSSIBLE. If "es","eses", "f" or "flat", then it will be notated as double flat when possible
+character (LEN=*), optional, intent(in), dimension(:) :: doubleAccidentalVector ! a vector with individual values for double accidentals of individual pitches
 character (LEN=*), optional, intent(in) :: quartertone ! if "ih", "up" or "higher", then quarter tone higher, if "eh", "down" or "lower", then quarter tone lower. If "" or "neuter" or "default", then no quarter tone will be used then no quarter tone will be used
 character (LEN=*), optional, intent(in), dimension(:) :: quartertoneVector ! a vector with individual values for quartertones of individual pitches
 logical, optional, intent(in) :: tie ! if .TRUE., a tie "~" is added after the note is finished. Default = .FALSE.
 logical, optional, intent(in), dimension(:) :: tieVector ! a vector with individual values for ties of individual pitches
 character(LEN=*), optional, intent(in) :: beam ! manual beam, should be either "[" or "]"
 ! if using "arguments.f95", then it can be substituted by variables such as startBeam and stopBeam
-character (LEN=256), dimension(:), allocatable :: accidental_AUX, quartertone_AUX ! Auxiliary variable
+character (LEN=256), dimension(:), allocatable :: accidental_AUX, doubleAccidental_AUX, quartertone_AUX ! Auxiliary variable
+logical, dimension(:), allocatable :: enharmonic_AUX ! auxiliary variable
 integer :: i, relevantChordSize ! Auxiliary variables
 logical :: previousAdvanceNo ! used to find out what was the spacing before this subroutine was called. if it finished with an advance="NO" or not
 
@@ -57,11 +62,19 @@ open(unit=7,file="temp3")
 write(7,"(L1)") .TRUE. ! this will mean to the next subroutine that this one did finish with an advance="NO"
 ! =================================
 
-allocate( accidental_AUX(SIZE(pitch_array)), quartertone_AUX(SIZE(pitch_array)) )
+allocate( accidental_AUX(SIZE(pitch_array)), enharmonic_AUX(SIZE(pitch_array)), doubleAccidental_AUX(SIZE(pitch_array)), &
+quartertone_AUX(SIZE(pitch_array)) )
 
 ! dealing with optional variables
 accidental_AUX="sharp"
 if (present(accidental)) accidental_AUX = TRIM(accidental)
+
+enharmonic_AUX=.FALSE.
+if (present(enharmonic)) enharmonic_AUX = enharmonic
+
+doubleAccidental_AUX=""
+if (present(doubleAccidental)) doubleAccidental_AUX = TRIM(doubleAccidental)
+
 quartertone_AUX="neuter"
 if (present(quartertone)) quartertone_AUX = TRIM(quartertone)
 
@@ -70,6 +83,19 @@ if (present(accidentalVector)) then
 		accidental_AUX(i) = TRIM(accidentalVector(i))
 	enddo
 endif
+
+if (present(enharmonicVector)) then
+	do i=1,SIZE(enharmonicVector)
+		enharmonic_AUX(i) = enharmonicVector(i)
+	enddo
+endif
+
+if (present(doubleAccidentalVector)) then
+	do i=1,SIZE(doubleAccidentalVector)
+		doubleAccidental_AUX(i) = TRIM(doubleAccidentalVector(i))
+	enddo
+endif
+
 if (present(quartertoneVector)) then
 	do i=1,SIZE(quartertoneVector)
 		quartertone_AUX(i) = TRIM(quartertoneVector(i))				
@@ -109,7 +135,7 @@ if (pitch_array(1)==0) then
 		write(*,"(A)",advance="NO") "<"
 		write(11,"(A)",advance="NO") "<"
 		do i=1,(relevantChordSize-1)
-			call MIDI_PITCH_TO_LP(pitch_array(i),accidental_AUX(i),quartertone_AUX(i)) 
+			call MIDI_PITCH_TO_LP(pitch_array(i),accidental_AUX(i),enharmonic_AUX(i),doubleAccidental_AUX(i),quartertone_AUX(i)) 
 			if (present(tieVector)) then
 				if (tieVector(i)) then
 				 write(*,"(A)",advance="NO") "~"
@@ -120,7 +146,7 @@ if (pitch_array(1)==0) then
 			write(11,"(A)",advance="NO") " "
 		enddo
 		i = relevantChordSize
-		call MIDI_PITCH_TO_LP(pitch_array(i),accidental_AUX(i),quartertone_AUX(i)) 
+		call MIDI_PITCH_TO_LP(pitch_array(i),accidental_AUX(i),enharmonic_AUX(i),doubleAccidental_AUX(i),quartertone_AUX(i)) 
 		if (present(tieVector)) then
 			if (tieVector(i)) then
 			 write(*,"(A)",advance="NO") "~"
@@ -131,8 +157,10 @@ if (pitch_array(1)==0) then
 		write(11,"(A)",advance="NO") ">"
 
 		! pitch duration
-		write(*,"(A)",advance="NO") TRIM(duration)
-		write(11,"(A)",advance="NO") TRIM(duration)
+		if (present(duration)) then
+			write(*,"(A)",advance="NO") TRIM(duration)
+			write(11,"(A)",advance="NO") TRIM(duration)
+		endif
 
 		! dealing with tremolo
 		if (present(trem)) then

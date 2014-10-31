@@ -19,7 +19,7 @@
 !                                                                                                                                                            !
 ! Usage:                                                                                                                                                     !
 !                                                                                                                                                            !
-! - copy all these files to the directory of your Fortran code.                                                                                              !
+! - copy all these files to the directory of your Fortran code                                                                                              !
 ! - immediately before the program block, add the line: include "lilypondLibrary.f95"                                                                        !
 ! - immediately after the program block, add the line: use lilypondLibrary                                                                                   !
 !                                                                                                                                                            !

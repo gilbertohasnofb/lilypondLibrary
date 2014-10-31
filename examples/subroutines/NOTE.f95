@@ -3,7 +3,7 @@
 ! The order of the arguments is: pitch, duration, dynamics, articulation, hairpin, slur, pedal, text, tremolo, accidental, tie and quartertone.
 ! E.g., to create a middle C quarter note with a stacc. and cresc. hairpin, call NOTE(60,"4",A="-.",H="\<")
 
-subroutine NOTE(pitch,duration,D,A,H,S,P,text,trem,accidental,quartertone,tie,beam)
+subroutine NOTE(pitch,duration,D,A,H,S,P,text,trem,accidental,enharmonic,doubleAccidental,quartertone,tie,beam)
 
 integer, intent(in) :: pitch ! MIDI no., i.e., 60 = C4. To use rests, use MIDI = 0 !!!
 character (LEN=*), optional, intent(in) :: duration ! Durations in LilyPond notation, such as "2." or "8.." or "64"
@@ -27,11 +27,14 @@ character (LEN=*), optional, intent(in) :: text ! simple text:
 integer, optional, intent(in) :: trem ! Tremolo:
 ! 0= no tremolo, 8 = tremolo of eighth notes (e.g., c'4:8), 16 = tremolo of sixteenth notes (e.g., g''1:16), and so on
 character (LEN=*), optional, intent(in) :: accidental ! if "is", "s" or "sharp, then the pitch will be notated with sharp accidental. If "es", "f" or "flat", then it will be notated as flat
+logical, optional, intent(in) :: enharmonic ! if .TRUE., then C and F will be notated as B# and E#, respectively, and B and E will be notated as Cb and Fb, respectively
+character (LEN=*), optional, intent(in) :: doubleAccidental ! if "is","isis,", "s" or "sharp, then the pitch will be notated as a double sharp WHEN POSSIBLE. If "es","eses", "f" or "flat", then it will be notated as double flat when possible. If "" or "neuter" or "default", then no quarter tone will be used
 character (LEN=*), optional, intent(in) :: quartertone ! if "ih", "up" or "higher", then quarter tone higher, if "eh", "down" or "lower", then quarter tone lower. If "" or "neuter" or "default", then no quarter tone will be used
 logical, optional, intent(in) :: tie ! if .TRUE., a tie "~" is added after the note is finished. Default = .FALSE.
 character(LEN=*), optional, intent(in) :: beam ! manual beam, should be either "[" or "]"
 ! if using "arguments.f95", then it can be substituted by variables such as startBeam and stopBeam
-character (LEN=256) :: accidental_AUX, quartertone_AUX ! Auxiliary variable
+character (LEN=256) :: accidental_AUX, doubleAccidental_AUX, quartertone_AUX ! Auxiliary variable
+logical :: enharmonic_AUX
 logical :: previousAdvanceNo ! used to find out what was the spacing before this subroutine was called. if it finished with an advance="NO" or not
 
 ! =========== spacing ==============
@@ -51,18 +54,17 @@ write(7,"(L1)") .TRUE. ! this will mean to the next subroutine that this one did
 
 ! dealing with optional variables
 accidental_AUX="sharp"
+enharmonic_AUX=.FALSE.
+doubleAccidental_AUX=""
 quartertone_AUX="neuter"
+
 if (present(accidental)) accidental_AUX = TRIM(accidental)
+if (present(enharmonic)) enharmonic_AUX = enharmonic
+if (present(doubleAccidental)) doubleAccidental_AUX = TRIM(doubleAccidental)
 if (present(quartertone)) quartertone_AUX = TRIM(quartertone)
 
-if ( ((TRIM(quartertone_AUX) == "ih") .OR. (TRIM(quartertone_AUX) == "higher") .OR. (TRIM(quartertone_AUX) == "up")) .AND. &
-((TRIM(accidental_AUX) == "es") .OR. (TRIM(accidental_AUX) == "f") .OR. (TRIM(accidental_AUX) == "flat")) ) accidental_AUX="sharp" ! that is, if quarter tone up and accidental flat, then accidental changes to sharp. This avoid absurd syntax problems in LilyPond, such as gesih, and still outputs the correct note, which is a quarter tone higher than the pitch class
-if ( ((TRIM(quartertone_AUX) == "eh") .OR. (TRIM(quartertone_AUX) == "lower") .OR. (TRIM(quartertone_AUX) == "down")) .AND. &
-((TRIM(accidental_AUX) == "is") .OR. (TRIM(accidental_AUX) == "s") .OR. (TRIM(accidental_AUX) == "sharp")) ) accidental_AUX="flat" ! that is, if quarter tone up and accidental flat, then accidental changes to sharp. This avoid absurd syntax problems in LilyPond, such as gesih, and still outputs the correct note, which is a quarter tone higher than the pitch class
-
-
 ! Write the pitch itself
-call MIDI_PITCH_TO_LP(pitch,accidental_AUX,quartertone_AUX)
+call MIDI_PITCH_TO_LP(pitch,accidental_AUX,enharmonic_AUX,doubleAccidental_AUX,quartertone_AUX)
 
 ! pitch duration
 if (present(duration)) then

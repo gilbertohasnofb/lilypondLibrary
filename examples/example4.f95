@@ -39,6 +39,16 @@ call HEADER(title="Example 4",filename="example4.ly")
 		call BAR_CHECK
 		
 		call BREAK ! adds a \break to the code, i.e., starts a new system
+		
+		call NOTE(60,"8") ! C
+		call NOTE(60,"8",enharmonic=.TRUE.) ! enharmonic = B sharp
+		call NOTE(65,"8") ! F
+		call NOTE(65,"8",enharmonic=.TRUE.) ! enharmonic = E sharp
+		call NOTE(64,"8") ! E
+		call NOTE(64,"8",enharmonic=.TRUE.) ! enharmonic = F flat
+		call NOTE(71,"8") ! B
+		call NOTE(71,"8",enharmonic=.TRUE.) ! enharmonic = C flat
+		call BAR_CHECK
 				
 		! dealing with quarter tones
 		call NOTE(60,"4",quartertone="up") ! "up" or "higher" or "ih" produces a note raised by quarter tone

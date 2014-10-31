@@ -87,4 +87,4 @@ Structure of .f95 file
 Compability
 -----------
 
-These subroutines have only been tested with Linux Mint 17 Cinnamon 64-bit, LilyPond 2.19.15 and GNU Fortran (Ubuntu 4.8.2-19ubuntu1) 4.8.2.
+These subroutines have only been tested with Linux Mint 17 Cinnamon 64-bit, LilyPond 2.19.15 and GNU Fortran 4.8.2 (Ubuntu 4.8.2-19ubuntu1).

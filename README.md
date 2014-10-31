@@ -1,7 +1,7 @@
 lilypondLibrary
 ===============
 
-lilypondLibrary : a library of Fortran subroutines for outputting LilyPond code
+A library of Fortran subroutines for outputting LilyPond code, by Gilberto Agostinho (gilbertohasnofb@gmail.com).
 
 List of available subroutines
 -----------------------------

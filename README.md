@@ -11,17 +11,17 @@ Usage:
 
 Structure:
 
-include "lilypondLibrary.f95"
-program example
-use lilypondLibrary
-implicit none
+	include "lilypondLibrary.f95"
+	program example
+	use lilypondLibrary
+	implicit none
 
-call HEADER
-
-	call STAFF
-		...music...
-	call END_STAFF
-
-call SCORE
-
-end program example
+	call HEADER
+	
+		call STAFF
+			...music...
+		call END_STAFF
+	
+	call SCORE
+	
+	end program example

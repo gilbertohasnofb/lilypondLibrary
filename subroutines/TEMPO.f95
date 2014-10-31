@@ -18,8 +18,8 @@ logical :: previousAdvanceNo ! used to find out what was the spacing before this
 rewind(unit=7)
 read(7,"(L1)") previousAdvanceNo
 if (previousAdvanceNo) then
-  write(*,*)
-  write(11,*)
+	write(*,*)
+	write(11,*)
 endif
 close(unit=7,status="delete")
 open(unit=7,file="temp3")
@@ -55,36 +55,37 @@ endif
 
 if ((.NOT. ca_AUX).AND.(.NOT. straightFlag_AUX)) then
 
- if (bpm2_AUX == 0) then
-   write(*,"(A,A,A,I3)") "  \tempo", TRIM(tempo_ref), "=", bpm
-   write(11,"(A,A,A,I3)") "  \tempo", TRIM(tempo_ref), "=", bpm
-   else
-     write(*,"(A,A,A,I3,A,I3)") "  \tempo", TRIM(tempo_ref), "=", bpm,"-",bpm2_AUX
-     write(11,"(A,A,A,I3,A,I3)") "  \tempo", TRIM(tempo_ref), "=", bpm,"-",bpm2_AUX
- endif
+	if (bpm2_AUX == 0) then
+		write(*,"(A,A,A,I3)") "  \tempo", TRIM(tempo_ref), "=", bpm
+		write(11,"(A,A,A,I3)") "  \tempo", TRIM(tempo_ref), "=", bpm
+		else
+			write(*,"(A,A,A,I3,A,I3)") "  \tempo", TRIM(tempo_ref), "=", bpm,"-",bpm2_AUX
+			write(11,"(A,A,A,I3,A,I3)") "  \tempo", TRIM(tempo_ref), "=", bpm,"-",bpm2_AUX
+	endif
  
- else
-	 write(*,"(A)") "  \tempo \markup {\concat { \normal-text \normalsize { "
-	 write(11,"(A)") "  \tempo \markup {\concat { \normal-text \normalsize { "  	    
-   if (straightFlag_AUX) then
-     write(*,"(A)") "    \override #'(flag-style . modern-straight-flag)"
-     write(11,"(A)") "    \override #'(flag-style . modern-straight-flag)"
-   endif
-   write(*,"(A,A,A)") '    \general-align #Y #DOWN \note #"', TRIM(tempo_ref), '" #1 " = "'
-   write(11,"(A,A,A)") '    \general-align #Y #DOWN \note #"', TRIM(tempo_ref), '" #1 " = "'
-   if (ca_AUX) then	 
-	   write(*,"(A)",advance="NO") "    \italic ca. \hspace #0.25 "
-	   write(11,"(A)",advance="NO") "    \italic ca. \hspace #0.25 "
-	 endif
-	 write(*,"(A,I3)",advance="NO") '"', bpm
-	 write(11,"(A,I3)",advance="NO") '"', bpm	 
-	 if (bpm2_AUX /= 0) then
-		 write(*,"(A,I3)",advance="NO") 	 " – ", bpm2
-		 write(11,"(A,I3)",advance="NO") 	 " – ", bpm2
-	 endif
-	 write(*,"(A)") '" }}}'
-	 write(11,"(A)") '" }}}'
-       
+	else
+	
+		write(*,"(A)") "  \tempo \markup {\concat { \normal-text \normalsize { "
+		write(11,"(A)") "  \tempo \markup {\concat { \normal-text \normalsize { "  	    
+		if (straightFlag_AUX) then
+			write(*,"(A)") "    \override #'(flag-style . modern-straight-flag)"
+			write(11,"(A)") "    \override #'(flag-style . modern-straight-flag)"
+		endif
+		write(*,"(A,A,A)") '    \general-align #Y #DOWN \note #"', TRIM(tempo_ref), '" #1 " = "'
+		write(11,"(A,A,A)") '    \general-align #Y #DOWN \note #"', TRIM(tempo_ref), '" #1 " = "'
+		if (ca_AUX) then	 
+			write(*,"(A)",advance="NO") "    \italic ca. \hspace #0.25 "
+			write(11,"(A)",advance="NO") "    \italic ca. \hspace #0.25 "
+		endif
+		write(*,"(A,I3)",advance="NO") '"', bpm
+		write(11,"(A,I3)",advance="NO") '"', bpm	 
+		if (bpm2_AUX /= 0) then
+			write(*,"(A,I3)",advance="NO") 	 " – ", bpm2
+			write(11,"(A,I3)",advance="NO") 	 " – ", bpm2
+		endif
+		write(*,"(A)") '" }}}'
+		write(11,"(A)") '" }}}'
+	 
 endif
 
 end subroutine TEMPO

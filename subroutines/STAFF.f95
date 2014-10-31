@@ -31,7 +31,7 @@ do
 	read(9,"(A)") 
 	read(9,"(A)")
 	read(9,"(I2)") 
-	read(9,"(I2)")  
+	read(9,"(I2)")
 	read(9,"(L1)") 
 	read(9,"(L1)") 
 	read(9,"(L1)") 
@@ -39,7 +39,7 @@ do
 enddo
 8 continue
 close(unit=9,status="keep") 
-! <rant> it is not elegant to  lose the file just to open it again few lines later, but the code above would produce an error when executing. 
+! <rant> it is not elegant to close the file just to open it again few lines later, but the code above would produce an error when executing. 
 ! Basically, as of GNU Fortran (Ubuntu 4.8.2-19ubuntu1) 4.8.2, one cannot read until EOF and then write to the same file after it (!!!). As always,
 ! some argue this is a bug, some argue it is a wonderful standard implemented by a visionary dev. Nevertheless, it generates stupid situations 
 ! such as this one, and many frustrating hours trying to find out why a code that previously worked fine simply does not work any longer (did I hear

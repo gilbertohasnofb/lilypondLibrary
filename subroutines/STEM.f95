@@ -13,7 +13,7 @@ rewind(unit=7)
 read(7,"(L1)") previousAdvanceNo
 if (.NOT. previousAdvanceNo) then
 	write(*,"(A)",advance="NO") " "
-	write(11,"(A)",advance="NO") " "  	
+	write(11,"(A)",advance="NO") " "
 endif
 close(unit=7,status="delete")
 open(unit=7,file="temp3")
@@ -30,7 +30,7 @@ if (present(c)) then
 		write(11,"(A)",advance="NO") " \stemNeutral"
 	endif
 
-  if ( (TRIM(c_AUX)=="up") .OR. (TRIM(c_AUX)=="stemup") .OR. (TRIM(c_AUX)=="\stemup") ) then	
+	IM(c_AUX)=="up") .OR. (TRIM(c_AUX)=="stemup") .OR. (TRIM(c_AUX)=="\stemup") ) then	
 		write(*,"(A)",advance="NO") " \stemUp"
 		write(11,"(A)",advance="NO") " \stemUp"
 	endif

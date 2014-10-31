@@ -46,11 +46,11 @@ logical :: previousAdvanceNo ! used to find out what was the spacing before this
 rewind(unit=7)
 read(7,"(L1)") previousAdvanceNo
 if (previousAdvanceNo) then
-  write(*,"(A)",advance="NO") " "
-  write(11,"(A)",advance="NO") " "
-  else
+	write(*,"(A)",advance="NO") " "
+	write(11,"(A)",advance="NO") " "
+	else
 		write(*,"(A)",advance="NO") "  "
-		write(11,"(A)",advance="NO") "  "  	
+		write(11,"(A)",advance="NO") "  "
 endif
 close(unit=7,status="delete")
 open(unit=7,file="temp3")
@@ -73,13 +73,13 @@ if (pitch_array(1)==0) then
 
  	call NOTE(0,duration)
 	 else if (pitch_array(1)==-1) then
-	   call NOTE(-1,duration)
+		 call NOTE(-1,duration)
 	 else if (pitch_array(2)<=0) then
-	   call NOTE(pitch_array(1),duration)   
-	   
+		 call NOTE(pitch_array(1),duration) 
+		 
 	 else
-   
- 	  ! finding the relevant size of the chord (i.e., non zero elements)
+	 
+ 		! finding the relevant size of the chord (i.e., non zero elements)
 		relevantChordSize = 0
 		i = 1		
 		do while (pitch_array(i)>0)
@@ -159,11 +159,11 @@ if (pitch_array(1)==0) then
 		endif
 		if (present(tie)) then
 	 		if (tie) then
-			  write(*,"(A)",advance="NO") "~"
-		 	  write(11,"(A)",advance="NO") "~"
+				write(*,"(A)",advance="NO") "~"
+		 		write(11,"(A)",advance="NO") "~"
  			endif
 		endif
-		   
+			 
 endif
 
 end subroutine CHORD

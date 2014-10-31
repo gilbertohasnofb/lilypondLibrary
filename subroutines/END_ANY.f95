@@ -7,9 +7,9 @@ logical :: previousAdvanceNo ! used to find out what was the spacing before this
 rewind(unit=7)
 read(7,"(L1)") previousAdvanceNo
 if (previousAdvanceNo) then
-  write(*,"(A)",advance="NO") " "
-  write(11,"(A)",advance="NO") " "
-  else
+	write(*,"(A)",advance="NO") " "
+	write(11,"(A)",advance="NO") " "
+	else
 		write(*,"(A)",advance="NO") "  "
 		write(11,"(A)",advance="NO") "  "  	
 endif

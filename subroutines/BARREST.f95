@@ -12,9 +12,9 @@ logical :: previousAdvanceNo ! used to find out what was the spacing before this
 rewind(unit=7)
 read(7,"(L1)") previousAdvanceNo
 if (previousAdvanceNo) then
-  write(*,"(A)",advance="NO") " "
-  write(11,"(A)",advance="NO") " "
-  else
+	write(*,"(A)",advance="NO") " "
+	write(11,"(A)",advance="NO") " "
+	else
 		write(*,"(A)",advance="NO") "  "
 		write(11,"(A)",advance="NO") "  "  	
 endif
@@ -29,41 +29,41 @@ TIMEbottom_AUX = 4
 invisible_AUX = .FALSE.
 if (present(N)) N_AUX = N
 if ((present(TIMEtop)).AND.(present(TIMEbottom))) then
-  TIMEtop_AUX = TIMEtop
-  TIMEbottom_AUX = TIMEbottom
+	TIMEtop_AUX = TIMEtop
+	TIMEbottom_AUX = TIMEbottom
 endif
 if (present(invisible)) invisible_AUX=invisible
 
 ! visibility
 if (.NOT. invisible_AUX) then
-  write(*,"(A)",advance="NO") "R1"
-  write(11,"(A)",advance="NO") "R1"
-  else
-    write(*,"(A)",advance="NO") "s1"
-    write(11,"(A)",advance="NO") "s1"
+	write(*,"(A)",advance="NO") "R1"
+	write(11,"(A)",advance="NO") "R1"
+	else
+		write(*,"(A)",advance="NO") "s1"
+		write(11,"(A)",advance="NO") "s1"
 endif 
 
 if (TIMEtop_AUX /= TIMEbottom_AUX) then ! i.e., not 4/4, 2/2, 8/8, etc.
 
-  if ((TIMEtop_AUX*N_AUX < 10) .AND. (TIMEbottom_AUX < 10)) then
-    write(*,"(A,I1,A,I1)",advance="NO") "*", TIMEtop_AUX*N_AUX, "/", TIMEbottom_AUX
-    write(11,"(A,I1,A,I1)",advance="NO") "*", TIMEtop_AUX*N_AUX, "/", TIMEbottom_AUX
-  endif
-  if ((TIMEtop_AUX*N_AUX >= 10) .AND. (TIMEbottom_AUX < 10)) then
-    write(*,"(A,I2,A,I1)",advance="NO") "*", TIMEtop_AUX*N_AUX, "/", TIMEbottom_AUX
-    write(11,"(A,I2,A,I1)",advance="NO") "*", TIMEtop_AUX*N_AUX, "/", TIMEbottom_AUX
-  endif
-  if ((TIMEtop_AUX*N_AUX < 10) .AND. (TIMEbottom_AUX >= 10)) then
-    write(*,"(A,I1,A,I2)",advance="NO") "*", TIMEtop_AUX*N_AUX, "/", TIMEbottom_AUX
-    write(11,"(A,I1,A,I2)",advance="NO") "*", TIMEtop_AUX*N_AUX, "/", TIMEbottom_AUX
-  endif
-  if ((TIMEtop_AUX*N_AUX >= 10) .AND. (TIMEbottom_AUX >= 10)) then
-    write(*,"(A,I2,A,I2)",advance="NO") "*", TIMEtop_AUX*N_AUX, "/", TIMEbottom_AUX
-    write(11,"(A,I2,A,I2)",advance="NO") "*", TIMEtop_AUX*N_AUX, "/", TIMEbottom_AUX
-  endif
+	if ((TIMEtop_AUX*N_AUX < 10) .AND. (TIMEbottom_AUX < 10)) then
+		write(*,"(A,I1,A,I1)",advance="NO") "*", TIMEtop_AUX*N_AUX, "/", TIMEbottom_AUX
+		write(11,"(A,I1,A,I1)",advance="NO") "*", TIMEtop_AUX*N_AUX, "/", TIMEbottom_AUX
+	endif
+	if ((TIMEtop_AUX*N_AUX >= 10) .AND. (TIMEbottom_AUX < 10)) then
+		write(*,"(A,I2,A,I1)",advance="NO") "*", TIMEtop_AUX*N_AUX, "/", TIMEbottom_AUX
+		write(11,"(A,I2,A,I1)",advance="NO") "*", TIMEtop_AUX*N_AUX, "/", TIMEbottom_AUX
+	endif
+	if ((TIMEtop_AUX*N_AUX < 10) .AND. (TIMEbottom_AUX >= 10)) then
+		write(*,"(A,I1,A,I2)",advance="NO") "*", TIMEtop_AUX*N_AUX, "/", TIMEbottom_AUX
+		write(11,"(A,I1,A,I2)",advance="NO") "*", TIMEtop_AUX*N_AUX, "/", TIMEbottom_AUX
+	endif
+	if ((TIMEtop_AUX*N_AUX >= 10) .AND. (TIMEbottom_AUX >= 10)) then
+		write(*,"(A,I2,A,I2)",advance="NO") "*", TIMEtop_AUX*N_AUX, "/", TIMEbottom_AUX
+		write(11,"(A,I2,A,I2)",advance="NO") "*", TIMEtop_AUX*N_AUX, "/", TIMEbottom_AUX
+	endif
  
-  else ! i.e., if 4/4, 2/2, etc.
-   
+	else ! i.e., if 4/4, 2/2, etc.
+	 
 		if (N_AUX /= 1) then ! since if N_AUX=1, then it is not necessary to have R1*1, only R1
 			if (N_AUX < 10) then 
 				write(*,"(A,I1)",advance="NO") "*", N_AUX
@@ -73,7 +73,7 @@ if (TIMEtop_AUX /= TIMEbottom_AUX) then ! i.e., not 4/4, 2/2, 8/8, etc.
 					write(11,"(A,I2)",advance="NO") "*", N_AUX
 			endif
 		endif
-   
+	 
 endif
 
 if (present(fermata)) then
@@ -82,5 +82,5 @@ if (present(fermata)) then
 		write(11,"(A)",advance="NO") "\fermataMarkup"
 	endif
 endif
-   
+
 end subroutine BARREST

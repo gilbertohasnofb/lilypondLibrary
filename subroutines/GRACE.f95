@@ -15,9 +15,9 @@ logical :: previousAdvanceNo ! used to find out what was the spacing before this
 rewind(unit=7)
 read(7,"(L1)") previousAdvanceNo
 if (previousAdvanceNo) then
-  write(*,"(A)",advance="NO") " "
-  write(11,"(A)",advance="NO") " "
-  else
+	write(*,"(A)",advance="NO") " "
+	write(11,"(A)",advance="NO") " "
+	else
 		write(*,"(A)",advance="NO") "  "
 		write(11,"(A)",advance="NO") "  "  	
 endif
@@ -27,36 +27,36 @@ write(7,"(L1)") .TRUE. ! this will mean to the next subroutine that this one did
 ! =================================
 
 if (.NOT. present(c)) then
-  write(*,"(A,1x)",advance="NO") "\grace {"
-  write(11,"(A,1x)",advance="NO") "\grace {"
-  else
-  	c_AUX = c
-  	call LCASE(c_AUX)
-  	! if starts with \, I will remove it. This way, the user can enter either \grace or grace, meaning less errors
-  	if (c_AUX(1:1) == "\") then
-  		do i=1,LEN_TRIM(c_AUX)-1
-	  		c_AUX(i:i) = c_AUX(i+1:i+1)
-	  	enddo
-	  	c_AUX(LEN_TRIM(c_AUX):LEN_TRIM(c_AUX)) = " "
-  	endif
-  	
-  	select case (TRIM(c_AUX))
-  		case("grace")
+	write(*,"(A,1x)",advance="NO") "\grace {"
+	write(11,"(A,1x)",advance="NO") "\grace {"
+	else
+		c_AUX = c
+		call LCASE(c_AUX)
+		! if starts with \, I will remove it. This way, the user can enter either \grace or grace, meaning less errors
+		if (c_AUX(1:1) == "\") then
+			do i=1,LEN_TRIM(c_AUX)-1
+				c_AUX(i:i) = c_AUX(i+1:i+1)
+			enddo
+			c_AUX(LEN_TRIM(c_AUX):LEN_TRIM(c_AUX)) = " "
+		endif
+		
+		select case (TRIM(c_AUX))
+			case("grace")
 				write(*,"(A,1x)",advance="NO") "\grace {"
 				write(11,"(A,1x)",advance="NO") "\grace {"
-  		case("default")
+			case("default")
 				write(*,"(A,1x)",advance="NO") "\grace {"
 				write(11,"(A,1x)",advance="NO") "\grace {"
-  		case default
+			case default
 				write(*,"(A,1x)",advance="NO") "\grace {"
 				write(11,"(A,1x)",advance="NO") "\grace {"
-  		case("slashedgrace")
+			case("slashedgrace")
 				write(*,"(A,1x)",advance="NO") "\slashedGrace {"
 				write(11,"(A,1x)",advance="NO") "\slashedGrace {"
-  		case("appoggiatura")
+			case("appoggiatura")
 				write(*,"(A,1x)",advance="NO") "\appoggiatura {"
 				write(11,"(A,1x)",advance="NO") "\appoggiatura {"
-  		case("acciaccatura")
+			case("acciaccatura")
 				write(*,"(A,1x)",advance="NO") "\acciaccatura {"
 				write(11,"(A,1x)",advance="NO") "\acciaccatura {"
 		end select

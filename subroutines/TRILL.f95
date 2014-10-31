@@ -12,7 +12,7 @@ rewind(unit=7)
 read(7,"(L1)") previousAdvanceNo
 if (.NOT. previousAdvanceNo) then
 	write(*,"(A)",advance="NO") "  "
-	write(11,"(A)",advance="NO") "  "  	
+	write(11,"(A)",advance="NO") "  "
 endif
 close(unit=7,status="delete")
 open(unit=7,file="temp3")

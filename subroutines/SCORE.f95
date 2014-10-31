@@ -56,8 +56,8 @@ if ((layout_AUX) .AND. (MIDI_AUX)) nScoreBlocks = 2 ! that is, if both PDF and M
 do j=1,nScoreBlocks
 
 	if (nScoreBlocks == 2) then ! if both PDF and MID then...
-	  if (j==1) then ! if 1st time in the loop, it must be layout
-	  	currentScoreMIDI = .FALSE.
+		if (j==1) then ! if 1st time in the loop, it must be layout
+			currentScoreMIDI = .FALSE.
 			else ! else (2nd time in the loop), it must be MIDI
 				currentScoreMIDI = .TRUE.
 		endif
@@ -80,7 +80,7 @@ do j=1,nScoreBlocks
 				else
 					write(*,"(A)") "\score { \unfoldRepeats \articulate"
 					write(11,"(A)") "\score { \unfoldRepeats \articulate"
-			endif  
+			endif
 	endif
 
 	if ((nInstruments==1) .AND. (.NOT. autochange(1))) then ! for a single instrument (WITHOUT autochange)

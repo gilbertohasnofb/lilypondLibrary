@@ -6,11 +6,11 @@
 ! IMPORTANT: CHORD creates N-note chords, where N is the size of pitch_array unless one or more elemants of pitch_array are equal to or smaller than 0. In that case, CHORD ignores any elements above the 0 element.
 ! That is, if pitch_array is dimension(4), but consists of (/60,64,67,0/), only a three note chord is created. The same is true for the dimension(6) pitch_arrayB=(/60,64,67,0,50,57/), which will also output a C major chord.
 
-subroutine CHORD(pitch_array,duration,D,A,H,S,P,text,trem,accidental,accidentalVector,tie,tieVector,quartertone,&
-quartertoneVector,beam)
+subroutine CHORD(pitch_array,duration,D,A,H,S,P,text,trem,accidental,accidentalVector,quartertone,quartertoneVector,&
+tie,tieVector,beam)
 
 integer, intent(in), dimension(:) :: pitch_array ! in MIDI no., i.e., 60 = C4. Obviously, no rests can be used here (i.e., no pitches = 0)
-character (LEN=*), intent(in) :: duration ! Durations in LilyPond notation, such as "2." or "8.." or "64"
+character (LEN=*), optional, intent(in) :: duration ! Durations in LilyPond notation, such as "2." or "8.." or "64"
 character (LEN=*), optional, intent(in) :: D ! Dynamics: 
 ! should consist of two or more characters, such as "\p", "\fp", etc. For explicit positioning, use "^\p", "_\fp", etc.
 ! if using "arguments.f95", then it can be substituted by variables such as p, fp, etc.
@@ -30,15 +30,15 @@ character (LEN=*), optional, intent(in) :: text ! simple text:
 ! should be either: ^"insertTextHere" or _"insertTextHere", including the quotations
 integer, optional, intent(in) :: trem ! Tremolo:
 ! 0= no tremolo, 8 = tremolo of eighth notes (e.g., c'4:8), 16 = tremolo of sixteenth notes (e.g., g''1:16), and so on
-logical, optional, intent(in) :: accidental ! if .TRUE., then all accidentals will be rendered as sharps. If .FALSE., all flats.
-logical, optional, intent(in), dimension(:) :: accidentalVector ! a vector with individual values for accidentals of individual pitches
+character (LEN=*), optional, intent(in) :: accidental ! if "is", "s" or "sharp, then the pitch will be notated with sharp accidental. If "es", "f" or "flat", then it will be notated as flat
+character (LEN=*), optional, intent(in), dimension(:) :: accidentalVector ! a vector with individual values for accidentals of individual pitches
+character (LEN=*), optional, intent(in) :: quartertone ! if "ih", "up" or "higher", then quarter tone higher, if "eh", "down" or "lower", then quarter tone lower. If "" or "neuter" or "default", then no quarter tone will be used then no quarter tone will be used
+character (LEN=*), optional, intent(in), dimension(:) :: quartertoneVector ! a vector with individual values for quartertones of individual pitches
 logical, optional, intent(in) :: tie ! if .TRUE., a tie "~" is added after the note is finished. Default = .FALSE.
 logical, optional, intent(in), dimension(:) :: tieVector ! a vector with individual values for ties of individual pitches
-logical, optional, intent(in) :: quartertone ! if .TRUE., then the note will by shifted by a quarter tone (default shift is up, but if sharp=.FALSE., then the shift is down). Default = .FALSE.
-logical, optional, intent(in), dimension(:) :: quartertoneVector ! a vector with individual values for quartertones of individual pitches
 character(LEN=*), optional, intent(in) :: beam ! manual beam, should be either "[" or "]"
 ! if using "arguments.f95", then it can be substituted by variables such as startBeam and stopBeam
-logical, dimension(:), allocatable :: accidental_AUX, quartertone_AUX ! Auxiliary variables
+character (LEN=256), dimension(:), allocatable :: accidental_AUX, quartertone_AUX ! Auxiliary variable
 integer :: i, relevantChordSize ! Auxiliary variables
 logical :: previousAdvanceNo ! used to find out what was the spacing before this subroutine was called. if it finished with an advance="NO" or not
 
@@ -60,13 +60,30 @@ write(7,"(L1)") .TRUE. ! this will mean to the next subroutine that this one did
 allocate( accidental_AUX(SIZE(pitch_array)), quartertone_AUX(SIZE(pitch_array)) )
 
 ! dealing with optional variables
-accidental_AUX = .TRUE.
-quartertone_AUX = .FALSE.
+accidental_AUX="sharp"
+if (present(accidental)) accidental_AUX = TRIM(accidental)
+quartertone_AUX="neuter"
+if (present(quartertone)) quartertone_AUX = TRIM(quartertone)
 
-if (present(accidental)) accidental_AUX = accidental
-if (present(accidentalVector)) accidental_AUX = accidentalVector
-if (present(quartertone)) quartertone_AUX = quartertone
-if (present(quartertoneVector)) quartertone_AUX = quartertoneVector
+if (present(accidentalVector)) then
+	do i=1,SIZE(accidentalVector)
+		accidental_AUX(i) = TRIM(accidentalVector(i))
+	enddo
+endif
+if (present(quartertoneVector)) then
+	do i=1,SIZE(quartertoneVector)
+		quartertone_AUX(i) = TRIM(quartertoneVector(i))				
+	enddo
+endif
+
+do i=1,SIZE(pitch_array) ! correcting any conflicting accidental and quartertone
+	if ( ((TRIM(quartertone_AUX(i)) == "ih") .OR. (TRIM(quartertone_AUX(i)) == "higher") .OR. (TRIM(quartertone_AUX(i)) == "up")) &
+	.AND. ((TRIM(accidental_AUX(i)) == "es") .OR. (TRIM(accidental_AUX(i)) == "f") .OR. (TRIM(accidental_AUX(i)) == "flat")) ) &
+	accidental_AUX(i)="sharp" ! that is, if quarter tone up and accidental flat, then accidental changes to sharp. This avoid absurd syntax problems in LilyPond, such as gesih, and still outputs the correct note, which is a quarter tone higher than the pitch class
+	if ( ((TRIM(quartertone_AUX(i)) == "eh") .OR. (TRIM(quartertone_AUX(i)) == "lower") .OR. (TRIM(quartertone_AUX(i)) == "down")) &
+	.AND. ((TRIM(accidental_AUX(i)) == "is") .OR. (TRIM(accidental_AUX(i)) == "s") .OR. (TRIM(accidental_AUX(i)) == "sharp")) ) &
+	accidental_AUX(i)="flat" ! that is, if quarter tone up and accidental flat, then accidental changes to sharp. This avoid absurd syntax problems in LilyPond, such as gesih, and still outputs the correct note, which is a quarter tone higher than the pitch class		
+enddo
 
 ! Checking if the chord was not called with too few notes
 if (pitch_array(1)==0) then
@@ -114,8 +131,10 @@ if (pitch_array(1)==0) then
 		write(11,"(A)",advance="NO") ">"
 
 		! pitch duration
-		write(*,"(A)",advance="NO") TRIM(duration)
-		write(11,"(A)",advance="NO") TRIM(duration)
+		if (present(duration)) then
+			write(*,"(A)",advance="NO") TRIM(duration)
+			write(11,"(A)",advance="NO") TRIM(duration)
+		endif
 
 		! dealing with tremolo
 		if (present(trem)) then

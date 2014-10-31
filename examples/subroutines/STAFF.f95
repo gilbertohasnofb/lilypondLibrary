@@ -8,7 +8,7 @@ character (LEN=*), optional, intent(IN) :: staffType ! should be either "Staff",
 logical, optional, intent(IN) :: startGroup ! If .TRUE., then this will consist of a new group of staves, if .FALSE. then it will be part of the previous staff group. Optional argument.
 character (LEN=*), optional, intent(IN) :: staffRefName ! reference name for the staff. This won't show in the final score, but needs to be used if you plan to call STAFF_CHANGE(staffRefName)
 integer, optional, intent(IN) :: transpose, transposeMIDI ! transpose will affect both the score and the MIDI output, while transposeMIDI affects only the MIDI (useful for "Score in C" type of notation)
-logical, optional, intent(IN) :: transposeAccidental ! if .TRUE., transpose will have sharp accidentals, else flat accidentals. Default = .TRUE.
+character (LEN=*), optional, intent(IN) :: transposeAccidental ! if "is", "s" or "sharp, then the pitch will be notated with sharp accidental. If "es", "f" or "flat", then it will be notated as flat
 logical, optional, intent(IN) :: naturalizeMusic ! this function avoids accidentals such as ces, bis, fes, eis by using the command \naturalizeMusic (remember to call SNIPPET with naturalizeMusic=.TRUE.)
 logical, optional, intent(IN) :: autochange ! if .TRUE., pitches above middle C will be written in the upper staff while the pitches below it will be written in the bottom staff. To be used together with either PianoStaff or GrandStaff.
 character (LEN=256) :: variableName, previous_staffType, staffType_AUX
@@ -122,9 +122,9 @@ if (present(transposeMIDI)) then
 endif
 
 if (present(transposeAccidental)) then
-	write(9,"(L1)") transposeAccidental
+	write(9,"(A)") TRIM(transposeAccidental)
 	else
-		write(9,"(L1)") .TRUE.
+		write(9,"(A)") "sharp"
 endif
 
 if (present(naturalizeMusic)) then

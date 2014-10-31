@@ -9,13 +9,13 @@
 }
 
 A = {
-  c'4\p-.\< d'4 e'4 f'4\f
+  c'4\p-.\<( d' e' f'\f)
   \bar "|."
 }
 
 B = {
   \clef "bass"
-  <c e g>1\pp--
+  <c e g>2 <c e g>\pp--
   \bar "|."
 }
 

@@ -2,16 +2,24 @@
 subroutine MIDI_PITCH_TO_LP(pitch,accidental,quartertone)
 
 integer, intent(in) :: pitch ! MIDI no., i.e., 60 = C4. To use rests, use MIDI = 0 !!!
-logical, optional, intent(in) :: accidental ! if .TRUE., then all accidentals will be rendered as sharps. If .FALSE., all flats.
-logical, optional, intent(in) :: quartertone ! if .TRUE., then the note will by shifted by a quarter tone (default shift is up, but if accidental=.FALSE., then the shift is down). Default = .FALSE.
+character (LEN=*), optional, intent(in) :: accidental ! if "is", "s" or "sharp, then the pitch will be notated with sharp accidental. If "es", "f" or "flat", then it will be notated as flat
+character (LEN=*), optional, intent(in) :: quartertone ! if "ih", "up" or "higher", then quarter tone higher, if "eh", "down" or "lower", then quarter tone lower. If "", "default" or "neuter", then no quarter tone will be used
 integer :: pitch_class, octave
 integer :: aux
-logical :: accidental_AUX, quartertone_AUX
+character (LEN=2) :: quartertone_AUX
+logical :: accidental_AUX
 
-quartertone_AUX=.FALSE.
 accidental_AUX=.TRUE.
-if (present(accidental)) accidental_AUX=accidental
-if (present(quartertone)) quartertone_AUX=quartertone
+quartertone_AUX="  "
+if (present(accidental)) then
+	if ((TRIM(accidental) == "is") .OR. (TRIM(accidental) == "s") .OR. (TRIM(accidental) == "sharp")) accidental_AUX=.TRUE.
+	if ((TRIM(accidental) == "es") .OR. (TRIM(accidental) == "f") .OR. (TRIM(accidental) == "flat")) accidental_AUX=.FALSE.
+endif
+if (present(quartertone)) then
+	if ((TRIM(quartertone) == "ih") .OR. (TRIM(quartertone) == "higher") .OR. (TRIM(quartertone) == "up")) quartertone_AUX="ih"
+	if ((TRIM(quartertone) == "") .OR. (TRIM(quartertone) == "neuter") .OR. (TRIM(quartertone) == "default")) quartertone_AUX="  "
+	if ((TRIM(quartertone) == "eh") .OR. (TRIM(quartertone) == "lower") .OR. (TRIM(quartertone) == "down")) quartertone_AUX="eh"
+endif
 
 if (pitch==0) then ! i.e., a rest
  write(*,"(A)",advance="NO") "r"
@@ -98,15 +106,8 @@ if (pitch==0) then ! i.e., a rest
 			 end select
 			 
 			 ! writing quarter tones
-			 if (quartertone_AUX) then
-				 if (accidental_AUX) then
-					 write(*,"(A)",advance="NO") "ih"
-					 write(11,"(A)",advance="NO") "ih"
-					 else
-						 write(*,"(A)",advance="NO") "eh"
-						 write(11,"(A)",advance="NO") "eh"
-				 endif
-			 endif
+			 write(*,"(A)",advance="NO") TRIM(quartertone_AUX)
+			 write(11,"(A)",advance="NO") TRIM(quartertone_AUX)
 			 
 			 ! writing register
 			 select case (octave)

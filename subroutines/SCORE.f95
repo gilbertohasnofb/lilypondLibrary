@@ -2,8 +2,8 @@ subroutine SCORE(layout,MIDI,autoCompile)
 
 logical, optional, intent(IN) :: layout, MIDI ! score and MIDI output. Default .TRUE. and .FALSE., respectively.
 logical, optional, intent(IN) :: autoCompile ! if set to .TRUE., then the first will automatically compile your score when the executable finishes running automatically. Default = .FALSE.
-character (LEN=256), dimension(999) :: variableName, staffType, instrumentName, groupName, staffRefName ! data about each staff
-logical, dimension(999) :: startGroup, transposeAccidental, naturalizeMusic, autochange ! data about each staff
+character (LEN=256), dimension(999) :: variableName, staffType, instrumentName, groupName, staffRefName, transposeAccidental ! data about each staff
+logical, dimension(999) :: startGroup, naturalizeMusic, autochange ! data about each staff
 integer, dimension(999) :: transpose, transposeMIDI ! data about each staff
 character (LEN=256) :: filename
 logical :: articulate ! checks if the articulate.ly is being used
@@ -34,7 +34,7 @@ do
 	read(9,"(A)") staffRefName(i)	
 	read(9,"(I2)") transpose(i)
 	read(9,"(I2)") transposeMIDI(i)		
-	read(9,"(L1)") transposeAccidental(i)
+	read(9,"(A)") transposeAccidental(i)
 	read(9,"(L1)") naturalizeMusic(i)
 	read(9,"(L1)") autochange(i)	
 	if ((transposeMIDI(i) == 0) .AND. (transpose(i) /= 0)) transposeMIDI(i) = transpose(i)  ! easier to deal explicitly like this, so now transpose affects only with \score \layout and transposeMIDI only \score \MIDI

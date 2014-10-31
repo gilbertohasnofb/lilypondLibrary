@@ -1,4 +1,5 @@
 ! minimal example
+! example of subroutines HEADER, STAFF, NOTE, END_STAFF and SCORE
 
 include "lilypondLibrary.f95"
 
@@ -8,10 +9,10 @@ implicit none
 
 call HEADER(title="Example 1",filename="example1.ly") ! always start your code by calling HEADER
 
-	call STAFF() ! creating a new staff
+	call STAFF ! creating a new staff
 		call NOTE(60,"4")
-	call END_STAFF() ! ending the previous staff
+	call END_STAFF ! ending the previous staff
 
-call SCORE() ! always finish your code by calling SCORE
+call SCORE ! always finish your code by calling SCORE
 
 end program example1

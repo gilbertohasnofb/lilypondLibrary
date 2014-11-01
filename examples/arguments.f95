@@ -1,3 +1,6 @@
+! If you wish to use a set of predefined constants as arguments for the subroutines, copy the file "arguments.f95" to your project's directory and add the following line in your code immediately before declaring your variables:
+!	include "arguments.f95"
+
 ! ===== Rests =====
 integer, parameter :: r = 0
 integer, parameter :: s = -1
@@ -27,7 +30,9 @@ character (LEN=4), parameter :: accent_staccato = "->-."
 character (LEN=4), parameter :: accentStaccato = "->-."
 ! ===== Hairpins =====
 character (LEN=2), parameter :: cresc = "\<"
+character (LEN=2), parameter :: crescendo = "\<"
 character (LEN=2), parameter :: dim = "\>"
+character (LEN=2), parameter :: diminuendo = "\>"
 character (LEN=2), parameter :: stopHairpin = "\!"
 ! ===== Slurs =====
 character (LEN=1), parameter :: startSlur = "("

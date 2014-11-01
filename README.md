@@ -54,6 +54,7 @@ List of available subroutines
 - TIMESIG_NOTE
 - TRILL
 - TUPLET
+- VOICE
 - XNOTE
 
 Usage

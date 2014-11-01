@@ -30,7 +30,9 @@ character (LEN=4), parameter :: accent_staccato = "->-."
 character (LEN=4), parameter :: accentStaccato = "->-."
 ! ===== Hairpins =====
 character (LEN=2), parameter :: cresc = "\<"
+character (LEN=2), parameter :: crescendo = "\<"
 character (LEN=2), parameter :: dim = "\>"
+character (LEN=2), parameter :: diminuendo = "\>"
 character (LEN=2), parameter :: stopHairpin = "\!"
 ! ===== Slurs =====
 character (LEN=1), parameter :: startSlur = "("

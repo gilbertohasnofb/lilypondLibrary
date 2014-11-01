@@ -1,5 +1,5 @@
 GFORTRAN module version '10' created from lilypondLibrary.f95
-MD5:2d9f9ed4f2a18cd086e79cf607cb67c3 -- If you edit this, you'll get what you deserve.
+MD5:9ccf6fc74645e8b220d45755e595d9dc -- If you edit this, you'll get what you deserve.
 
 (() () () () () () () () () () () () () () () () () () () () () () () ()
 () () ())
@@ -159,9 +159,12 @@ MODULE-PROC DECL UNKNOWN 0 0 SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 0 0
 240 'tuplet' 'lilypondlibrary' '' 1 ((PROCEDURE UNKNOWN-INTENT
 MODULE-PROC DECL UNKNOWN 0 0 SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 0 0
 0 UNKNOWN ()) 241 0 (242 243 244) () 0 () () () 0 0)
-245 'xnote' 'lilypondlibrary' '' 1 ((PROCEDURE UNKNOWN-INTENT
+245 'voice' 'lilypondlibrary' '' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL UNKNOWN 0 0 SUBROUTINE) (UNKNOWN 0 0 0 0 UNKNOWN ())
+246 0 (247) () 0 () () () 0 0)
+248 'xnote' 'lilypondlibrary' '' 1 ((PROCEDURE UNKNOWN-INTENT
 MODULE-PROC DECL UNKNOWN 0 0 SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 0 0
-0 UNKNOWN ()) 246 0 (247) () 0 () () () 0 0)
+0 UNKNOWN ()) 249 0 (250) () 0 () () () 0 0)
 4 'tf' '' '' 3 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN 0 0 OPTIONAL
 DUMMY) (LOGICAL 4 0 0 0 LOGICAL ()) 0 0 () () 0 () () () 0 0)
 8 'c' '' '' 7 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN 0 0 DUMMY) (
@@ -571,7 +574,9 @@ OPTIONAL DUMMY) (INTEGER 4 0 0 0 INTEGER ()) 0 0 () () 0 () () () 0 0)
 244 'totalduration' '' '' 241 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN
 0 0 OPTIONAL DUMMY) (INTEGER 4 0 0 0 INTEGER ()) 0 0 () () 0 () () () 0
 0)
-247 'l' '' '' 246 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN 0 0
+247 'i' '' '' 246 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN 0 0 DUMMY)
+(INTEGER 4 0 0 0 INTEGER ()) 0 0 () () 0 () () () 0 0)
+250 'l' '' '' 249 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN 0 0
 OPTIONAL DUMMY) (LOGICAL 4 0 0 0 LOGICAL ()) 0 0 () () 0 () () () 0 0)
 )
 
@@ -585,4 +590,5 @@ OPTIONAL DUMMY) (LOGICAL 4 0 0 0 LOGICAL ()) 0 0 () () 0 () () () 0 0)
 132 'repeat' 0 135 'repeatbracket' 0 139 'score' 0 142 'snippet' 0 147
 'staff' 0 153 'staff_line_count' 0 165 'stem' 0 168 'stopstaff' 0 171
 'style' 0 174 'symbol' 0 200 'tempo' 0 204 'text' 0 214 'tie' 0 222
-'tie_type' 0 223 'time' 0 226 'trill' 0 234 'tuplet' 0 240 'xnote' 0 245)
+'tie_type' 0 223 'time' 0 226 'trill' 0 234 'tuplet' 0 240 'voice' 0 245
+'xnote' 0 248)

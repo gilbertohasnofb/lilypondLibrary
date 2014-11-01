@@ -84,6 +84,7 @@ contains
 	include "./subroutines/TIME.f95"
 	include "./subroutines/TRILL.f95"
 	include "./subroutines/TUPLET.f95"
+	include "./subroutines/VOICE.f95"
 	include "./subroutines/XNOTE.f95"
 
 end module lilypondLibrary

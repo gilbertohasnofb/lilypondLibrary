@@ -20,7 +20,7 @@ List of available subroutines
 - COMMAND
 - END_ANY
 - END_GRACE
-- END_OTTAVA
+- END_OTTAVATE
 - END_POLY
 - END_REPEAT
 - END_REPEATBRACKET          

@@ -4,7 +4,7 @@ subroutine PAPER(globalStaffSize, paperSize, landscape, topMargin, bottomMargin,
 printPageNumber, printFirstPageNumber, firstPageNumber, bottomPageNumber, raggedLast, raggedLastBottom, slashSeparator, &
 doubleSlashSeparator, minSystemsPerPage, maxSystemsPerPage, systemDistance, systemPadding)
 
-integer, optional, intent(in) :: globalStaffSize ! sets the staff size globally
+real, optional, intent(in) :: globalStaffSize ! sets the staff size globally, format nn.n
 character (LEN=*), optional, intent(in) :: paperSize ! Paper size, values can be "a4", "a3", "ledger", "letter", etc.
 logical, optional, intent(in) :: landscape ! if .TRUE., paper is set to landscape orientation. Default = .FALSE. (i.e., portrait orientation)
 real, optional, intent(in) :: topMargin ! Top margin, in cm
@@ -26,13 +26,8 @@ real, optional, intent (in) :: systemDistance ! Vertical distance between system
 real, optional, intent (in) :: systemPadding ! Vertical distance between a system and the other system's objects. Format nn.n
 
 if (present(globalStaffSize)) then
-	if (globalStaffSize < 10) then
-		write(*,"(A,1X,I1,A)") "#(set-global-staff-size", globalStaffSize, ")"
-		write(11,"(A,1X,I1,A)") "#(set-global-staff-size", globalStaffSize, ")"
-		else
-			write(*,"(A,1X,I2,A)") "#(set-global-staff-size", globalStaffSize, ")"
-			write(11,"(A,1X,I2,A)") "#(set-global-staff-size", globalStaffSize, ")"
-	endif
+	write(*,"(A,1X,F4.1,A)") "#(set-global-staff-size", globalStaffSize, ")"
+	write(11,"(A,1X,F4.1,A)") "#(set-global-staff-size", globalStaffSize, ")"
 endif
 
 if (present(paperSize)) then

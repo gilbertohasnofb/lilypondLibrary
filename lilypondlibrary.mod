@@ -1,5 +1,5 @@
 GFORTRAN module version '10' created from lilypondLibrary.f95
-MD5:39cb39f88a67cb5af63ee532ec490790 -- If you edit this, you'll get what you deserve.
+MD5:a131d6a644780a20c187468a58adea2f -- If you edit this, you'll get what you deserve.
 
 (() () () () () () () () () () () () () () () () () () () () () () () ()
 () () ())
@@ -350,8 +350,8 @@ DUMMY) (INTEGER 4 0 0 0 INTEGER ()) 0 0 () () 0 () () () 0 0)
 118 'fifteenthbassa' '' '' 114 ((VARIABLE IN UNKNOWN-PROC UNKNOWN
 UNKNOWN 0 0 DUMMY) (INTEGER 4 0 0 0 INTEGER ()) 0 0 () () 0 () () () 0 0)
 121 'globalstaffsize' '' '' 120 ((VARIABLE IN UNKNOWN-PROC UNKNOWN
-UNKNOWN 0 0 OPTIONAL DUMMY) (INTEGER 4 0 0 0 INTEGER ()) 0 0 () () 0 ()
-() () 0 0)
+UNKNOWN 0 0 OPTIONAL DUMMY) (REAL 4 0 0 0 REAL ()) 0 0 () () 0 () () ()
+0 0)
 122 'papersize' '' '' 120 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN 0 0
 OPTIONAL DUMMY) (CHARACTER 1 0 0 0 CHARACTER (())) 0 0 () () 0 () () ()
 0 0)

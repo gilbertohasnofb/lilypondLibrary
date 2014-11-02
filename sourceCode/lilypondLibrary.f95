@@ -5,8 +5,6 @@
 !                                                                                                                                                            !
 !                                                     by Gilberto Agostinho (gilbertohasnofb@gmail.com)                                                      !
 !                                                                                                                                                            !
-!                                                          (current version created on 31/10/2014)                                                           !
-!                                                                                                                                                            !
 ! ********************************************************************************************************************************************************** !
 !                                                                                                                                                            !
 ! IMPORTANT NOTES:                                                                                                                                           !
@@ -28,7 +26,8 @@
 module lilypondLibrary
 implicit none
 
-private :: LCASE, MIDI_PITCH_TO_LP, SNIPPET_NATURALIZEMUSIC, SNIPPET_REPEATBRACKET, SNIPPET_SLASHEDGRACES, SNIPPET_TIMESIG_NOTE
+private :: LCASE, MIDI_PITCH_TO_LP, SNIPPET_NATURALIZEMUSIC, SNIPPET_OTTAVATE, SNIPPET_REPEATBRACKET, SNIPPET_SLASHEDGRACES, &
+SNIPPET_TIMESIG_NOTE
 
 contains
 
@@ -45,6 +44,7 @@ contains
 	include "./subroutines/COMMAND.f95"
 	include "./subroutines/END_ANY.f95"
 	include "./subroutines/END_GRACE.f95"
+	include "./subroutines/END_OTTAVATE.f95"
 	include "./subroutines/END_POLY.f95"
 	include "./subroutines/END_REPEAT.f95"
 	include "./subroutines/END_REPEATBRACKET.f95"          
@@ -60,6 +60,7 @@ contains
  	include "./subroutines/NOTE.f95"
 	include "./subroutines/NOTEHEAD_STYLE.f95"          
 	include "./subroutines/NOTEHEAD_TRANSPARENT.f95"
+	include "./subroutines/OTTAVATE.f95"	
 	include "./subroutines/PAPER.f95"
 	include "./subroutines/PITCHEDTRILL.f95"
 	include "./subroutines/POLY.f95"
@@ -67,6 +68,7 @@ contains
 	include "./subroutines/REPEATBRACKET.f95"
 	include "./subroutines/SNIPPET.f95"
 	include "./subroutines/SNIPPET_NATURALIZEMUSIC.f95" ! private subroutine
+	include "./subroutines/SNIPPET_OTTAVATE.f95" ! private subroutine
 	include "./subroutines/SNIPPET_REPEATBRACKET.f95" ! private subroutine
 	include "./subroutines/SNIPPET_SLASHEDGRACES.f95" ! private subroutine
 	include "./subroutines/SNIPPET_TIMESIG_NOTE.f95" ! private subroutine	

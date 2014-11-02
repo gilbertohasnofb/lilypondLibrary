@@ -20,6 +20,7 @@ List of available subroutines
 - COMMAND
 - END_ANY
 - END_GRACE
+- END_OTTAVA
 - END_POLY
 - END_REPEAT
 - END_REPEATBRACKET          
@@ -33,6 +34,8 @@ List of available subroutines
 - NOTE
 - NOTEHEAD_STYLE          
 - NOTEHEAD_TRANSPARENT
+- OTTAVA
+- OTTAVATE
 - PAPER
 - PITCHEDTRILL
 - POLY

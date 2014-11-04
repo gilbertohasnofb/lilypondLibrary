@@ -2,7 +2,7 @@
 ! All variables are optional
 subroutine PAPER(globalStaffSize, paperSize, landscape, topMargin, bottomMargin, leftMargin, rightMargin, indent, &
 printPageNumber, printFirstPageNumber, firstPageNumber, bottomPageNumber, raggedLast, raggedLastBottom, slashSeparator, &
-doubleSlashSeparator, minSystemsPerPage, maxSystemsPerPage, systemDistance, systemPadding)
+doubleSlashSeparator, minSystemsPerPage, maxSystemsPerPage, systemDistance, systemPadding, markupSystemSpacing)
 
 real, optional, intent(in) :: globalStaffSize ! sets the staff size globally, format nn.n
 character (LEN=*), optional, intent(in) :: paperSize ! Paper size, values can be "a4", "a3", "ledger", "letter", etc.
@@ -24,6 +24,7 @@ integer, optional, intent(in) :: minSystemsPerPage ! sets a minimal number of sy
 integer, optional, intent(in) :: maxSystemsPerPage ! sets a maximal number of systems in one page
 real, optional, intent (in) :: systemDistance ! Vertical distance between systems. Format nn.n
 real, optional, intent (in) :: systemPadding ! Vertical distance between a system and the other system's objects. Format nn.n
+real, optional, intent (in) :: markupSystemSpacing ! Vertical distance between a markup and the next system, useful for controlling the distance between the title and the 1st system. Format nn.n
 
 if (present(globalStaffSize)) then
 	write(*,"(A,1X,F4.1,A)") "#(set-global-staff-size", globalStaffSize, ")"
@@ -199,6 +200,11 @@ if ( (present(systemDistance)) .AND. (present(systemPadding)) ) then
 		write(11,"(A,1X)",advance="NO") "  system-system-spacing = #'(padding ."
 		write(*,"(F4.1,A,1X,F4.1,A)") systemPadding, ")"
 		write(11,"(F4.1,A,1X,F4.1,A)") systemPadding, ")"
+endif
+
+if (present(markupSystemSpacing)) then
+	write(*,"(A,F4.1,A)") "  markup-system-spacing = #'((basic-distance . ", markupSystemSpacing, "))"
+	write(11,"(A,F4.1,A)") "  markup-system-spacing = #'((basic-distance . ", markupSystemSpacing, "))"
 endif
 
 write(*,"(A)") '}'

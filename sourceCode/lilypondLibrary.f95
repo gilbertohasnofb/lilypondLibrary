@@ -62,6 +62,7 @@ contains
 	include "./subroutines/NOTEHEAD_TRANSPARENT.f95"
 	include "./subroutines/OTTAVA.f95"
 	include "./subroutines/OTTAVATE.f95"
+	include "./subroutines/PAGEBREAK.f95"
 	include "./subroutines/PAPER.f95"
 	include "./subroutines/PITCHEDTRILL.f95"
 	include "./subroutines/POLY.f95"

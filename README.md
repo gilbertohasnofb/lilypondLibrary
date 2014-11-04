@@ -36,6 +36,7 @@ List of available subroutines
 - NOTEHEAD_TRANSPARENT
 - OTTAVA
 - OTTAVATE
+- PAGEBREAK
 - PAPER
 - PITCHEDTRILL
 - POLY

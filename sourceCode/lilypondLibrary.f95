@@ -44,6 +44,7 @@ contains
 	include "./subroutines/COMMAND.f95"
 	include "./subroutines/END_ANY.f95"
 	include "./subroutines/END_GRACE.f95"
+	include "./subroutines/END_MAKECLUSTERS.f95"
 	include "./subroutines/END_OTTAVATE.f95"
 	include "./subroutines/END_POLY.f95"
 	include "./subroutines/END_REPEAT.f95"
@@ -55,6 +56,7 @@ contains
 	include "./subroutines/HEADER.f95"
 	include "./subroutines/KEY.f95"
 	include "./subroutines/LCASE.f95" ! private subroutine
+	include "./subroutines/MAKECLUSTERS.f95"
 	include "./subroutines/MARK.f95"
 	include "./subroutines/MIDI_PITCH_TO_LP.f95" ! private subroutine
  	include "./subroutines/NOTE.f95"

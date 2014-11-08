@@ -20,6 +20,7 @@ List of available subroutines
 - COMMAND
 - END_ANY
 - END_GRACE
+- END_MAKECLUSTERS
 - END_OTTAVATE
 - END_POLY
 - END_REPEAT
@@ -30,6 +31,7 @@ List of available subroutines
 - GRACE
 - HEADER
 - KEY
+- MAKECLUSTERS
 - MARK
 - NOTE
 - NOTEHEAD_STYLE          

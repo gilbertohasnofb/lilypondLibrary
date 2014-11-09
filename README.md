@@ -63,14 +63,26 @@ List of available subroutines
 - VOICE
 - XNOTE
 
-Usage
------
+Usage in Linux
+--------------
 
-- copy the files "lilypondlibrary.mod" and "lilypondLibrary.o" to the same directory as your Fortran project
+- copy the files "lilypondlibrary.o" and "lilypondLibrary.mod" to the same directory as your Fortran project
 - compile your code with the following command:
 	$ gfortran yourcode.f95 lilypondLibrary.o
 - if you also wish to use a set of predefined constants as arguments for the subroutines, copy the file "arguments.f95" to your project's directory and add the following line in your code immediately before declaring your variables:
 	include "arguments.f95"
+	
+Usage in Windows
+----------------
+
+- copy the files "lilypondlibrary-win.o" and "lilypondLibrary-win.mod" to the same directory as your Fortran project
+- compile your code with the following command:
+	gfortran yourcode.f95 lilypondLibrary-win.o
+- if you also wish to use a set of predefined constants as arguments for the subroutines, copy the file "arguments.f95" to your project's directory and add the following line in your code immediately before declaring your variables:
+	include "arguments.f95"
+
+Please note that I do not recompile the Windows version of this library as often as the Linux version, so you may want to compile it by yourself. To do so, simply navigate to the sourceCode folder and execute the following command in the terminal (then follow the instructions above):
+gfortran -c lilypondLibrary-win.f95
 
 Structure of .f95 file
 ----------------------

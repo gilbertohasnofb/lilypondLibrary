@@ -9,7 +9,7 @@
 !                                                                                                                                                            !
 ! IMPORTANT NOTES:                                                                                                                                           !
 !                                                                                                                                                            !
-! - Tested with LilyPond version 2.19.15 (Linux) and GNU Fortran																                                                             !
+! - Tested with LilyPond version 2.19.15 (Linux) and GNU Fortran                                                                                             !
 !                                                                                                                                                            !
 ! - Labels 7 and 11 are reserved (label 11 is used for writing the output .ly file. DO NOT USE ANY OF THEM DIRECTLY IN YOUR CODE!                            !
 !                                                                                                                                                            !
@@ -17,16 +17,16 @@
 !                                                                                                                                                            !
 ! Usage:                                                                                                                                                     !
 !                                                                                                                                                            !
-! - copy the files "lilypondlibrary-win.o" and "lilypondLibrary-win.mod" to the same directory as your Fortran project                                       !
+! - copy the files "lilypondlibrary-win.o" and "lilypondLibraryWin.mod" to the same directory as your Fortran project                                        !
 ! - compile your code with the following command:                                                                                                            !
-!   gfortran yourcode.f95 lilypondLibrary-win.o                                                                                                              !
+!   gfortran yourcode.f95 lilypondLibraryWin.o                                                                                                               !
 ! - if you also wish to use a set of predefined constants as arguments for the subroutines, copy the file "arguments.f95" to your project's directory and    !
 !   add the following line in your code immediately before declaring your variables:                                                                         !
 !   include "arguments.f95"                                                                                                                                  !
 !                                                                                                                                                            !
 ! ********************************************************************************************************************************************************** !
 
-module lilypondLibrary
+module lilypondLibraryWin
 implicit none
 
 private :: LCASE, MIDI_PITCH_TO_LP, SNIPPET_NATURALIZEMUSIC, SNIPPET_OTTAVATE, SNIPPET_REPEATBRACKET, SNIPPET_SLASHEDGRACES, &
@@ -96,4 +96,4 @@ contains
 	include "subroutines\VOICE.f95"
 	include "subroutines\XNOTE.f95"
 
-end module lilypondLibrary
+end module lilypondLibraryWin

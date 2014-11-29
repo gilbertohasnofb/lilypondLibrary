@@ -56,11 +56,28 @@ endif
 if ((.NOT. ca_AUX).AND.(.NOT. straightFlag_AUX)) then
 
 	if (bpm2_AUX == 0) then
-		write(*,"(A,A,A,I3)") "  \tempo ", TRIM(tempo_ref), " = ", bpm
-		write(11,"(A,A,A,I3)") "  \tempo ", TRIM(tempo_ref), " = ", bpm
+		if (bpm < 100) then
+			write(*,"(A,A,A,I2)") "  \tempo ", TRIM(tempo_ref), " = ", bpm
+			write(11,"(A,A,A,I2)") "  \tempo ", TRIM(tempo_ref), " = ", bpm
+			else
+				write(*,"(A,A,A,I3)") "  \tempo ", TRIM(tempo_ref), " = ", bpm
+				write(11,"(A,A,A,I3)") "  \tempo ", TRIM(tempo_ref), " = ", bpm
+		endif
 		else
-			write(*,"(A,A,A,I3,A,I3)") "  \tempo ", TRIM(tempo_ref), " = ", bpm,"-",bpm2_AUX
-			write(11,"(A,A,A,I3,A,I3)") "  \tempo ", TRIM(tempo_ref), " = ", bpm,"-",bpm2_AUX
+			if (bpm < 100) then
+				write(*,"(A,A,A,I2,A)") "  \tempo ", TRIM(tempo_ref), " = ", bpm,"-"
+				write(11,"(A,A,A,I2,A)") "  \tempo ", TRIM(tempo_ref), " = ", bpm,"-"
+				else
+					write(*,"(A,A,A,I3,A)") "  \tempo ", TRIM(tempo_ref), " = ", bpm,"-"
+					write(11,"(A,A,A,I3,A)") "  \tempo ", TRIM(tempo_ref), " = ", bpm,"-"
+			endif
+			if (bpm2_AUX < 100) then
+				write(*,"(I2)") bpm2_AUX
+				write(11,"(I2)") bpm2_AUX
+				else
+					write(*,"(I3)") bpm2_AUX
+					write(11,"(I3)") bpm2_AUX
+			endif
 	endif
  
 	else

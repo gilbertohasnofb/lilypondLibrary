@@ -56,11 +56,11 @@ endif
 if ((.NOT. ca_AUX).AND.(.NOT. straightFlag_AUX)) then
 
 	if (bpm2_AUX == 0) then
-		write(*,"(A,A,A,I3)") "  \tempo", TRIM(tempo_ref), "=", bpm
-		write(11,"(A,A,A,I3)") "  \tempo", TRIM(tempo_ref), "=", bpm
+		write(*,"(A,A,A,I3)") "  \tempo ", TRIM(tempo_ref), " = ", bpm
+		write(11,"(A,A,A,I3)") "  \tempo ", TRIM(tempo_ref), " = ", bpm
 		else
-			write(*,"(A,A,A,I3,A,I3)") "  \tempo", TRIM(tempo_ref), "=", bpm,"-",bpm2_AUX
-			write(11,"(A,A,A,I3,A,I3)") "  \tempo", TRIM(tempo_ref), "=", bpm,"-",bpm2_AUX
+			write(*,"(A,A,A,I3,A,I3)") "  \tempo ", TRIM(tempo_ref), " = ", bpm,"-",bpm2_AUX
+			write(11,"(A,A,A,I3,A,I3)") "  \tempo ", TRIM(tempo_ref), " = ", bpm,"-",bpm2_AUX
 	endif
  
 	else

@@ -17,7 +17,7 @@ open(unit=7,file="temp3")
 write(7,"(L1)") .TRUE. ! this will mean to the next subroutine that this one did finish with an advance="NO"
 ! =================================
 
-write(*,"(A)",advance="NO") " }"
-write(11,"(A)",advance="NO") " }"
+write(*,"(A)",advance="NO") "}"
+write(11,"(A)",advance="NO") "}"
 
 end subroutine END_TUPLET

@@ -27,8 +27,8 @@ write(7,"(L1)") .TRUE. ! this will mean to the next subroutine that this one did
 ! =================================
 
 if (.NOT. present(c)) then
-	write(*,"(A,1x)",advance="NO") "\grace {"
-	write(11,"(A,1x)",advance="NO") "\grace {"
+	write(*,"(A)",advance="NO") "\grace {"
+	write(11,"(A)",advance="NO") "\grace {"
 	else
 		c_AUX = c
 		call LCASE(c_AUX)
@@ -42,23 +42,23 @@ if (.NOT. present(c)) then
 		
 		select case (TRIM(c_AUX))
 			case("grace")
-				write(*,"(A,1x)",advance="NO") "\grace {"
-				write(11,"(A,1x)",advance="NO") "\grace {"
+				write(*,"(A)",advance="NO") "\grace {"
+				write(11,"(A)",advance="NO") "\grace {"
 			case("default")
-				write(*,"(A,1x)",advance="NO") "\grace {"
-				write(11,"(A,1x)",advance="NO") "\grace {"
+				write(*,"(A)",advance="NO") "\grace {"
+				write(11,"(A)",advance="NO") "\grace {"
 			case default
-				write(*,"(A,1x)",advance="NO") "\grace {"
-				write(11,"(A,1x)",advance="NO") "\grace {"
+				write(*,"(A)",advance="NO") "\grace {"
+				write(11,"(A)",advance="NO") "\grace {"
 			case("slashedgrace")
-				write(*,"(A,1x)",advance="NO") "\slashedGrace {"
-				write(11,"(A,1x)",advance="NO") "\slashedGrace {"
+				write(*,"(A)",advance="NO") "\slashedGrace {"
+				write(11,"(A)",advance="NO") "\slashedGrace {"
 			case("appoggiatura")
-				write(*,"(A,1x)",advance="NO") "\appoggiatura {"
-				write(11,"(A,1x)",advance="NO") "\appoggiatura {"
+				write(*,"(A)",advance="NO") "\appoggiatura {"
+				write(11,"(A)",advance="NO") "\appoggiatura {"
 			case("acciaccatura")
-				write(*,"(A,1x)",advance="NO") "\acciaccatura {"
-				write(11,"(A,1x)",advance="NO") "\acciaccatura {"
+				write(*,"(A)",advance="NO") "\acciaccatura {"
+				write(11,"(A)",advance="NO") "\acciaccatura {"
 		end select
 		
 endif

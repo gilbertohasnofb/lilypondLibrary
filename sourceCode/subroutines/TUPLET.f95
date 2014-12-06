@@ -54,7 +54,7 @@ if (present(totalDuration)) then
 	endif
 endif
 
-write(*,"(A,1X)",advance="NO") "{"
-write(11,"(A,1X)",advance="NO") "{"
+write(*,"(A)",advance="NO") "{"
+write(11,"(A)",advance="NO") "{"
 
 end subroutine TUPLET

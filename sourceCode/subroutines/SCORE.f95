@@ -347,6 +347,8 @@ if (condition) then
 		error = .TRUE.
 endif
 
+close(unit=11,status="keep") ! closing the file!
+
 if ( (present(autoCompile)) .AND. (.NOT. error) )then
 	if (autoCompile) then
 		write(*,"(A)") "Compiling your code:"

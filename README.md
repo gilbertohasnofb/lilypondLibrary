@@ -67,7 +67,7 @@ Usage in Linux (and probably OS X)
 ----------------------------------
 
 - copy the files "lilypondlibrary.o" and "lilypondLibrary.mod" to the same directory as your Fortran project
-- immediately after declaring your program's name, add the line "use lilypondLibrary"
+- immediately after declaring your program's name, add the line: ``"use lilypondLibrary```
 - compile your code with the following command: ```$ gfortran your-code.f95 lilypondLibrary.o```
 - or compile it using this other command in order to specify the name of the output file: ```$ gfortran your-code.f95 lilypondLibrary.o -o output-file-name.out```
 - if you also wish to use a set of predefined constants as arguments for the subroutines, copy the file "arguments.f95" to your project's directory and add the following line in your code immediately before declaring your variables: ```include "arguments.f95"```
@@ -77,7 +77,7 @@ Usage in Windows
 ----------------
 
 - copy the files "lilypondlibraryWin.o" and "lilypondLibraryWin.mod" to the same directory as your Fortran project
-- immediately after declaring your program name, add the line "use lilypondLibraryWin"
+- immediately after declaring your program name, add the line: ```use lilypondLibraryWin```
 - compile your code with the following command: ```gfortran yourcode.f95 lilypondLibraryWin.o```
 - or compile it using this other command in order to specify the name of the output file: ```gfortran your-code.f95 lilypondLibraryWin.o -o output-file-name.out```
 - if you also wish to use a set of predefined constants as arguments for the subroutines, copy the file "arguments.f95" to your project's directory and add the following line in your code immediately before declaring your variables: ```include "arguments.f95"```

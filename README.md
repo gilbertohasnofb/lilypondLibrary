@@ -96,7 +96,9 @@ Structure of .f95 file
 	call HEADER
 	
 		call STAFF
+		
 			...music...
+			
 		call END_STAFF
 	
 	call SCORE

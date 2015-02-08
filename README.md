@@ -89,8 +89,6 @@ gfortran -c lilypondLibraryWin.f95
 Structure of .f95 file
 ----------------------
 
-	include "lilypondLibrary.f95"
-	
 	program example
 	use lilypondLibrary
 	implicit none

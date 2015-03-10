@@ -173,6 +173,9 @@ if (pitch==0) then ! i.e., a rest
 			 
 		! writing register
 		select case (octave)
+			case(-2)
+				write(*,"(A)",advance="NO") ",,,,,"
+				write(11,"(A)",advance="NO") ",,,,,"
 			case(-1)
 				write(*,"(A)",advance="NO") ",,,,"
 				write(11,"(A)",advance="NO") ",,,,"
@@ -198,6 +201,12 @@ if (pitch==0) then ! i.e., a rest
 			case(7)
 				write(*,"(A)",advance="NO") "''''"
 				write(11,"(A)",advance="NO") "''''"
+			case(8)
+				write(*,"(A)",advance="NO") "'''''"
+				write(11,"(A)",advance="NO") "'''''"
+			case(9)
+				write(*,"(A)",advance="NO") "''''''"
+				write(11,"(A)",advance="NO") "''''''"
 		end select
 
 endif

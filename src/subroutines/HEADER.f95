@@ -57,23 +57,23 @@ write(*,"(A)") "\header {"
 write(11,"(A)") "\header {"
 
 if (present(title)) then
-	write(*,"(A,A,A)") '  title = ', TRIM(title)
-	write(11,"(A,A,A)") '  title = ', TRIM(title)
+	write(*,"(A,A,A)") '  title = \markup{', TRIM(title), '}'
+	write(11,"(A,A,A)") '  title = \markup{', TRIM(title), '}'
 endif
 
 if (present(composer)) then
-	write(*,"(A,A)") '  composer = ', TRIM(composer)
-	write(11,"(A,A)") '  composer = ', TRIM(composer)
+	write(*,"(A,A,A)") '  composer = \markup{', TRIM(composer), '}'
+	write(11,"(A,A,A)") '  composer = \markup{', TRIM(composer), '}'
 endif
 
 if (present(subtitle)) then
-	write(*,"(A,A)") '  subtitle = ', TRIM(subtitle)
-	write(11,"(A,A)") '  subtitle = ', TRIM(subtitle)
+	write(*,"(A,A,A)") '  subtitle = \markup{', TRIM(subtitle), '}'
+	write(11,"(A,A,A)") '  subtitle = \markup{', TRIM(subtitle), '}'
 endif
 
 if (present(dedication)) then
-	write(*,"(A,A)") '  dedication = ', TRIM(dedication)
-	write(11,"(A,A)") '  dedication = ', TRIM(dedication)
+	write(*,"(A,A,A)") '  dedication = \markup{', TRIM(dedication), '}'
+	write(11,"(A,A,A)") '  dedication = \markup{', TRIM(dedication), '}'
 endif
 
 write(*,"(A)") '  tagline = ""'

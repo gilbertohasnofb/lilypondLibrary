@@ -6,7 +6,7 @@ integer, intent(in) :: top, bottom ! Time Signature's upper and lower numbers, r
 logical, optional, intent(in) :: hidden ! If .TRUE., then the time signatures are hidden for the current staff (defalt = .FALSE.)
 logical, optional, intent(in) :: hiddenScore ! If .TRUE., then the time signatures are hidden at this point for the whole score (defalt = .FALSE.)
 logical, optional, intent(in) :: doubleBarline ! if .TRUE., then a double barline is added before the Time Signature change (defalt = .FALSE.)
-logical, optional, intent(in) :: bottomNote ! if .TRUE., then the bottom number will be displayed as a note (defalt = .FALSE.). IMPORTANT!!!: you MUST call TIMESIG_NOTE to add this function in the beginning of your code, before any LilyPond variables start to be created!
+logical, optional, intent(in) :: bottomNote ! if .TRUE., then the bottom number will be displayed as a note (defalt = .FALSE.). IMPORTANT!!!: you MUST call TIMESIG_NOTE to add this function in the beginning of your code, before any LilyPond variables start to be created! Applies to the context Score, not Staff.
 logical :: previousAdvanceNo ! used to find out what was the spacing before this subroutine was called. if it finished with an advance="NO" or not
 
 ! =========== spacing ==============
@@ -22,8 +22,8 @@ write(7,"(L1)") .FALSE. ! this will mean to the next subroutine that this one di
 ! =================================
 
 if (present(bottomNote) .AND. (bottomNote)) then
-	write(*,"(A)") "  \override Staff.TimeSignature.stencil = #format-time-sig-note"
-	write(11,"(A)") "  \override Staff.TimeSignature.stencil = #format-time-sig-note"
+	write(*,"(A)") "  \override Score.TimeSignature.stencil = #format-time-sig-note"
+	write(11,"(A)") "  \override Score.TimeSignature.stencil = #format-time-sig-note"
 endif
 
 if (present(hiddenScore) .AND. (hiddenScore)) then

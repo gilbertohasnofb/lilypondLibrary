@@ -1,5 +1,5 @@
 ! Subroutine Tempo: creates metronome markings
-subroutine TEMPO(tempo_ref,bpm,bpm2,padding,ca,offsetX,offsetY,straightFlag)
+subroutine TEMPO(tempo_ref,bpm,bpm2,padding,ca,offsetX,offsetY,modernStraightFlag)
 
 character (LEN=*), intent(in) :: tempo_ref ! Durations in LilyPond notation, such as "2." or "8.." or "64"
 integer, intent(in) :: bpm ! tempo in bpm
@@ -7,9 +7,9 @@ integer, optional, intent(in) :: bpm2 ! tempo will be written as bpm - bpm2, suc
 real, optional, intent(in) :: padding ! controls the vertical position of the metronome. Format n.n
 logical, optional, intent(in) :: ca ! if .TRUE., then it writes "tempo_ref = ca. bpm". Cannot be used together with bpm2. Default value = .FALSE.
 real, optional, intent(in) :: offsetX, offsetY
-logical, optional, intent(in) :: straightFlag ! if .TRUE., the style of the flag changes to modern straight flag
+logical, optional, intent(in) :: modernStraightFlag ! if .TRUE., the style of the flag changes to modern straight flag
 integer :: bpm2_AUX ! auxiliary
-logical :: ca_AUX, straightFlag_AUX ! auxiliary
+logical :: ca_AUX, modernStraightFlag_AUX ! auxiliary
 logical :: offset
 real :: offsetX_AUX,offsetY_AUX
 logical :: previousAdvanceNo ! used to find out what was the spacing before this subroutine was called. if it finished with an advance="NO" or not
@@ -31,13 +31,13 @@ bpm2_AUX=0
 offset=.FALSE.
 offsetX_AUX=0.
 offsetY_AUX=0.
-straightFlag_AUX=.FALSE.
+modernStraightFlag_AUX=.FALSE.
 if (present(ca)) ca_AUX=ca
 if (present(bpm2)) bpm2_AUX=bpm2
 if (present(offsetX)) offsetX_AUX=offsetX
 if (present(offsetY)) offsetY_AUX=offsetY
 if (present(offsetX) .OR. present(offsetY)) offset = .TRUE.
-if (present(straightFlag)) straightFlag_AUX = straightFlag 
+if (present(modernStraightFlag)) modernStraightFlag_AUX = modernStraightFlag 
  
 if (present(padding)) then
 	write(*,"(A,F3.1)") "  \once \override Score.MetronomeMark.padding = #", padding
@@ -53,7 +53,7 @@ if (offset) then
 endif
 
 
-if ((.NOT. ca_AUX).AND.(.NOT. straightFlag_AUX)) then
+if ((.NOT. ca_AUX).AND.(.NOT. modernStraightFlag_AUX)) then
 
 	if (bpm2_AUX == 0) then
 		if (bpm < 100) then
@@ -84,7 +84,7 @@ if ((.NOT. ca_AUX).AND.(.NOT. straightFlag_AUX)) then
 	
 		write(*,"(A)") "  \tempo \markup {\concat { \normal-text \normalsize { "
 		write(11,"(A)") "  \tempo \markup {\concat { \normal-text \normalsize { "  	    
-		if (straightFlag_AUX) then
+		if (modernStraightFlag_AUX) then
 			write(*,"(A)") "    \override #'(flag-style . modern-straight-flag)"
 			write(11,"(A)") "    \override #'(flag-style . modern-straight-flag)"
 		endif

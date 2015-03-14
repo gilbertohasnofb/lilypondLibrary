@@ -2,7 +2,7 @@
 subroutine OTTAVATE(ottava,fifteenth,ottavaBassa,fifteenthBassa,openingClef)
 
 integer, intent(IN) :: ottava,fifteenth,ottavaBassa,fifteenthBassa ! each one of these variables correspond to the number of ledger lines in which ottava, fifteenth, ottava bassa and fifteenth bassa will be activate. 
-character (LEN=20), intent(IN), optional :: openingClef ! ottavate ignores any clef that was set before it was called, assuming the music is in treble clef. If a different clef is in use, then call this subroutine with one of the following values: treble, treble_8, bass, bass_8, alto, tenor
+character (LEN=*), intent(IN), optional :: openingClef ! ottavate ignores any clef that was set before it was called, assuming the music is in treble clef. If a different clef is in use, then call this subroutine with one of the following values: treble, treble_8, bass, bass_8, alto, tenor
 
      
 ! A reasonable example of values would: be 4, 7, -4, -7
@@ -22,9 +22,9 @@ write(7,"(L1)") .FALSE. ! this will mean to the next subroutine that this one di
 
 if (present(openingClef)) then
 	write(*,"(A,I2,A,I2,A,I2,A,I2,A,A,A,A)") "  \ottavate #'(",ottava," . ",fifteenth,") #'(",ottavaBassa," . ",fifteenthBassa,")", &
-	" #'((opening-clef . ", openingClef ,")) {"
+	" #'((opening-clef . ", TRIM(openingClef) ,")) {"
 	write(11,"(A,I2,A,I2,A,I2,A,I2,A,A,A,A)") "  \ottavate #'(",ottava," . ",fifteenth,") #'(",ottavaBassa," . ",fifteenthBassa,")", &
-	" #'((opening-clef . ", openingClef ,")) {"
+	" #'((opening-clef . ", TRIM(openingClef) ,")) {"
 	else
 		write(*,"(A,I2,A,I2,A,I2,A,I2,A)") "  \ottavate #'(",ottava," . ",fifteenth,") #'(",ottavaBassa," . ",fifteenthBassa,") {"
 		write(11,"(A,I2,A,I2,A,I2,A,I2,A)") "  \ottavate #'(",ottava," . ",fifteenth,") #'(",ottavaBassa," . ",fifteenthBassa,") {"

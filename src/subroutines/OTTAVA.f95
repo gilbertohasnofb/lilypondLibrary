@@ -20,7 +20,7 @@ if ((i < 10) .AND. (i >= 0)) then
 	write(*,"(A,I1)",advance="NO") " \ottava #", i
 	write(11,"(A,I1)",advance="NO") " \ottava #", i
 	else
-		write(*,"(A,I2)",advance="NO") "  ottava #", i
+		write(*,"(A,I2)",advance="NO") "  \ottava #", i
 		write(11,"(A,I2)",advance="NO") " \ottava #", i	
 endif
 

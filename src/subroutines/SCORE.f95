@@ -33,7 +33,7 @@ do
 	read(9,"(A)") groupName(i)	
 	read(9,"(A)") staffRefName(i)	
 	read(9,"(I2)") transpose(i)
-	read(9,"(I2)") transposeMIDI(i)		
+	read(9,"(I3)") transposeMIDI(i)		
 	read(9,"(A)") transposeAccidental(i)
 	read(9,"(L1)") naturalizeMusic(i)
 	read(9,"(L1)") autochange(i)	

@@ -31,8 +31,8 @@ do
 	read(9,"(A)") 
 	read(9,"(A)")
 	read(9,"(I2)") 
-	read(9,"(I2)")
-	read(9,"(L1)") 
+	read(9,"(I3)")
+	read(9,"(A)") 
 	read(9,"(L1)") 
 	read(9,"(L1)") 
 	i = i + 1

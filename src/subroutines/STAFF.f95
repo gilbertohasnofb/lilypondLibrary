@@ -116,9 +116,9 @@ if (present(transpose)) then
 endif
 
 if (present(transposeMIDI)) then
-	write(9,"(I2)") transposeMIDI
+	write(9,"(I3)") transposeMIDI
 	else
-		write(9,"(I2)") 0
+		write(9,"(I3)") 0
 endif
 
 if (present(transposeAccidental)) then

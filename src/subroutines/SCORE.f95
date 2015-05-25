@@ -328,8 +328,8 @@ do j=1,nScoreBlocks
 					write(11,"(A)") "    \context {"
 		  	  write(*,"(A)") "      \Score"
 		  	  write(11,"(A)") "      \Score"
-					write(*,"(A,A,A)") "      \override SpacingSpanner.base-shortest-duration = #(ly:make-moment", baseShortestDuration, ")"
-					write(11,"(A,A,A)") "      \override SpacingSpanner.base-shortest-duration = #(ly:make-moment", baseShortestDuration, ")"
+					write(*,"(A,A,A)") "      \override SpacingSpanner.base-shortest-duration = #(ly:make-moment ", baseShortestDuration, ")"
+					write(11,"(A,A,A)") "      \override SpacingSpanner.base-shortest-duration = #(ly:make-moment ", baseShortestDuration, ")"
 					write(*,"(A)") "    }"
 					write(11,"(A)") "    }"
 				endif

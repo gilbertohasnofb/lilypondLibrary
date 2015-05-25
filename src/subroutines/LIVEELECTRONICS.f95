@@ -42,11 +42,11 @@ if (present(hshift)) then
 endif
 
 if (present(text)) then
-	write(*,"(A,A,A)") '"', TRIM(text), '" '
-	write(11,"(A,A,A)") '"', TRIM(text), '" '
+	write(*,"(A,A,A)",advance="NO") '"', TRIM(text), '" '
+	write(11,"(A,A,A)",advance="NO") '"', TRIM(text), '" '
 	else
-		write(*,"(A)") '"" '
-		write(11,"(A)") '"" '
+		write(*,"(A)",advance="NO") '"" '
+		write(11,"(A)",advance="NO") '"" '
 endif
 
 end subroutine LIVEELECTRONICS

@@ -1,13 +1,14 @@
-subroutine SCORE(layout,MIDI,autoCompile)
+subroutine SCORE(layout,MIDI,autoCompile,baseShortestDuration)
 
 logical, optional, intent(IN) :: layout, MIDI ! score and MIDI output. Default .TRUE. and .FALSE., respectively.
 logical, optional, intent(IN) :: autoCompile ! if set to .TRUE., then the first will automatically compile your score when the executable finishes running automatically. Default = .FALSE.
+character (LEN=*), optional, intent(IN) :: baseShortestDuration ! changes the horizontal spacing
 character (LEN=256), dimension(999) :: variableName, staffType, instrumentName, groupName, staffRefName, transposeAccidental ! data about each staff
 logical, dimension(999) :: startGroup, naturalizeMusic, autochange ! data about each staff
 integer, dimension(999) :: transpose, transposeMIDI ! data about each staff
 character (LEN=256) :: filename
 logical :: articulate ! checks if the articulate.ly is being used
-logical :: layout_AUX, MIDI_AUX, currentScoreMIDI, condition, error ! auxiliary variables
+logical :: layout_AUX, MIDI_AUX, currentScoreMIDI, condition, error, layoutExtra ! auxiliary variables
 integer :: i, j, nScoreBlocks, nInstruments ! auxiliary variables
 
 ! ******************************************************************************
@@ -16,6 +17,7 @@ layout_AUX = .TRUE.
 MIDI_AUX = .FALSE.
 if (present(layout)) layout_AUX = layout
 if (present(MIDI)) MIDI_AUX = MIDI
+if (present(baseShortestDuration)) layoutExtra = .TRUE. ! this will become useful once there is more than one single option for the layout block. Currently it does look silly, but so is life...
 
 ! reading filename and articulate from the temp file
 rewind(unit=10)
@@ -315,8 +317,25 @@ do j=1,nScoreBlocks
 	endif
 	
 	if (.NOT. currentScoreMIDI) then
-		write(*,"(A)") "  \layout{ }"
-		write(11,"(A)") "  \layout{ }"  
+		if (.NOT. layoutExtra) then
+			write(*,"(A)") "  \layout{ }"
+			write(11,"(A)") "  \layout{ }"  
+			else
+				write(*,"(A)") "  \layout{" 
+				write(11,"(A)") "  \layout{" 
+				if (present (baseShortestDuration)) then
+					write(*,"(A)") "    \context {"
+					write(11,"(A)") "    \context {"
+		  	  write(*,"(A)") "      \Score"
+		  	  write(11,"(A)") "      \Score"
+					write(*,"(A,A,A)") "      \override SpacingSpanner.base-shortest-duration = #(ly:make-moment", baseShortestDuration, ")"
+					write(11,"(A,A,A)") "      \override SpacingSpanner.base-shortest-duration = #(ly:make-moment", baseShortestDuration, ")"
+					write(*,"(A)") "    }"
+					write(11,"(A)") "    }"
+				endif
+					write(*,"(A)") "  }"
+					write(11,"(A)") "  }"
+		endif
 		else
 			write(*,"(A)") "  \midi{ }"
 			write(11,"(A)") "  \midi{ }"  

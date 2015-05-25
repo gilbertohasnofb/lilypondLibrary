@@ -31,6 +31,7 @@ List of available subroutines
 - GRACE
 - HEADER
 - KEY
+- LIVEELECTRONICS
 - MAKECLUSTERS
 - MARK
 - NOTE

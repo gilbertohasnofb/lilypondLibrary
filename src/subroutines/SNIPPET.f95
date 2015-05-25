@@ -1,5 +1,5 @@
 ! add certain interesting snippets to the score. Should be called immediately after HEADER and
-subroutine SNIPPET(slashedGraces,repeatBracket,naturalizeMusic,timesigNote,modernStraightFlag,ottavate)
+subroutine SNIPPET(slashedGraces,repeatBracket,naturalizeMusic,timesigNote,modernStraightFlag,ottavate,liveElectronics)
 
 logical, optional, intent(IN) :: slashedGraces ! this function adds a slash to grace notes in groups (single grace note automatically has a slash in LilyPond). Not that this function is still in beta.
 ! to use it, simply call SNIPPET(slashedGraces=.TRUE.) and then use the GRACE subroutine normally (no need to do anything else).
@@ -9,6 +9,7 @@ logical, optional, intent(IN) :: naturalizeMusic ! this function avoids accident
 logical, optional, intent(IN) :: timesigNote ! This subroutine adds a snippet whose function is to display time signatures as, for instance, 3/quarter-note instead of 3/4. 
 logical, optional, intent(IN) :: modernStraightFlag ! if true, then timesigNote will have modern straight flag style
 logical, optional, intent(IN) :: ottavate ! This subroutine adds a snippet whose function is to automatically deal with ottavation (and 15a, and 8b and 15b)
+logical, optional, intent(IN) :: liveElectronics ! This subroutine adds a snippet whose function is to create circled numbers with arrows below notes used for live electronics
 
 write(*,*) "% *************************************** SNIPPETS ***************************************"
 write(11,*) "% *************************************** SNIPPETS ***************************************"
@@ -56,6 +57,14 @@ endif
 if (present(ottavate)) then
 	if (ottavate) then
 		call SNIPPET_OTTAVATE()
+		write(*,*)
+		write(11,*) 
+	endif
+endif
+
+if (present(liveElectronics)) then
+	if (liveElectronics) then
+		call SNIPPET_LIVEELECTRONICS()
 		write(*,*)
 		write(11,*) 
 	endif

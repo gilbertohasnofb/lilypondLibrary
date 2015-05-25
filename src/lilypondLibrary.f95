@@ -9,7 +9,7 @@
 !                                                                                                                                                            !
 ! IMPORTANT NOTES:                                                                                                                                           !
 !                                                                                                                                                            !
-! - Tested with LilyPond version 2.19.15 (Linux) and GNU Fortran (Ubuntu 4.8.2-19ubuntu1) 4.8.2.                                                             !
+! - Tested with LilyPond version 2.19.95 (Linux) and GNU Fortran (Ubuntu 4.8.2-19ubuntu1) 4.8.2.                                                             !
 !                                                                                                                                                            !
 ! - Labels 7 and 11 are reserved (label 11 is used for writing the output .ly file. DO NOT USE ANY OF THEM DIRECTLY IN YOUR CODE!                            !
 !                                                                                                                                                            !
@@ -29,8 +29,8 @@
 module lilypondLibrary
 implicit none
 
-private :: LCASE, MIDI_PITCH_TO_LP, SNIPPET_NATURALIZEMUSIC, SNIPPET_OTTAVATE, SNIPPET_REPEATBRACKET, SNIPPET_SLASHEDGRACES, &
-SNIPPET_TIMESIG_NOTE
+private :: LCASE, MIDI_PITCH_TO_LP, SNIPPET_LIVEELECTRONICS, SNIPPET_NATURALIZEMUSIC, SNIPPET_OTTAVATE, SNIPPET_REPEATBRACKET, &
+SNIPPET_SLASHEDGRACES, SNIPPET_TIMESIG_NOTE
 
 contains
 
@@ -58,7 +58,8 @@ contains
 	include "./subroutines/GRACE.f95"
 	include "./subroutines/HEADER.f95"
 	include "./subroutines/KEY.f95"
-	include "./subroutines/LCASE.f95" ! private subroutine
+	include "./subroutines/LCASE.f95" ! private subroutine	
+	include "./subroutines/LIVEELECTRONICS.f95"
 	include "./subroutines/MAKECLUSTERS.f95"
 	include "./subroutines/MARK.f95"
 	include "./subroutines/MIDI_PITCH_TO_LP.f95" ! private subroutine
@@ -74,6 +75,7 @@ contains
 	include "./subroutines/REPEAT.f95"
 	include "./subroutines/REPEATBRACKET.f95"
 	include "./subroutines/SNIPPET.f95"
+	include "./subroutines/SNIPPET_LIVEELECTRONICS.f95" ! private subroutine
 	include "./subroutines/SNIPPET_NATURALIZEMUSIC.f95" ! private subroutine
 	include "./subroutines/SNIPPET_OTTAVATE.f95" ! private subroutine
 	include "./subroutines/SNIPPET_REPEATBRACKET.f95" ! private subroutine

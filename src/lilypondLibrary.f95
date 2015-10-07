@@ -45,6 +45,7 @@ contains
 	include "./subroutines/CLEF.f95"
 	include "./subroutines/CADENZA.f95"
 	include "./subroutines/COMMAND.f95"
+	include "./subroutines/COMMENT.f95"
 	include "./subroutines/END_ANY.f95"
 	include "./subroutines/END_GRACE.f95"
 	include "./subroutines/END_MAKECLUSTERS.f95"

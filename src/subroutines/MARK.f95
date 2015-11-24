@@ -13,8 +13,8 @@ logical :: previousAdvanceNo ! used to find out what was the spacing before this
 rewind(unit=7)
 read(7,"(L1)") previousAdvanceNo
 if (previousAdvanceNo) then
-	write(*,*)
-	write(11,*)
+  write(*,*)
+  write(11,*)
 endif
 close(unit=7,status="delete")
 open(unit=7,file="temp3")
@@ -35,24 +35,24 @@ write(11,*)
 
 ! tweak offset
 if (offset) then
-	write(*,"(A,F4.1,A,F4.1,A)") "  \once \override Score.RehearsalMark.extra-offset = #'(", offsetX_AUX, " . ", offsetY_AUX, ")"
-	write(11,"(A,F4.1,A,F4.1,A)") "  \once \override Score.RehearsalMark.extra-offset = #'(", offsetX_AUX, " . ", offsetY_AUX, ")"
+  write(*,"(A,F4.1,A,F4.1,A)") "  \once \override Score.RehearsalMark.extra-offset = #'(", offsetX_AUX, " . ", offsetY_AUX, ")"
+  write(11,"(A,F4.1,A,F4.1,A)") "  \once \override Score.RehearsalMark.extra-offset = #'(", offsetX_AUX, " . ", offsetY_AUX, ")"
 endif
 
 write(*,"(A)",advance="NO") "  \mark "
 write(11,"(A)",advance="NO") "  \mark "
 
 if (.NOT. present(markup)) then
-	if (.NOT. present(text)) then
-	write(*,"(A)") "\default"
-	write(11,"(A)") "\default"
-	else
-		write(*,"(A,1x)") TRIM(text)
-		write(11,"(A,1x)") TRIM(text)
-	endif
-	else
-		write(*,"(A,A,A)") "\markup {", markup,"}"
-		write(11,"(A,A,A)") "\markup {", markup,"}"
+  if (.NOT. present(text)) then
+  write(*,"(A)") "\default"
+  write(11,"(A)") "\default"
+  else
+    write(*,"(A,1x)") TRIM(text)
+    write(11,"(A,1x)") TRIM(text)
+  endif
+  else
+    write(*,"(A,A,A)") "\markup {", markup,"}"
+    write(11,"(A,A,A)") "\markup {", markup,"}"
 endif
 
 end subroutine MARK

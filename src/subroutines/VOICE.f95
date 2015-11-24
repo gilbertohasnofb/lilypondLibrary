@@ -8,8 +8,8 @@ logical :: previousAdvanceNo ! used to find out what was the spacing before this
 rewind(unit=7)
 read(7,"(L1)") previousAdvanceNo
 if (previousAdvanceNo) then
-	write(*,*)
-	write(11,*)
+  write(*,*)
+  write(11,*)
 endif
 close(unit=7,status="delete")
 open(unit=7,file="temp3")
@@ -17,24 +17,24 @@ write(7,"(L1)") .FALSE. ! this will mean to the next subroutine that this one di
 ! =================================
 
 select case (i)
-	case(1)
-		write(*,"(A)") "  \voiceOne"
-		write(11,"(A)") "  \voiceOne"
-	case(2)
-		write(*,"(A)") "  \voiceTwo"
-		write(11,"(A)") "  \voiceTwo"
-	case(3)
-		write(*,"(A)") "  \voiceThree"
-		write(11,"(A)") "  \voiceThree"
-	case(4)
-		write(*,"(A)") "  \voiceFour"
-		write(11,"(A)") "  \voiceFour"
-	case(0)
-		write(*,"(A)") "  \oneVoice"
-		write(11,"(A)") "  \oneVoice"
-	case default
-		write(*,"(A)") "  \oneVoice"
-		write(11,"(A)") "  \oneVoice"
+  case(1)
+    write(*,"(A)") "  \voiceOne"
+    write(11,"(A)") "  \voiceOne"
+  case(2)
+    write(*,"(A)") "  \voiceTwo"
+    write(11,"(A)") "  \voiceTwo"
+  case(3)
+    write(*,"(A)") "  \voiceThree"
+    write(11,"(A)") "  \voiceThree"
+  case(4)
+    write(*,"(A)") "  \voiceFour"
+    write(11,"(A)") "  \voiceFour"
+  case(0)
+    write(*,"(A)") "  \oneVoice"
+    write(11,"(A)") "  \oneVoice"
+  case default
+    write(*,"(A)") "  \oneVoice"
+    write(11,"(A)") "  \oneVoice"
 end select
 
 end subroutine VOICE

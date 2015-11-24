@@ -7,8 +7,8 @@ logical :: previousAdvanceNo ! used to find out what was the spacing before this
 rewind(unit=7)
 read(7,"(L1)") previousAdvanceNo
 if (previousAdvanceNo) then
-	write(*,*)
-	write(11,*)	
+  write(*,*)
+  write(11,*)  
 endif
 close(unit=7,status="delete")
 open(unit=7,file="temp3")

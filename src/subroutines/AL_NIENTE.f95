@@ -8,8 +8,8 @@ logical :: previousAdvanceNo ! used to find out what was the spacing before this
 rewind(unit=7)
 read(7,"(L1)") previousAdvanceNo
 if (previousAdvanceNo) then
-	write(*,*)
-	write(11,*)
+  write(*,*)
+  write(11,*)
 endif
 close(unit=7,status="delete")
 open(unit=7,file="temp3")
@@ -17,11 +17,11 @@ write(7,"(L1)") .FALSE. ! this will mean to the next subroutine that this one di
 ! =================================
 
 if ((present(TF)) .AND. (TF)) then
-	write(*,"(A)") "  \override Hairpin.circled-tip = ##t"
-	write(11,"(A)") "  \override Hairpin.circled-tip = ##t"
-	else
-		write(*,"(A)") "  \revert Hairpin.circled-tip"
-		write(11,"(A)") "  \revert Hairpin.circled-tip"
+  write(*,"(A)") "  \override Hairpin.circled-tip = ##t"
+  write(11,"(A)") "  \override Hairpin.circled-tip = ##t"
+  else
+    write(*,"(A)") "  \revert Hairpin.circled-tip"
+    write(11,"(A)") "  \revert Hairpin.circled-tip"
 endif
 
 end subroutine AL_NIENTE

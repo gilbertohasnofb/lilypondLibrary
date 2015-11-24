@@ -303,5 +303,5 @@ write(11,"(A)") "        \repeat volta #N { $note }"
 write(11,"(A)") "        \stopMeasureCount"
 write(11,"(A)") "      #}"
 write(11,"(A)") "     )"
-	
+  
 end subroutine SNIPPET_REPEATBRACKET

@@ -12,8 +12,8 @@ logical :: previousAdvanceNo ! used to find out what was the spacing before this
 rewind(unit=7)
 read(7,"(L1)") previousAdvanceNo
 if (previousAdvanceNo) then
-	write(*,*)
-	write(11,*)
+  write(*,*)
+  write(11,*)
 endif
 close(unit=7,status="delete")
 open(unit=7,file="temp3")
@@ -21,13 +21,13 @@ write(7,"(L1)") .FALSE. ! this will mean to the next subroutine that this one di
 ! =================================
 
 if (present(openingClef)) then
-	write(*,"(A,I2,A,I2,A,I2,A,I2,A,A,A,A)") "  \ottavate #'(",ottava," . ",fifteenth,") #'(",ottavaBassa," . ",fifteenthBassa,")", &
-	" #'((opening-clef . ", TRIM(openingClef) ,")) {"
-	write(11,"(A,I2,A,I2,A,I2,A,I2,A,A,A,A)") "  \ottavate #'(",ottava," . ",fifteenth,") #'(",ottavaBassa," . ",fifteenthBassa,")", &
-	" #'((opening-clef . ", TRIM(openingClef) ,")) {"
-	else
-		write(*,"(A,I2,A,I2,A,I2,A,I2,A)") "  \ottavate #'(",ottava," . ",fifteenth,") #'(",ottavaBassa," . ",fifteenthBassa,") {"
-		write(11,"(A,I2,A,I2,A,I2,A,I2,A)") "  \ottavate #'(",ottava," . ",fifteenth,") #'(",ottavaBassa," . ",fifteenthBassa,") {"
+  write(*,"(A,I2,A,I2,A,I2,A,I2,A,A,A,A)") "  \ottavate #'(",ottava," . ",fifteenth,") #'(",ottavaBassa," . ",fifteenthBassa,")", &
+  " #'((opening-clef . ", TRIM(openingClef) ,")) {"
+  write(11,"(A,I2,A,I2,A,I2,A,I2,A,A,A,A)") "  \ottavate #'(",ottava," . ",fifteenth,") #'(",ottavaBassa," . ",fifteenthBassa,")", &
+  " #'((opening-clef . ", TRIM(openingClef) ,")) {"
+  else
+    write(*,"(A,I2,A,I2,A,I2,A,I2,A)") "  \ottavate #'(",ottava," . ",fifteenth,") #'(",ottavaBassa," . ",fifteenthBassa,") {"
+    write(11,"(A,I2,A,I2,A,I2,A,I2,A)") "  \ottavate #'(",ottava," . ",fifteenth,") #'(",ottavaBassa," . ",fifteenthBassa,") {"
 endif
 
 end subroutine OTTAVATE

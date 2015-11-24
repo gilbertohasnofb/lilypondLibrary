@@ -10,8 +10,8 @@ logical :: previousAdvanceNo ! used to find out what was the spacing before this
 rewind(unit=7)
 read(7,"(L1)") previousAdvanceNo
 if (.NOT. previousAdvanceNo) then
-	write(*,"(A)",advance="NO") "  "
-	write(11,"(A)",advance="NO") "  "
+  write(*,"(A)",advance="NO") "  "
+  write(11,"(A)",advance="NO") "  "
 endif
 close(unit=7,status="delete")
 open(unit=7,file="temp3")
@@ -23,30 +23,30 @@ write(*,"(A)",advance="NO") '\LE '
 write(11,"(A)",advance="NO") '\LE '
 
 if ((N >= 0) .AND. (N < 10)) then ! the best looking output is "  n  " for n={0,9}, " nn " for n={10,99} and "nnn" for n={100,999}
-	write(*,"(A,I1,A)",advance="NO") '"  ', N, '  " '
-	write(11,"(A,I1,A)",advance="NO") '"  ', N, '  " '
-	else if ((N >= 10) .AND. (N < 100)) then
-		write(*,"(A,I2,A)",advance="NO") '" ', N, ' " '
-		write(11,"(A,I2,A)",advance="NO") '" ', N, ' " '
-	else if ((N >= 100) .AND. (N < 1000)) then
-		write(*,"(A,I3,A)",advance="NO") '"', N, '" '
-		write(11,"(A,I3,A)",advance="NO") '"', N, '" '
-	else
-		write(*,"(A)",advance="NO") '"  ?  " '
-		write(11,"(A)",advance="NO") '"  ?  " '
+  write(*,"(A,I1,A)",advance="NO") '"  ', N, '  " '
+  write(11,"(A,I1,A)",advance="NO") '"  ', N, '  " '
+  else if ((N >= 10) .AND. (N < 100)) then
+    write(*,"(A,I2,A)",advance="NO") '" ', N, ' " '
+    write(11,"(A,I2,A)",advance="NO") '" ', N, ' " '
+  else if ((N >= 100) .AND. (N < 1000)) then
+    write(*,"(A,I3,A)",advance="NO") '"', N, '" '
+    write(11,"(A,I3,A)",advance="NO") '"', N, '" '
+  else
+    write(*,"(A)",advance="NO") '"  ?  " '
+    write(11,"(A)",advance="NO") '"  ?  " '
 endif
 
 if (present(hshift)) then
-	write(*,"(F5.1,1X)",advance="NO") hshift
-	write(11,"(F5.1,1X)",advance="NO") hshift
+  write(*,"(F5.1,1X)",advance="NO") hshift
+  write(11,"(F5.1,1X)",advance="NO") hshift
 endif
 
 if (present(text)) then
-	write(*,"(A,A,A)",advance="NO") '"', TRIM(text), '" '
-	write(11,"(A,A,A)",advance="NO") '"', TRIM(text), '" '
-	else
-		write(*,"(A)",advance="NO") '"" '
-		write(11,"(A)",advance="NO") '"" '
+  write(*,"(A,A,A)",advance="NO") '"', TRIM(text), '" '
+  write(11,"(A,A,A)",advance="NO") '"', TRIM(text), '" '
+  else
+    write(*,"(A)",advance="NO") '"" '
+    write(11,"(A)",advance="NO") '"" '
 endif
 
 end subroutine LIVEELECTRONICS

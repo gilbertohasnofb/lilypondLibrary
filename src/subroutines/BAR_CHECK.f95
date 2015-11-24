@@ -10,11 +10,11 @@ write(7,"(L1)") .FALSE. ! this will mean to the next subroutine that this one di
 ! =================================
 
 if (previousAdvanceNo) then
-	write(*,"(A)") " |"
-	write(11,"(A)") " |"
-	else
-		write(*,"(A)") "  |"
-		write(11,"(A)") "  |"
+  write(*,"(A)") " |"
+  write(11,"(A)") " |"
+  else
+    write(*,"(A)") "  |"
+    write(11,"(A)") "  |"
 endif
 
 end subroutine BAR_CHECK

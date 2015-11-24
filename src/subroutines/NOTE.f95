@@ -41,11 +41,11 @@ logical :: previousAdvanceNo ! used to find out what was the spacing before this
 rewind(unit=7)
 read(7,"(L1)") previousAdvanceNo
 if (previousAdvanceNo) then
-	write(*,"(A)",advance="NO") " "
-	write(11,"(A)",advance="NO") " "
-	else
-		write(*,"(A)",advance="NO") "  "
-		write(11,"(A)",advance="NO") "  "	
+  write(*,"(A)",advance="NO") " "
+  write(11,"(A)",advance="NO") " "
+  else
+    write(*,"(A)",advance="NO") "  "
+    write(11,"(A)",advance="NO") "  "  
 endif
 close(unit=7,status="delete")
 open(unit=7,file="temp3")
@@ -68,55 +68,55 @@ call MIDI_PITCH_TO_LP(pitch,accidental_AUX,enharmonic_AUX,doubleAccidental_AUX,q
 
 ! pitch duration
 if (present(duration)) then
-	write(*,"(A)",advance="NO") TRIM(duration)
-	write(11,"(A)",advance="NO") TRIM(duration)
+  write(*,"(A)",advance="NO") TRIM(duration)
+  write(11,"(A)",advance="NO") TRIM(duration)
 endif
 
 ! dealing with tremolo
 if (present(trem)) then
-	if (trem > 0) then
-	 if (trem < 10) then
-		 write(11,"(A,I1)",advance="NO") ":", trem
-		 else
-			 write(11,"(A,I2)",advance="NO") ":", trem
-	 endif
-	endif
+  if (trem > 0) then
+   if (trem < 10) then
+     write(11,"(A,I1)",advance="NO") ":", trem
+     else
+       write(11,"(A,I2)",advance="NO") ":", trem
+   endif
+  endif
 endif
 
 ! other attributes
 if (present(D)) then
-	write(*,"(A)",advance="NO") TRIM(D)
-	write(11,"(A)",advance="NO") TRIM(D)
+  write(*,"(A)",advance="NO") TRIM(D)
+  write(11,"(A)",advance="NO") TRIM(D)
 endif
 if (present(A)) then
-	write(*,"(A)",advance="NO") TRIM(A)
-	write(11,"(A)",advance="NO") TRIM(A)
+  write(*,"(A)",advance="NO") TRIM(A)
+  write(11,"(A)",advance="NO") TRIM(A)
 endif
 if (present(H)) then
-	write(*,"(A)",advance="NO") TRIM(H)
-	write(11,"(A)",advance="NO") TRIM(H)
+  write(*,"(A)",advance="NO") TRIM(H)
+  write(11,"(A)",advance="NO") TRIM(H)
 endif
 if (present(S)) then
-	write(*,"(A)",advance="NO") TRIM(S)
-	write(11,"(A)",advance="NO") TRIM(S)
+  write(*,"(A)",advance="NO") TRIM(S)
+  write(11,"(A)",advance="NO") TRIM(S)
 endif
 if (present(P)) then
-	write(*,"(A)",advance="NO") TRIM(P)
-	write(11,"(A)",advance="NO") TRIM(P)
+  write(*,"(A)",advance="NO") TRIM(P)
+  write(11,"(A)",advance="NO") TRIM(P)
 endif
 if (present(text)) then
-	write(*,"(A)",advance="NO") TRIM(text)
-	write(11,"(A)",advance="NO") TRIM(text)
+  write(*,"(A)",advance="NO") TRIM(text)
+  write(11,"(A)",advance="NO") TRIM(text)
 endif
 if (present(beam)) then
-	write(*,"(A)",advance="NO") TRIM(beam)
-	write(11,"(A)",advance="NO") TRIM(beam)
+  write(*,"(A)",advance="NO") TRIM(beam)
+  write(11,"(A)",advance="NO") TRIM(beam)
 endif
 if (present(tie)) then
-	if (tie) then
-		write(*,"(A)",advance="NO") "~"
-		write(11,"(A)",advance="NO") "~"
-	endif
+  if (tie) then
+    write(*,"(A)",advance="NO") "~"
+    write(11,"(A)",advance="NO") "~"
+  endif
 endif
 
 end subroutine NOTE

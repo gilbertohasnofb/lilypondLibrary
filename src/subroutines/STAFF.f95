@@ -24,18 +24,18 @@ previous_staffType = "Staff" ! in case this is the 1st time this subroutine is b
 open(unit=9,file="temp2")
 i = 1
 do
-	read(9,"(A)",end=8) 
-	read(9,"(A)") previous_staffType
-	read(9,"(L1)") 
-	read(9,"(A)") 
-	read(9,"(A)") 
-	read(9,"(A)")
-	read(9,"(I2)") 
-	read(9,"(I3)")
-	read(9,"(A)") 
-	read(9,"(L1)") 
-	read(9,"(L1)") 
-	i = i + 1
+  read(9,"(A)",end=8) 
+  read(9,"(A)") previous_staffType
+  read(9,"(L1)") 
+  read(9,"(A)") 
+  read(9,"(A)") 
+  read(9,"(A)")
+  read(9,"(I2)") 
+  read(9,"(I3)")
+  read(9,"(A)") 
+  read(9,"(L1)") 
+  read(9,"(L1)") 
+  i = i + 1
 enddo
 8 continue
 close(unit=9,status="keep") 
@@ -48,10 +48,10 @@ close(unit=9,status="keep")
 ! creating a name for this staff
 variableName = ""
 do while (i > 0)
-	j = MOD(i,26) 
-	if (j==0) j = 26
-	variableName = TRIM(variableName) // ACHAR(64 + j)	
-	i = i - 26
+  j = MOD(i,26) 
+  if (j==0) j = 26
+  variableName = TRIM(variableName) // ACHAR(64 + j)  
+  i = i - 26
 enddo
 if (variableName == "R") variableName = "R-not-a-rest" ! since R is reserved for whole bar rests
 
@@ -65,78 +65,78 @@ write(9,"(A)") TRIM(variableName)
 
 ! staff type
 if (present(staffType)) then
-	write(9,"(A)") TRIM(staffType)
-	staffType_AUX = staffType
-	else
-		write(9,"(A)") "Staff"
-		staffType_AUX = "Staff"
+  write(9,"(A)") TRIM(staffType)
+  staffType_AUX = staffType
+  else
+    write(9,"(A)") "Staff"
+    staffType_AUX = "Staff"
 endif
 
 ! start of a group or not?
 if (present(startGroup)) then
-	write(9,"(L1)") startGroup	
-	else	! if not present then
-		if (staffType_AUX /= "Staff") then ! if this current staff isn't a simple "Staff" but part of a group
-			if (previous_staffType == staffType_AUX) then ! and it is identical to the previous type
-				write(9,"(L1)") .FALSE. ! then it is assumed NOT to be the start of a new group (UNLESS SPECIFIED)
-				else
-					write(9,"(L1)") .TRUE. ! that is, if this staff is groupped and the previous one was as well but they are of different types, then this is the start of a new group
-			endif			
-			else ! if this IS a simple Staff
-				write(9,"(L1)") .TRUE. ! then groupping doesn't matter, but let's mark it as a start anyway (just for consistency, this is the start of a group of 1 staves)
-		endif				
+  write(9,"(L1)") startGroup  
+  else  ! if not present then
+    if (staffType_AUX /= "Staff") then ! if this current staff isn't a simple "Staff" but part of a group
+      if (previous_staffType == staffType_AUX) then ! and it is identical to the previous type
+        write(9,"(L1)") .FALSE. ! then it is assumed NOT to be the start of a new group (UNLESS SPECIFIED)
+        else
+          write(9,"(L1)") .TRUE. ! that is, if this staff is groupped and the previous one was as well but they are of different types, then this is the start of a new group
+      endif      
+      else ! if this IS a simple Staff
+        write(9,"(L1)") .TRUE. ! then groupping doesn't matter, but let's mark it as a start anyway (just for consistency, this is the start of a group of 1 staves)
+    endif        
 endif
 
 ! instrument name
 if (present(instrumentName)) then
-	write(9,"(A)") TRIM(instrumentName)
-	else
-		write(9,"(A)") ""
+  write(9,"(A)") TRIM(instrumentName)
+  else
+    write(9,"(A)") ""
 endif
 
 ! name of the group of staves
 if (present(groupName)) then
-	write(9,"(A)") TRIM(groupName)
-	else
-		write(9,"(A)") ""
+  write(9,"(A)") TRIM(groupName)
+  else
+    write(9,"(A)") ""
 endif
 
 ! reference name for the current staff
 if (present(staffRefName)) then
-	write(9,"(A)") TRIM(staffRefName)
-	else
-		write(9,"(A)") ""
+  write(9,"(A)") TRIM(staffRefName)
+  else
+    write(9,"(A)") ""
 endif
 
 ! transpose
 if (present(transpose)) then
-	write(9,"(I2)") transpose
-	else
-		write(9,"(I2)") 0
+  write(9,"(I2)") transpose
+  else
+    write(9,"(I2)") 0
 endif
 
 if (present(transposeMIDI)) then
-	write(9,"(I3)") transposeMIDI
-	else
-		write(9,"(I3)") 0
+  write(9,"(I3)") transposeMIDI
+  else
+    write(9,"(I3)") 0
 endif
 
 if (present(transposeAccidental)) then
-	write(9,"(A)") TRIM(transposeAccidental)
-	else
-		write(9,"(A)") "sharp"
+  write(9,"(A)") TRIM(transposeAccidental)
+  else
+    write(9,"(A)") "sharp"
 endif
 
 if (present(naturalizeMusic)) then
-	write(9,"(L1)") naturalizeMusic
-	else
-		write(9,"(L1)") .FALSE.
+  write(9,"(L1)") naturalizeMusic
+  else
+    write(9,"(L1)") .FALSE.
 endif
 
 if (present(autochange)) then
-	write(9,"(L1)") autochange
-	else
-		write(9,"(L1)") .FALSE.
+  write(9,"(L1)") autochange
+  else
+    write(9,"(L1)") .FALSE.
 endif
 
 close(unit=9,status="keep")

@@ -13,8 +13,8 @@ call LCASE(style_AUX)
 rewind(unit=7)
 read(7,"(L1)") previousAdvanceNo
 if (previousAdvanceNo) then
-	write(*,*)
-	write(11,*)
+  write(*,*)
+  write(11,*)
 endif
 close(unit=7,status="delete")
 open(unit=7,file="temp3")
@@ -22,26 +22,26 @@ write(7,"(L1)") .FALSE. ! this will mean to the next subroutine that this one di
 ! =================================
 
 if ((style_AUX == "left") .OR. (style_AUX == "leftsided") .OR. (style_AUX == "leftsided-stairs")) then
-	write(*,"(A)") "  \once \override ClusterSpanner.style = #'leftsided-stairs"
-	write(11,"(A)") "  \once \override ClusterSpanner.style = #'leftsided-stairs"
+  write(*,"(A)") "  \once \override ClusterSpanner.style = #'leftsided-stairs"
+  write(11,"(A)") "  \once \override ClusterSpanner.style = #'leftsided-stairs"
 endif
 
 if ((style_AUX == "right") .OR. (style_AUX == "rightsided") .OR. (style_AUX == "rightsided-stairs")) then
-	write(*,"(A)") "  \once \override ClusterSpanner.style = #'rightsided-stairs"
-	write(11,"(A)") "  \once \override ClusterSpanner.style = #'rightsided-stairs"
+  write(*,"(A)") "  \once \override ClusterSpanner.style = #'rightsided-stairs"
+  write(11,"(A)") "  \once \override ClusterSpanner.style = #'rightsided-stairs"
 endif
 
 if ((style_AUX == "centered") .OR. (style_AUX == "centered-stairs")) then
-	write(*,"(A)") "  \once \override ClusterSpanner.style = #'centered-stairs"
-	write(11,"(A)") "  \once \override ClusterSpanner.style = #'centered-stairs"
+  write(*,"(A)") "  \once \override ClusterSpanner.style = #'centered-stairs"
+  write(11,"(A)") "  \once \override ClusterSpanner.style = #'centered-stairs"
 endif
 
 write(*,"(A)") "  \makeClusters {"
 write(11,"(A)") "  \makeClusters {"
 
 if (present(thickness)) then
-	write(*,"(A,F5.2)") "  \override ClusterSpanner.padding = #", thickness
-	write(11,"(A,F5.2)") "  \override ClusterSpanner.padding = #", thickness
+  write(*,"(A,F5.2)") "  \override ClusterSpanner.padding = #", thickness
+  write(11,"(A,F5.2)") "  \override ClusterSpanner.padding = #", thickness
 endif
 
 end subroutine MAKECLUSTERS

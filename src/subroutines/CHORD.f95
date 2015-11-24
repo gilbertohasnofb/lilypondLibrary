@@ -51,11 +51,11 @@ logical :: previousAdvanceNo ! used to find out what was the spacing before this
 rewind(unit=7)
 read(7,"(L1)") previousAdvanceNo
 if (previousAdvanceNo) then
-	write(*,"(A)",advance="NO") " "
-	write(11,"(A)",advance="NO") " "
-	else
-		write(*,"(A)",advance="NO") "  "
-		write(11,"(A)",advance="NO") "  "
+  write(*,"(A)",advance="NO") " "
+  write(11,"(A)",advance="NO") " "
+  else
+    write(*,"(A)",advance="NO") "  "
+    write(11,"(A)",advance="NO") "  "
 endif
 close(unit=7,status="delete")
 open(unit=7,file="temp3")
@@ -79,136 +79,136 @@ quartertone_AUX="neuter"
 if (present(quartertone)) quartertone_AUX = TRIM(quartertone)
 
 if (present(accidentalVector)) then
-	do i=1,SIZE(accidentalVector)
-		accidental_AUX(i) = TRIM(accidentalVector(i))
-	enddo
+  do i=1,SIZE(accidentalVector)
+    accidental_AUX(i) = TRIM(accidentalVector(i))
+  enddo
 endif
 
 if (present(enharmonicVector)) then
-	do i=1,SIZE(enharmonicVector)
-		enharmonic_AUX(i) = enharmonicVector(i)
-	enddo
+  do i=1,SIZE(enharmonicVector)
+    enharmonic_AUX(i) = enharmonicVector(i)
+  enddo
 endif
 
 if (present(doubleAccidentalVector)) then
-	do i=1,SIZE(doubleAccidentalVector)
-		doubleAccidental_AUX(i) = TRIM(doubleAccidentalVector(i))
-	enddo
+  do i=1,SIZE(doubleAccidentalVector)
+    doubleAccidental_AUX(i) = TRIM(doubleAccidentalVector(i))
+  enddo
 endif
 
 if (present(quartertoneVector)) then
-	do i=1,SIZE(quartertoneVector)
-		quartertone_AUX(i) = TRIM(quartertoneVector(i))				
-	enddo
+  do i=1,SIZE(quartertoneVector)
+    quartertone_AUX(i) = TRIM(quartertoneVector(i))        
+  enddo
 endif
 
 do i=1,SIZE(pitch_array) ! correcting any conflicting accidental and quartertone
-	if ( ((TRIM(quartertone_AUX(i)) == "ih") .OR. (TRIM(quartertone_AUX(i)) == "higher") .OR. (TRIM(quartertone_AUX(i)) == "up")) &
-	.AND. ((TRIM(accidental_AUX(i)) == "es") .OR. (TRIM(accidental_AUX(i)) == "f") .OR. (TRIM(accidental_AUX(i)) == "flat")) ) &
-	accidental_AUX(i)="sharp" ! that is, if quarter tone up and accidental flat, then accidental changes to sharp. This avoid absurd syntax problems in LilyPond, such as gesih, and still outputs the correct note, which is a quarter tone higher than the pitch class
-	if ( ((TRIM(quartertone_AUX(i)) == "eh") .OR. (TRIM(quartertone_AUX(i)) == "lower") .OR. (TRIM(quartertone_AUX(i)) == "down")) &
-	.AND. ((TRIM(accidental_AUX(i)) == "is") .OR. (TRIM(accidental_AUX(i)) == "s") .OR. (TRIM(accidental_AUX(i)) == "sharp")) ) &
-	accidental_AUX(i)="flat" ! that is, if quarter tone up and accidental flat, then accidental changes to sharp. This avoid absurd syntax problems in LilyPond, such as gesih, and still outputs the correct note, which is a quarter tone higher than the pitch class		
+  if ( ((TRIM(quartertone_AUX(i)) == "ih") .OR. (TRIM(quartertone_AUX(i)) == "higher") .OR. (TRIM(quartertone_AUX(i)) == "up")) &
+  .AND. ((TRIM(accidental_AUX(i)) == "es") .OR. (TRIM(accidental_AUX(i)) == "f") .OR. (TRIM(accidental_AUX(i)) == "flat")) ) &
+  accidental_AUX(i)="sharp" ! that is, if quarter tone up and accidental flat, then accidental changes to sharp. This avoid absurd syntax problems in LilyPond, such as gesih, and still outputs the correct note, which is a quarter tone higher than the pitch class
+  if ( ((TRIM(quartertone_AUX(i)) == "eh") .OR. (TRIM(quartertone_AUX(i)) == "lower") .OR. (TRIM(quartertone_AUX(i)) == "down")) &
+  .AND. ((TRIM(accidental_AUX(i)) == "is") .OR. (TRIM(accidental_AUX(i)) == "s") .OR. (TRIM(accidental_AUX(i)) == "sharp")) ) &
+  accidental_AUX(i)="flat" ! that is, if quarter tone up and accidental flat, then accidental changes to sharp. This avoid absurd syntax problems in LilyPond, such as gesih, and still outputs the correct note, which is a quarter tone higher than the pitch class    
 enddo
 
 ! Checking if the chord was not called with too few notes
 if (pitch_array(1)==0) then
 
- 	call NOTE(0,duration)
-	 else if (pitch_array(1)==-1) then
-		 call NOTE(-1,duration)
-	 else if (pitch_array(2)<=0) then
-		 call NOTE(pitch_array(1),duration) 
-		 
-	 else
-	 
- 		! finding the relevant size of the chord (i.e., non zero elements)
-		relevantChordSize = 0
-		i = 1		
-		do while (pitch_array(i)>0)
-		 i = i + 1 
-		 relevantChordSize = relevantChordSize + 1
-		 if (i > SIZE(pitch_array)) exit
-		enddo 
+   call NOTE(0,duration)
+   else if (pitch_array(1)==-1) then
+     call NOTE(-1,duration)
+   else if (pitch_array(2)<=0) then
+     call NOTE(pitch_array(1),duration) 
+     
+   else
+   
+     ! finding the relevant size of the chord (i.e., non zero elements)
+    relevantChordSize = 0
+    i = 1    
+    do while (pitch_array(i)>0)
+     i = i + 1 
+     relevantChordSize = relevantChordSize + 1
+     if (i > SIZE(pitch_array)) exit
+    enddo 
 
-		! Writing the pitches themselves and dealing with individual ties
-		write(*,"(A)",advance="NO") "<"
-		write(11,"(A)",advance="NO") "<"
-		do i=1,(relevantChordSize-1)
-			call MIDI_PITCH_TO_LP(pitch_array(i),accidental_AUX(i),enharmonic_AUX(i),doubleAccidental_AUX(i),quartertone_AUX(i)) 
-			if (present(tieVector)) then
-				if (tieVector(i)) then
-				 write(*,"(A)",advance="NO") "~"
-				 write(11,"(A)",advance="NO") "~"
-				endif
-			endif
-			write(*,"(A)",advance="NO") " "
-			write(11,"(A)",advance="NO") " "
-		enddo
-		i = relevantChordSize
-		call MIDI_PITCH_TO_LP(pitch_array(i),accidental_AUX(i),enharmonic_AUX(i),doubleAccidental_AUX(i),quartertone_AUX(i)) 
-		if (present(tieVector)) then
-			if (tieVector(i)) then
-			 write(*,"(A)",advance="NO") "~"
-			 write(11,"(A)",advance="NO") "~"
-			endif
-		endif
-		write(*,"(A)",advance="NO") ">"
-		write(11,"(A)",advance="NO") ">"
+    ! Writing the pitches themselves and dealing with individual ties
+    write(*,"(A)",advance="NO") "<"
+    write(11,"(A)",advance="NO") "<"
+    do i=1,(relevantChordSize-1)
+      call MIDI_PITCH_TO_LP(pitch_array(i),accidental_AUX(i),enharmonic_AUX(i),doubleAccidental_AUX(i),quartertone_AUX(i)) 
+      if (present(tieVector)) then
+        if (tieVector(i)) then
+         write(*,"(A)",advance="NO") "~"
+         write(11,"(A)",advance="NO") "~"
+        endif
+      endif
+      write(*,"(A)",advance="NO") " "
+      write(11,"(A)",advance="NO") " "
+    enddo
+    i = relevantChordSize
+    call MIDI_PITCH_TO_LP(pitch_array(i),accidental_AUX(i),enharmonic_AUX(i),doubleAccidental_AUX(i),quartertone_AUX(i)) 
+    if (present(tieVector)) then
+      if (tieVector(i)) then
+       write(*,"(A)",advance="NO") "~"
+       write(11,"(A)",advance="NO") "~"
+      endif
+    endif
+    write(*,"(A)",advance="NO") ">"
+    write(11,"(A)",advance="NO") ">"
 
-		! pitch duration
-		if (present(duration)) then
-			write(*,"(A)",advance="NO") TRIM(duration)
-			write(11,"(A)",advance="NO") TRIM(duration)
-		endif
+    ! pitch duration
+    if (present(duration)) then
+      write(*,"(A)",advance="NO") TRIM(duration)
+      write(11,"(A)",advance="NO") TRIM(duration)
+    endif
 
-		! dealing with tremolo
-		if (present(trem)) then
-			if (trem > 0) then
-			 if (trem < 10) then
-				 write(11,"(A,I1)",advance="NO") ":", trem
-				 else
-					 write(11,"(A,I2)",advance="NO") ":", trem
-			 endif
-			endif
-		endif
+    ! dealing with tremolo
+    if (present(trem)) then
+      if (trem > 0) then
+       if (trem < 10) then
+         write(11,"(A,I1)",advance="NO") ":", trem
+         else
+           write(11,"(A,I2)",advance="NO") ":", trem
+       endif
+      endif
+    endif
 
-		! other attributes
-		if (present(D)) then
-			write(*,"(A)",advance="NO") TRIM(D)
-			write(11,"(A)",advance="NO") TRIM(D)
-		endif
-		if (present(A)) then
-			write(*,"(A)",advance="NO") TRIM(A)
-			write(11,"(A)",advance="NO") TRIM(A)
-		endif
-		if (present(H)) then
-			write(*,"(A)",advance="NO") TRIM(H)
-			write(11,"(A)",advance="NO") TRIM(H)
-		endif
-		if (present(S)) then
-			write(*,"(A)",advance="NO") TRIM(S)
-			write(11,"(A)",advance="NO") TRIM(S)
-		endif
-		if (present(P)) then
-			write(*,"(A)",advance="NO") TRIM(P)
-			write(11,"(A)",advance="NO") TRIM(P)
-		endif
-		if (present(text)) then
-			write(*,"(A)",advance="NO") TRIM(text)
-			write(11,"(A)",advance="NO") TRIM(text)
-		endif
-		if (present(beam)) then
-			write(*,"(A)",advance="NO") TRIM(beam)
-			write(11,"(A)",advance="NO") TRIM(beam)
-		endif
-		if (present(tie)) then
-	 		if (tie) then
-				write(*,"(A)",advance="NO") "~"
-		 		write(11,"(A)",advance="NO") "~"
- 			endif
-		endif
-			 
+    ! other attributes
+    if (present(D)) then
+      write(*,"(A)",advance="NO") TRIM(D)
+      write(11,"(A)",advance="NO") TRIM(D)
+    endif
+    if (present(A)) then
+      write(*,"(A)",advance="NO") TRIM(A)
+      write(11,"(A)",advance="NO") TRIM(A)
+    endif
+    if (present(H)) then
+      write(*,"(A)",advance="NO") TRIM(H)
+      write(11,"(A)",advance="NO") TRIM(H)
+    endif
+    if (present(S)) then
+      write(*,"(A)",advance="NO") TRIM(S)
+      write(11,"(A)",advance="NO") TRIM(S)
+    endif
+    if (present(P)) then
+      write(*,"(A)",advance="NO") TRIM(P)
+      write(11,"(A)",advance="NO") TRIM(P)
+    endif
+    if (present(text)) then
+      write(*,"(A)",advance="NO") TRIM(text)
+      write(11,"(A)",advance="NO") TRIM(text)
+    endif
+    if (present(beam)) then
+      write(*,"(A)",advance="NO") TRIM(beam)
+      write(11,"(A)",advance="NO") TRIM(beam)
+    endif
+    if (present(tie)) then
+       if (tie) then
+        write(*,"(A)",advance="NO") "~"
+         write(11,"(A)",advance="NO") "~"
+       endif
+    endif
+       
 endif
 
 end subroutine CHORD

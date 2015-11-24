@@ -13,8 +13,8 @@ logical :: previousAdvanceNo ! used to find out what was the spacing before this
 rewind(unit=7)
 read(7,"(L1)") previousAdvanceNo
 if (previousAdvanceNo) then
-	write(*,*)
-	write(11,*)
+  write(*,*)
+  write(11,*)
 endif
 close(unit=7,status="delete")
 open(unit=7,file="temp3")
@@ -22,36 +22,36 @@ write(7,"(L1)") .FALSE. ! this will mean to the next subroutine that this one di
 ! =================================
 
 if (present(bottomNote) .AND. (bottomNote)) then
-	write(*,"(A)") "  \override Score.TimeSignature.stencil = #format-time-sig-note"
-	write(11,"(A)") "  \override Score.TimeSignature.stencil = #format-time-sig-note"
+  write(*,"(A)") "  \override Score.TimeSignature.stencil = #format-time-sig-note"
+  write(11,"(A)") "  \override Score.TimeSignature.stencil = #format-time-sig-note"
 endif
 
 if (present(hiddenScore) .AND. (hiddenScore)) then
-	write(*,"(A)") "  \once \override Score.TimeSignature.stencil = ##f"
-	write(11,"(A)") "  \once \override Score.TimeSignature.stencil = ##f"
+  write(*,"(A)") "  \once \override Score.TimeSignature.stencil = ##f"
+  write(11,"(A)") "  \once \override Score.TimeSignature.stencil = ##f"
 endif
 
 if (present(hidden) .AND. (hidden)) then
-	write(*,"(A)") "  \once \override Staff.TimeSignature.stencil = ##f"
-	write(11,"(A)") "  \once \override Staff.TimeSignature.stencil = ##f"
+  write(*,"(A)") "  \once \override Staff.TimeSignature.stencil = ##f"
+  write(11,"(A)") "  \once \override Staff.TimeSignature.stencil = ##f"
 endif
 
 if (present(doubleBarline) .AND. (doubleBarline)) call BAR("||")
 
 if (top < 10) then
-	write(*,"(A, I1)",advance="NO") "  \time ", top
-	write(11,"(A, I1)",advance="NO") "  \time ", top
-	else
-		write(*,"(A, I2)",advance="NO") "  \time ", top
-		write(11,"(A, I2)",advance="NO") "  \time ", top
+  write(*,"(A, I1)",advance="NO") "  \time ", top
+  write(11,"(A, I1)",advance="NO") "  \time ", top
+  else
+    write(*,"(A, I2)",advance="NO") "  \time ", top
+    write(11,"(A, I2)",advance="NO") "  \time ", top
 endif
 
 if (bottom < 10) then
-	write(*,"(A, I1)") "/", bottom
-	write(11,"(A, I1)") "/", bottom
-	else
-		write(*,"(A, I2)") "/", bottom
-		write(11,"(A, I2)") "/", bottom	
+  write(*,"(A, I1)") "/", bottom
+  write(11,"(A, I1)") "/", bottom
+  else
+    write(*,"(A, I2)") "/", bottom
+    write(11,"(A, I2)") "/", bottom  
 endif
 
 end subroutine TIME

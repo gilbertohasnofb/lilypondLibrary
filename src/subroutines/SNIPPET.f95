@@ -17,57 +17,57 @@ write(*,*)
 write(11,*) 
 
 if (present(slashedGraces)) then
-	if (slashedGraces) then
-		call SNIPPET_SLASHEDGRACES()
-		write(*,*)
-		write(11,*) 
-	endif
+  if (slashedGraces) then
+    call SNIPPET_SLASHEDGRACES()
+    write(*,*)
+    write(11,*) 
+  endif
 endif
 
 if (present(repeatBracket)) then
-	if (repeatBracket) then
-		call SNIPPET_REPEATBRACKET()
-		write(*,*)
-		write(11,*) 
-	endif
+  if (repeatBracket) then
+    call SNIPPET_REPEATBRACKET()
+    write(*,*)
+    write(11,*) 
+  endif
 endif
 
 if (present(naturalizeMusic)) then
-	if (naturalizeMusic) then
-		call SNIPPET_NATURALIZEMUSIC()
-		write(*,*)
-		write(11,*) 
-	endif
+  if (naturalizeMusic) then
+    call SNIPPET_NATURALIZEMUSIC()
+    write(*,*)
+    write(11,*) 
+  endif
 endif
 
 if (present(timesigNote)) then
-	if (timesigNote) then
-		if (present(modernStraightFlag) .AND. (modernStraightFlag)) then
-			call SNIPPET_TIMESIG_NOTE(modernStraightFlag=.TRUE.)
-			write(*,*)
-			write(11,*) 
-			else
-				call SNIPPET_TIMESIG_NOTE()
-				write(*,*)
-				write(11,*) 
-		endif
-	endif
+  if (timesigNote) then
+    if (present(modernStraightFlag) .AND. (modernStraightFlag)) then
+      call SNIPPET_TIMESIG_NOTE(modernStraightFlag=.TRUE.)
+      write(*,*)
+      write(11,*) 
+      else
+        call SNIPPET_TIMESIG_NOTE()
+        write(*,*)
+        write(11,*) 
+    endif
+  endif
 endif
 
 if (present(ottavate)) then
-	if (ottavate) then
-		call SNIPPET_OTTAVATE()
-		write(*,*)
-		write(11,*) 
-	endif
+  if (ottavate) then
+    call SNIPPET_OTTAVATE()
+    write(*,*)
+    write(11,*) 
+  endif
 endif
 
 if (present(liveElectronics)) then
-	if (liveElectronics) then
-		call SNIPPET_LIVEELECTRONICS()
-		write(*,*)
-		write(11,*) 
-	endif
+  if (liveElectronics) then
+    call SNIPPET_LIVEELECTRONICS()
+    write(*,*)
+    write(11,*) 
+  endif
 endif
 
 write(*,*) "% ****************************************************************************************"

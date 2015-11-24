@@ -11,8 +11,8 @@ logical :: previousAdvanceNo ! used to find out what was the spacing before this
 rewind(unit=7)
 read(7,"(L1)") previousAdvanceNo
 if (.NOT. previousAdvanceNo) then
-	write(*,"(A)",advance="NO") " "
-	write(11,"(A)",advance="NO") " "
+  write(*,"(A)",advance="NO") " "
+  write(11,"(A)",advance="NO") " "
 endif
 close(unit=7,status="delete")
 open(unit=7,file="temp3")
@@ -29,29 +29,29 @@ write(*,"(A,1X)",advance="NO") " \tuplet"
 write(11,"(A,1X)",advance="NO") " \tuplet"
 
 if (t_AUX < 10 ) then
-	write(*,"(I1,A)",advance="NO") t_AUX, "/"
-	write(11,"(I1,A)",advance="NO") t_AUX, "/"
-	else
-		write(*,"(I2,A)",advance="NO") t_AUX, "/"
-		write(11,"(I2,A)",advance="NO") t_AUX, "/"
+  write(*,"(I1,A)",advance="NO") t_AUX, "/"
+  write(11,"(I1,A)",advance="NO") t_AUX, "/"
+  else
+    write(*,"(I2,A)",advance="NO") t_AUX, "/"
+    write(11,"(I2,A)",advance="NO") t_AUX, "/"
 endif
 
 if (n_AUX < 10 ) then
-	write(*,"(I1,1X)",advance="NO") n_AUX
-	write(11,"(I1,1X)",advance="NO") n_AUX
-	else
-		write(*,"(I2,1X)",advance="NO") n_AUX
-		write(11,"(I2,1X)",advance="NO") n_AUX
+  write(*,"(I1,1X)",advance="NO") n_AUX
+  write(11,"(I1,1X)",advance="NO") n_AUX
+  else
+    write(*,"(I2,1X)",advance="NO") n_AUX
+    write(11,"(I2,1X)",advance="NO") n_AUX
 endif
 
 if (present(totalDuration)) then
-	if (totalDuration_AUX < 10 ) then
-		write(*,"(I1,1X)",advance="NO") totalDuration_AUX
-		write(11,"(I1,1X)",advance="NO") totalDuration_AUX
-		else
-			write(*,"(I2,1X)",advance="NO") totalDuration_AUX
-			write(11,"(I2,1X)",advance="NO") totalDuration_AUX
-	endif
+  if (totalDuration_AUX < 10 ) then
+    write(*,"(I1,1X)",advance="NO") totalDuration_AUX
+    write(11,"(I1,1X)",advance="NO") totalDuration_AUX
+    else
+      write(*,"(I2,1X)",advance="NO") totalDuration_AUX
+      write(11,"(I2,1X)",advance="NO") totalDuration_AUX
+  endif
 endif
 
 write(*,"(A)",advance="NO") "{"

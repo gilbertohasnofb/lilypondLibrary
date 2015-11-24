@@ -8,8 +8,8 @@ logical :: previousAdvanceNo ! used to find out what was the spacing before this
 rewind(unit=7)
 read(7,"(L1)") previousAdvanceNo
 if (.NOT. previousAdvanceNo) then
-	write(*,"(A)",advance="NO") " "
-	write(11,"(A)",advance="NO") " "
+  write(*,"(A)",advance="NO") " "
+  write(11,"(A)",advance="NO") " "
 endif
 close(unit=7,status="delete")
 open(unit=7,file="temp3")
@@ -17,11 +17,11 @@ write(7,"(L1)") .TRUE. ! this will mean to the next subroutine that this one did
 ! =================================
 
 if ((i < 10) .AND. (i >= 0)) then
-	write(*,"(A,I1)",advance="NO") " \ottava #", i
-	write(11,"(A,I1)",advance="NO") " \ottava #", i
-	else
-		write(*,"(A,I2)",advance="NO") "  \ottava #", i
-		write(11,"(A,I2)",advance="NO") " \ottava #", i	
+  write(*,"(A,I1)",advance="NO") " \ottava #", i
+  write(11,"(A,I1)",advance="NO") " \ottava #", i
+  else
+    write(*,"(A,I2)",advance="NO") "  \ottava #", i
+    write(11,"(A,I2)",advance="NO") " \ottava #", i  
 endif
 
 end subroutine OTTAVA

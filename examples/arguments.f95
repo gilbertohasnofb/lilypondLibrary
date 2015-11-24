@@ -1,5 +1,5 @@
 ! If you wish to use a set of predefined constants as arguments for the subroutines, copy the file "arguments.f95" to your project's directory and add the following line in your code immediately before declaring your variables:
-!	include "arguments.f95"
+!  include "arguments.f95"
 
 ! ===== Rests =====
 integer, parameter :: r = 0

@@ -10,8 +10,8 @@ logical :: previousAdvanceNo ! used to find out what was the spacing before this
 rewind(unit=7)
 read(7,"(L1)") previousAdvanceNo
 if (previousAdvanceNo) then
-	write(*,*)
-	write(11,*)
+  write(*,*)
+  write(11,*)
 endif
 close(unit=7,status="delete")
 open(unit=7,file="temp3")
@@ -19,14 +19,14 @@ write(7,"(L1)") .TRUE. ! this will mean to the next subroutine that this one did
 ! =================================
 
 if (n < 10) then
-	write(*,"(A,I1,A)") "  \repeatBracket ", n, " {"
-	write(11,"(A,I1,A)") "  \repeatBracket ", n, " {"
-	else if (n < 100) then
-		write(*,"(A,I2,A)") "  \repeatBracket ", n, " {"
-		write(11,"(A,I2,A)") "  \repeatBracket ", n, " {"
-	else ! with minimalist music, you never know :o)
-		write(*,"(A,I3,A)") "  \repeatBracket ", n, " {"
-		write(11,"(A,I3,A)") "  \repeatBracket ", n, " {"
+  write(*,"(A,I1,A)") "  \repeatBracket ", n, " {"
+  write(11,"(A,I1,A)") "  \repeatBracket ", n, " {"
+  else if (n < 100) then
+    write(*,"(A,I2,A)") "  \repeatBracket ", n, " {"
+    write(11,"(A,I2,A)") "  \repeatBracket ", n, " {"
+  else ! with minimalist music, you never know :o)
+    write(*,"(A,I3,A)") "  \repeatBracket ", n, " {"
+    write(11,"(A,I3,A)") "  \repeatBracket ", n, " {"
 endif
 
 end subroutine REPEATBRACKET

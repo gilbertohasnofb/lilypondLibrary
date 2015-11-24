@@ -27,35 +27,35 @@ real, optional, intent (in) :: systemPadding ! Vertical distance between a syste
 real, optional, intent (in) :: markupSystemSpacing ! Vertical distance between a markup and the next system, useful for controlling the distance between the title and the 1st system. Format nn.n
 
 if (present(globalStaffSize)) then
-	write(*,"(A,1X,F4.1,A)") "#(set-global-staff-size", globalStaffSize, ")"
-	write(11,"(A,1X,F4.1,A)") "#(set-global-staff-size", globalStaffSize, ")"
+  write(*,"(A,1X,F4.1,A)") "#(set-global-staff-size", globalStaffSize, ")"
+  write(11,"(A,1X,F4.1,A)") "#(set-global-staff-size", globalStaffSize, ")"
 endif
 
 if (present(paperSize)) then
 
-	write(*,"(A,A)",advance="NO") '#(set-default-paper-size "', paperSize
-	write(11,"(A,A)",advance="NO") '#(set-default-paper-size "', paperSize
-	if (present(landscape)) then
-		if (landscape) then
-			write(*,"(A)") 'landscape" )'
-			write(11,"(A)") 'landscape" )'
-			else
-				write(*,"(A)") '" )'
-				write(11,"(A)") '" )'
-		endif
-		else
-			write(*,"(A)") '" )'
-			write(11,"(A)") '" )'
-	endif
-	
-	else
-	
-	if (present(landscape)) then
-		if (landscape) then
-			write(*,"(A)") '#(set-default-paper-size "a4landscape" )'
-			write(11,"(A)") '#(set-default-paper-size "a4landscape" )'
-		endif
-	endif
+  write(*,"(A,A)",advance="NO") '#(set-default-paper-size "', paperSize
+  write(11,"(A,A)",advance="NO") '#(set-default-paper-size "', paperSize
+  if (present(landscape)) then
+    if (landscape) then
+      write(*,"(A)") 'landscape" )'
+      write(11,"(A)") 'landscape" )'
+      else
+        write(*,"(A)") '" )'
+        write(11,"(A)") '" )'
+    endif
+    else
+      write(*,"(A)") '" )'
+      write(11,"(A)") '" )'
+  endif
+  
+  else
+  
+  if (present(landscape)) then
+    if (landscape) then
+      write(*,"(A)") '#(set-default-paper-size "a4landscape" )'
+      write(11,"(A)") '#(set-default-paper-size "a4landscape" )'
+    endif
+  endif
   
 endif
 
@@ -66,8 +66,8 @@ write(*,"(A)") '\paper {'
 write(11,"(A)") '\paper {'
 
 if (present(topMargin)) then
-	write(*,"(A,1X,F3.1,A)") '  top-margin =', topMargin, '\cm'
-	write(11,"(A,1X,F3.1,A)") '  top-margin =', topMargin, '\cm'
+  write(*,"(A,1X,F3.1,A)") '  top-margin =', topMargin, '\cm'
+  write(11,"(A,1X,F3.1,A)") '  top-margin =', topMargin, '\cm'
 endif
 if (present(bottomMargin)) then
 write(*,"(A,1X,F3.1,A)") '  bottom-margin =', bottomMargin, '\cm'
@@ -83,128 +83,128 @@ write(11,"(A,1X,F3.1,A)") '  right-margin =', rightMargin, '\cm'
 endif
 
 if (present(indent)) then
-	write(*,"(A,F3.1,A)") '  indent = ', indent, '\cm'
-	write(11,"(A,F3.1,A)") '  indent = ', indent, '\cm'
+  write(*,"(A,F3.1,A)") '  indent = ', indent, '\cm'
+  write(11,"(A,F3.1,A)") '  indent = ', indent, '\cm'
 endif
 
 if (present(printPageNumber)) then
-	if (printPageNumber) then
-		write(*,"(A)") '  print-page-number = ##t'
-		write(11,"(A)") '  print-page-number = ##t'
-		else
-			write(*,"(A)") '  print-page-number = ##f'
-			write(11,"(A)") '  print-page-number = ##f'
-	endif
+  if (printPageNumber) then
+    write(*,"(A)") '  print-page-number = ##t'
+    write(11,"(A)") '  print-page-number = ##t'
+    else
+      write(*,"(A)") '  print-page-number = ##f'
+      write(11,"(A)") '  print-page-number = ##f'
+  endif
 endif
 
 if (present(printFirstPageNumber)) then
-	if (printFirstPageNumber) then
-		write(*,"(A)") '  print-first-page-number = ##t'
-		write(11,"(A)") '  print-first-page-number = ##t'
-		else
-			write(*,"(A)") '  print-first-page-number = ##f'
-			write(11,"(A)") '  print-first-page-number = ##f'
-	endif
+  if (printFirstPageNumber) then
+    write(*,"(A)") '  print-first-page-number = ##t'
+    write(11,"(A)") '  print-first-page-number = ##t'
+    else
+      write(*,"(A)") '  print-first-page-number = ##f'
+      write(11,"(A)") '  print-first-page-number = ##f'
+  endif
 endif
 
 if (present(firstPageNumber) .AND. (firstPageNumber > 1)) then
-	if (firstPageNumber < 10) then
-		write(*,"(A,I1)")"  first-page-number = ", firstPageNumber
-		write(11,"(A,I1)")"  first-page-number = ", firstPageNumber
-		else if (firstPageNumber < 100) then
-			write(*,"(A,I2)")"  first-page-number = ", firstPageNumber
-			write(11,"(A,I2)")"  first-page-number = ", firstPageNumber
-		else 
-			write(*,"(A,I3)")"  first-page-number = ", firstPageNumber
-			write(11,"(A,I3)")"  first-page-number = ", firstPageNumber
-	endif
+  if (firstPageNumber < 10) then
+    write(*,"(A,I1)")"  first-page-number = ", firstPageNumber
+    write(11,"(A,I1)")"  first-page-number = ", firstPageNumber
+    else if (firstPageNumber < 100) then
+      write(*,"(A,I2)")"  first-page-number = ", firstPageNumber
+      write(11,"(A,I2)")"  first-page-number = ", firstPageNumber
+    else 
+      write(*,"(A,I3)")"  first-page-number = ", firstPageNumber
+      write(11,"(A,I3)")"  first-page-number = ", firstPageNumber
+  endif
 endif
 
 if (present(bottomPageNumber)) then
-	if (bottomPageNumber) then
-		write(*,"(A)") '  oddHeaderMarkup = ""'
-		write(11,"(A)") '  oddHeaderMarkup = ""'
-		write(*,"(A)") '  evenHeaderMarkup = ""'
-		write(11,"(A)") '  evenHeaderMarkup = ""'
-		write(*,"(A)") "  oddFooterMarkup = \markup \fill-line {\fromproperty #'page:page-number-string }"
-		write(11,"(A)") "  oddFooterMarkup = \markup \fill-line {\fromproperty #'page:page-number-string }"
-		write(*,"(A)")"  evenFooterMarkup = \markup \fill-line {\fromproperty #'page:page-number-string }"
-		write(11,"(A)")"  evenFooterMarkup = \markup \fill-line {\fromproperty #'page:page-number-string }"
-	endif
+  if (bottomPageNumber) then
+    write(*,"(A)") '  oddHeaderMarkup = ""'
+    write(11,"(A)") '  oddHeaderMarkup = ""'
+    write(*,"(A)") '  evenHeaderMarkup = ""'
+    write(11,"(A)") '  evenHeaderMarkup = ""'
+    write(*,"(A)") "  oddFooterMarkup = \markup \fill-line {\fromproperty #'page:page-number-string }"
+    write(11,"(A)") "  oddFooterMarkup = \markup \fill-line {\fromproperty #'page:page-number-string }"
+    write(*,"(A)")"  evenFooterMarkup = \markup \fill-line {\fromproperty #'page:page-number-string }"
+    write(11,"(A)")"  evenFooterMarkup = \markup \fill-line {\fromproperty #'page:page-number-string }"
+  endif
 endif
 
 if (present(raggedlast)) then
-	if (raggedlast) then
-		write(*,"(A)") '  ragged-last = ##t'
-		write(11,"(A)") '  ragged-last = ##t'
-		else
-			write(*,"(A)") '  ragged-last = ##f'
-			write(11,"(A)") '  ragged-last = ##f'
-	endif
+  if (raggedlast) then
+    write(*,"(A)") '  ragged-last = ##t'
+    write(11,"(A)") '  ragged-last = ##t'
+    else
+      write(*,"(A)") '  ragged-last = ##f'
+      write(11,"(A)") '  ragged-last = ##f'
+  endif
 endif
 
 if (present(raggedLastBottom)) then
-	if (raggedLastBottom) then
-		write(*,"(A)") '  ragged-last-bottom = ##f'
-		write(11,"(A)") '  ragged-last-bottom = ##f'
-		else
-			write(*,"(A)") '  ragged-last-bottom = ##t'
-			write(11,"(A)") '  ragged-last-bottom = ##t'
-	endif
+  if (raggedLastBottom) then
+    write(*,"(A)") '  ragged-last-bottom = ##f'
+    write(11,"(A)") '  ragged-last-bottom = ##f'
+    else
+      write(*,"(A)") '  ragged-last-bottom = ##t'
+      write(11,"(A)") '  ragged-last-bottom = ##t'
+  endif
 endif
 
 if (present(slashSeparator)) then
-	if (slashSeparator) then
-		write(*,"(A)") '  system-separator-markup = \slashSeparator'
-		write(11,"(A)") '  system-separator-markup = \slashSeparator'
-		else
-			write(*,"(A)") '  system-separator-markup = ##f'
-			write(11,"(A)") '  system-separator-markup = ##f'
-	endif
+  if (slashSeparator) then
+    write(*,"(A)") '  system-separator-markup = \slashSeparator'
+    write(11,"(A)") '  system-separator-markup = \slashSeparator'
+    else
+      write(*,"(A)") '  system-separator-markup = ##f'
+      write(11,"(A)") '  system-separator-markup = ##f'
+  endif
 endif
 
 if (present(slashSeparator)) then
-	if (slashSeparator) then
-		write(*,"(A)",advance="NO") '  system-separator-markup = '
-		write(11,"(A)",advance="NO") '  system-separator-markup = '
-		write(*,"(A)") '\markup { \fill-line { \slashSeparator \slashSeparator }}'
-		write(11,"(A)") '\markup { \fill-line { \slashSeparator \slashSeparator }}'		
-		else
-			write(*,"(A)") '  system-separator-markup = ##f'
-			write(11,"(A)") '  system-separator-markup = ##f'
-	endif
+  if (slashSeparator) then
+    write(*,"(A)",advance="NO") '  system-separator-markup = '
+    write(11,"(A)",advance="NO") '  system-separator-markup = '
+    write(*,"(A)") '\markup { \fill-line { \slashSeparator \slashSeparator }}'
+    write(11,"(A)") '\markup { \fill-line { \slashSeparator \slashSeparator }}'    
+    else
+      write(*,"(A)") '  system-separator-markup = ##f'
+      write(11,"(A)") '  system-separator-markup = ##f'
+  endif
 endif
 
 if (present(minSystemsPerPage)) then
-	write(*,"(A,1X,I1)") "  min-systems-per-page =", minSystemsPerPage
-	write(11,"(A,1X,I1)") "  min-systems-per-page =", minSystemsPerPage
+  write(*,"(A,1X,I1)") "  min-systems-per-page =", minSystemsPerPage
+  write(11,"(A,1X,I1)") "  min-systems-per-page =", minSystemsPerPage
 endif
 
 if (present(maxSystemsPerPage)) then
-	write(*,"(A,1X,I1)") "  max-systems-per-page =", maxSystemsPerPage
-	write(11,"(A,1X,I1)") "  max-systems-per-page =", maxSystemsPerPage
+  write(*,"(A,1X,I1)") "  max-systems-per-page =", maxSystemsPerPage
+  write(11,"(A,1X,I1)") "  max-systems-per-page =", maxSystemsPerPage
 endif
 
 if ( (present(systemDistance)) .AND. (present(systemPadding)) ) then
-	write(*,"(A,1X)",advance="NO") "  system-system-spacing = #'((basic-distance ."
-	write(11,"(A,1X)",advance="NO") "  system-system-spacing = #'((basic-distance ."
-	write(*,"(F4.1,A,1X,F4.1,A)") systemDistance, ") (padding .", systemPadding, "))"
-	write(11,"(F4.1,A,1X,F4.1,A)") systemDistance, ") (padding .", systemPadding, "))"
-	else if (present(systemDistance)) then
-		write(*,"(A,1X)",advance="NO") "  system-system-spacing = #'(basic-distance ."
-		write(11,"(A,1X)",advance="NO") "  system-system-spacing = #'(basic-distance ."
-		write(*,"(F4.1,A,1X,F4.1,A)") systemDistance, ")"
-		write(11,"(F4.1,A,1X,F4.1,A)") systemDistance, ")"
-	else if (present(systemPadding)) then
-		write(*,"(A,1X)",advance="NO") "  system-system-spacing = #'(padding ."
-		write(11,"(A,1X)",advance="NO") "  system-system-spacing = #'(padding ."
-		write(*,"(F4.1,A,1X,F4.1,A)") systemPadding, ")"
-		write(11,"(F4.1,A,1X,F4.1,A)") systemPadding, ")"
+  write(*,"(A,1X)",advance="NO") "  system-system-spacing = #'((basic-distance ."
+  write(11,"(A,1X)",advance="NO") "  system-system-spacing = #'((basic-distance ."
+  write(*,"(F4.1,A,1X,F4.1,A)") systemDistance, ") (padding .", systemPadding, "))"
+  write(11,"(F4.1,A,1X,F4.1,A)") systemDistance, ") (padding .", systemPadding, "))"
+  else if (present(systemDistance)) then
+    write(*,"(A,1X)",advance="NO") "  system-system-spacing = #'(basic-distance ."
+    write(11,"(A,1X)",advance="NO") "  system-system-spacing = #'(basic-distance ."
+    write(*,"(F4.1,A,1X,F4.1,A)") systemDistance, ")"
+    write(11,"(F4.1,A,1X,F4.1,A)") systemDistance, ")"
+  else if (present(systemPadding)) then
+    write(*,"(A,1X)",advance="NO") "  system-system-spacing = #'(padding ."
+    write(11,"(A,1X)",advance="NO") "  system-system-spacing = #'(padding ."
+    write(*,"(F4.1,A,1X,F4.1,A)") systemPadding, ")"
+    write(11,"(F4.1,A,1X,F4.1,A)") systemPadding, ")"
 endif
 
 if (present(markupSystemSpacing)) then
-	write(*,"(A,F4.1,A)") "  markup-system-spacing = #'((basic-distance . ", markupSystemSpacing, "))"
-	write(11,"(A,F4.1,A)") "  markup-system-spacing = #'((basic-distance . ", markupSystemSpacing, "))"
+  write(*,"(A,F4.1,A)") "  markup-system-spacing = #'((basic-distance . ", markupSystemSpacing, "))"
+  write(11,"(A,F4.1,A)") "  markup-system-spacing = #'((basic-distance . ", markupSystemSpacing, "))"
 endif
 
 write(*,"(A)") '}'

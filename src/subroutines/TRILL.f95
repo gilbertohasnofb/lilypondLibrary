@@ -12,8 +12,8 @@ logical :: previousAdvanceNo ! used to find out what was the spacing before this
 rewind(unit=7)
 read(7,"(L1)") previousAdvanceNo
 if (.NOT. previousAdvanceNo) then
-	write(*,"(A)",advance="NO") "  "
-	write(11,"(A)",advance="NO") "  "
+  write(*,"(A)",advance="NO") "  "
+  write(11,"(A)",advance="NO") "  "
 endif
 close(unit=7,status="delete")
 open(unit=7,file="temp3")
@@ -28,19 +28,19 @@ if (present(quartertone)) quartertone_AUX = TRIM(quartertone)
 
 if (start) then
 
-	write(*,"(A)",advance="NO") "\startTrillSpan"
-	write(11,"(A)",advance="NO") "\startTrillSpan"
-	if (present(pitchedTrill)) then
-		write(*,"(A)",advance="NO") " "
-		write(11,"(A)",advance="NO") " "
-		call MIDI_PITCH_TO_LP(pitchedTrill,accidental_AUX)
-	endif
-	
-	else
-	
-		write(*,"(A)",advance="NO") "\stopTrillSpan"
-		write(11,"(A)",advance="NO") "\stopTrillSpan"
-	
+  write(*,"(A)",advance="NO") "\startTrillSpan"
+  write(11,"(A)",advance="NO") "\startTrillSpan"
+  if (present(pitchedTrill)) then
+    write(*,"(A)",advance="NO") " "
+    write(11,"(A)",advance="NO") " "
+    call MIDI_PITCH_TO_LP(pitchedTrill,accidental_AUX)
+  endif
+  
+  else
+  
+    write(*,"(A)",advance="NO") "\stopTrillSpan"
+    write(11,"(A)",advance="NO") "\stopTrillSpan"
+  
 endif
 
 end subroutine TRILL

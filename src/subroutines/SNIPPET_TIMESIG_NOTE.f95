@@ -11,7 +11,7 @@ write(*,"(A)") "          (m (markup #:override '(baseline-skip . 0.5)"
 write(*,"(A)") "                     #:center-column (#:number (number->string num)"
 write(*,"(A)") "                                               #:override '(style . default)"
 if (present(modernStraightFlag) .AND. (modernStraightFlag)) then
-	write(*,"(A)") "                                               #:override '(flag-style . modern-straight-flag)"
+  write(*,"(A)") "                                               #:override '(flag-style . modern-straight-flag)"
 endif
 write(*,"(A)") "                                               #:note (number->string den) DOWN))))"
 write(*,"(A)") "     (grob-interpret-markup grob m)))"
@@ -24,7 +24,7 @@ write(11,"(A)") "          (m (markup #:override '(baseline-skip . 0.5)"
 write(11,"(A)") "                     #:center-column (#:number (number->string num)"
 write(11,"(A)") "                                               #:override '(style . default)"
 if (present(modernStraightFlag) .AND. (modernStraightFlag)) then
-	write(11,"(A)") "                                               #:override '(flag-style . modern-straight-flag)"
+  write(11,"(A)") "                                               #:override '(flag-style . modern-straight-flag)"
 endif
 write(11,"(A)") "                                               #:note (number->string den) DOWN))))"
 write(11,"(A)") "     (grob-interpret-markup grob m)))"

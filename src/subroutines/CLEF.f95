@@ -13,8 +13,8 @@ logical :: previousAdvanceNo ! used to find out what was the spacing before this
 rewind(unit=7)
 read(7,"(L1)") previousAdvanceNo
 if (previousAdvanceNo) then
-	write(*,*)
-	write(11,*)
+  write(*,*)
+  write(11,*)
 endif
 close(unit=7,status="delete")
 open(unit=7,file="temp3")
@@ -28,10 +28,10 @@ if (present(hidden)) hidden_AUX = hidden
 call LCASE(string_AUX) ! just in case someone writes Treble, Bass, etc. with
  
 if (present(hidden)) then
-	if (hidden_AUX) then
-		write(*,"(A)") "  \once \override Staff.Clef.stencil = ##f"
-		write(11,"(A)") "  \once \override Staff.Clef.stencil = ##f"
-	endif
+  if (hidden_AUX) then
+    write(*,"(A)") "  \once \override Staff.Clef.stencil = ##f"
+    write(11,"(A)") "  \once \override Staff.Clef.stencil = ##f"
+  endif
 endif
 
 write(*,"(A,A,A)") '  \clef "', TRIM(string_AUX), '"'

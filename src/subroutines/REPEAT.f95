@@ -12,8 +12,8 @@ logical :: previousAdvanceNo ! used to find out what was the spacing before this
 rewind(unit=7)
 read(7,"(L1)") previousAdvanceNo
 if (previousAdvanceNo) then
-	write(*,*)
-	write(11,*)
+  write(*,*)
+  write(11,*)
 endif
 close(unit=7,status="delete")
 open(unit=7,file="temp3")
@@ -27,24 +27,24 @@ if (present(percent)) percent_AUX=percent
 
 if (N_AUX >= 2) then
 
-	write(*,"(A,1X)",advance="NO") "  \repeat"
-	write(11,"(A,1X)",advance="NO") "  \repeat"
-	
-	if (.NOT. percent_AUX) then
-		write(*,"(A,1X)",advance="NO") "volta"
-		write(11,"(A,1X)",advance="NO") "volta"
-		else
-			write(*,"(A,1X)",advance="NO") "percent"
-			write(11,"(A,1X)",advance="NO") "percent"
-	endif
+  write(*,"(A,1X)",advance="NO") "  \repeat"
+  write(11,"(A,1X)",advance="NO") "  \repeat"
+  
+  if (.NOT. percent_AUX) then
+    write(*,"(A,1X)",advance="NO") "volta"
+    write(11,"(A,1X)",advance="NO") "volta"
+    else
+      write(*,"(A,1X)",advance="NO") "percent"
+      write(11,"(A,1X)",advance="NO") "percent"
+  endif
 
-	if (N_AUX < 10) then
-		write(*,"(I1,1X,A)",advance="NO") N_AUX, "{"
-		write(11,"(I1,1X,A)",advance="NO") N_AUX, "{"
-		else
-			write(*,"(I2,1X,A)",advance="NO") N_AUX, "{"
-			write(11,"(I2,1X,A)",advance="NO") N_AUX, "{"
-	endif
+  if (N_AUX < 10) then
+    write(*,"(I1,1X,A)",advance="NO") N_AUX, "{"
+    write(11,"(I1,1X,A)",advance="NO") N_AUX, "{"
+    else
+      write(*,"(I2,1X,A)",advance="NO") N_AUX, "{"
+      write(11,"(I2,1X,A)",advance="NO") N_AUX, "{"
+  endif
 
 endif
 

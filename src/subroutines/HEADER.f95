@@ -16,9 +16,9 @@ open(unit=11,file=TRIM(filename_AUX))
 open(unit=10,file="temp",status="replace")
 write(10,"(A)") TRIM(filename_AUX)
 if (present(articulate)) then
-	write(10,"(L1)") articulate
-	else
-		write(10,"(A)") "F"
+  write(10,"(L1)") articulate
+  else
+    write(10,"(A)") "F"
 endif
 
 ! opening another temp file
@@ -28,14 +28,14 @@ close(unit=9,status="delete")
 ! opening another temp file
 open(unit=7,file="temp3",status="replace")
 write(7,"(L1)") .FALSE. ! this will mean to the next subroutine that this one didn't finish with an advance="NO"
-	
+  
 ! version
 if (present(version)) then
-	write(*,"(A,A,A)") '\version "', TRIM(version), '"'
-	write(11,"(A,A,A)") '\version "', TRIM(version), '"'
-	else
-		write(*,"(A)") '\version "2.19.15"'
-		write(11,"(A)") '\version "2.19.15"'
+  write(*,"(A,A,A)") '\version "', TRIM(version), '"'
+  write(11,"(A,A,A)") '\version "', TRIM(version), '"'
+  else
+    write(*,"(A)") '\version "2.19.15"'
+    write(11,"(A)") '\version "2.19.15"'
 endif
 
 ! skipping a line
@@ -44,12 +44,12 @@ write(11,*)
 
 ! dealing with the articulate.ly script
 if (present(articulate)) then
-	if (articulate) then
-		write(*,"(A)") '\include "articulate.ly"'
-		write(11,"(A)") '\include "articulate.ly"'
-		write(*,*)
-		write(11,*)
-	endif
+  if (articulate) then
+    write(*,"(A)") '\include "articulate.ly"'
+    write(11,"(A)") '\include "articulate.ly"'
+    write(*,*)
+    write(11,*)
+  endif
 endif
 
 ! header block
@@ -57,23 +57,23 @@ write(*,"(A)") "\header {"
 write(11,"(A)") "\header {"
 
 if (present(title)) then
-	write(*,"(A,A,A)") '  title = \markup{', TRIM(title), '}'
-	write(11,"(A,A,A)") '  title = \markup{', TRIM(title), '}'
+  write(*,"(A,A,A)") '  title = \markup{', TRIM(title), '}'
+  write(11,"(A,A,A)") '  title = \markup{', TRIM(title), '}'
 endif
 
 if (present(composer)) then
-	write(*,"(A,A,A)") '  composer = \markup{', TRIM(composer), '}'
-	write(11,"(A,A,A)") '  composer = \markup{', TRIM(composer), '}'
+  write(*,"(A,A,A)") '  composer = \markup{', TRIM(composer), '}'
+  write(11,"(A,A,A)") '  composer = \markup{', TRIM(composer), '}'
 endif
 
 if (present(subtitle)) then
-	write(*,"(A,A,A)") '  subtitle = \markup{', TRIM(subtitle), '}'
-	write(11,"(A,A,A)") '  subtitle = \markup{', TRIM(subtitle), '}'
+  write(*,"(A,A,A)") '  subtitle = \markup{', TRIM(subtitle), '}'
+  write(11,"(A,A,A)") '  subtitle = \markup{', TRIM(subtitle), '}'
 endif
 
 if (present(dedication)) then
-	write(*,"(A,A,A)") '  dedication = \markup{', TRIM(dedication), '}'
-	write(11,"(A,A,A)") '  dedication = \markup{', TRIM(dedication), '}'
+  write(*,"(A,A,A)") '  dedication = \markup{', TRIM(dedication), '}'
+  write(11,"(A,A,A)") '  dedication = \markup{', TRIM(dedication), '}'
 endif
 
 write(*,"(A)") '  tagline = ""'
@@ -82,5 +82,5 @@ write(*,"(A)") "}"
 write(11,"(A)") "}"
 write(*,*)
 write(11,*)
-	
+  
 end subroutine HEADER

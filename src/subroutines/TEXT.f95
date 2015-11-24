@@ -15,8 +15,8 @@ logical :: previousAdvanceNo ! used to find out what was the spacing before this
 rewind(unit=7)
 read(7,"(L1)") previousAdvanceNo
 if (.NOT. previousAdvanceNo) then
-	write(*,"(A)",advance="NO") "  "
-	write(11,"(A)",advance="NO") "  "
+  write(*,"(A)",advance="NO") "  "
+  write(11,"(A)",advance="NO") "  "
 endif
 close(unit=7,status="delete")
 open(unit=7,file="temp3")
@@ -38,38 +38,38 @@ if (present(offsetY)) offsetY_AUX = offsetY
 if (LEN_TRIM(textString) /= 0) then
 
  ! tweak offset
-	if ((offsetX_AUX /= 0) .OR. (offsetY_AUX /= 0)) then
-		write(*,"(A,F4.1,A,F4.1,A)",advance="NO") "-\tweak extra-offset #'(", offsetX_AUX, " . ", offsetY_AUX, ")"
-		write(11,"(A,F4.1,A,F4.1,A)",advance="NO") "-\tweak extra-offset #'(", offsetX_AUX, " . ", offsetY_AUX, ")"
-	endif
+  if ((offsetX_AUX /= 0) .OR. (offsetY_AUX /= 0)) then
+    write(*,"(A,F4.1,A,F4.1,A)",advance="NO") "-\tweak extra-offset #'(", offsetX_AUX, " . ", offsetY_AUX, ")"
+    write(11,"(A,F4.1,A,F4.1,A)",advance="NO") "-\tweak extra-offset #'(", offsetX_AUX, " . ", offsetY_AUX, ")"
+  endif
 
-	select case (position_AUX)
-		case(0)
-			write(*,"(A)",advance="NO") "-"
-			write(11,"(A)",advance="NO") "-"
-		case(1)
-			write(*,"(A)",advance="NO") "^"
-			write(11,"(A)",advance="NO") "^"
-		case(-1)
-			write(*,"(A)",advance="NO") "_" 
-			write(11,"(A)",advance="NO") "_"
-	end select
+  select case (position_AUX)
+    case(0)
+      write(*,"(A)",advance="NO") "-"
+      write(11,"(A)",advance="NO") "-"
+    case(1)
+      write(*,"(A)",advance="NO") "^"
+      write(11,"(A)",advance="NO") "^"
+    case(-1)
+      write(*,"(A)",advance="NO") "_" 
+      write(11,"(A)",advance="NO") "_"
+  end select
  
-	write(*,"(A, 1x)",advance="NO") '\markup {'
-	write(11,"(A, 1x)",advance="NO") '\markup {' 
+  write(*,"(A, 1x)",advance="NO") '\markup {'
+  write(11,"(A, 1x)",advance="NO") '\markup {' 
 
-	if (italic_AUX) then
-		write(*,"(A, 1x)",advance="NO") '\italic' 
-		write(11,"(A, 1x)",advance="NO") '\italic'
-	endif
+  if (italic_AUX) then
+    write(*,"(A, 1x)",advance="NO") '\italic' 
+    write(11,"(A, 1x)",advance="NO") '\italic'
+  endif
 
-	if (bold_AUX) then
-		write(*,"(A, 1x)",advance="NO") '\bold' 
-		write(11,"(A, 1x)",advance="NO") '\bold'
-	endif 
+  if (bold_AUX) then
+    write(*,"(A, 1x)",advance="NO") '\bold' 
+    write(11,"(A, 1x)",advance="NO") '\bold'
+  endif 
 
-	write(*,"(A,A)",advance="NO") TRIM(textString)," }"
-	write(11,"(A,A)",advance="NO") TRIM(textString)," }"
+  write(*,"(A,A)",advance="NO") TRIM(textString)," }"
+  write(11,"(A,A)",advance="NO") TRIM(textString)," }"
  
 endif
 

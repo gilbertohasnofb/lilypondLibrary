@@ -30,7 +30,8 @@ module lilypondLibrary
 implicit none
 
 private :: LCASE, MIDI_PITCH_TO_LP, SNIPPET_GRACE_MIDI_DURATION, SNIPPET_GRACE_ON_BEAT, SNIPPET_LIVEELECTRONICS, &
-SNIPPET_MINOR_TRILLS, SNIPPET_NATURALIZEMUSIC, SNIPPET_OTTAVATE, SNIPPET_REPEATBRACKET, SNIPPET_SLASHEDGRACES, SNIPPET_TIMESIG_NOTE
+SNIPPET_MINOR_TRILLS, SNIPPET_NATURALIZEMUSIC, SNIPPET_OTTAVATE, SNIPPET_REPEATBRACKET, SNIPPET_SLASHEDGRACES, &
+SNIPPET_TIMESIG_NOTE, SNIPPET_TRILL_SPEED
 
 contains
 
@@ -84,7 +85,8 @@ contains
   include "./subroutines/SNIPPET_OTTAVATE.f95" ! private subroutine
   include "./subroutines/SNIPPET_REPEATBRACKET.f95" ! private subroutine
   include "./subroutines/SNIPPET_SLASHEDGRACES.f95" ! private subroutine
-  include "./subroutines/SNIPPET_TIMESIG_NOTE.f95" ! private subroutine    
+  include "./subroutines/SNIPPET_TIMESIG_NOTE.f95" ! private subroutine
+  include "./subroutines/SNIPPET_TRILL_SPEED.f95" ! private subroutine
   include "./subroutines/SCORE.f95"
   include "./subroutines/STAFF.f95"          
   include "./subroutines/STAFF_LINE_COUNT.f95"

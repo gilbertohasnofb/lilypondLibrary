@@ -1,6 +1,6 @@
 ! add certain interesting snippets to the score. Should be called immediately after HEADER and
 subroutine SNIPPET(slashedGraces,repeatBracket,naturalizeMusic,timesigNote,modernStraightFlag,ottavate,liveElectronics, &
-minorTrills,graceOnBeat,graceMidiDuration)
+minorTrills,graceOnBeat,graceMidiDuration,trillSpeed)
 
 logical, optional, intent(IN) :: slashedGraces ! this function adds a slash to grace notes in groups (single grace note automatically has a slash in LilyPond). Not that this function is still in beta.
 ! to use it, simply call SNIPPET(slashedGraces=.TRUE.) and then use the GRACE subroutine normally (no need to do anything else).
@@ -14,6 +14,7 @@ logical, optional, intent(IN) :: liveElectronics ! This subroutine adds a snippe
 logical, optional, intent(IN) :: minorTrills ! if .TRUE., all trills will be minor in the MIDI playback. Default = .FALSE.
 logical, optional, intent(IN) :: graceOnBeat ! if .TRUE., grace notes will be played on the beat on the MIDI playback. Default = .FALSE.
 character (LEN=*), optional, intent(IN) :: graceMidiDuration ! should be a string containing an integer or a fraction, such as "1" or "8/10"
+character (LEN=*), optional, intent(IN) :: trillSpeed ! should be a string containing an integer or a fraction. Default = "1/64". The larger the denominator the faster the trill
 
 write(*,*) "% *************************************** SNIPPETS ***************************************"
 write(11,*) "% *************************************** SNIPPETS ***************************************"
@@ -82,20 +83,24 @@ if (present(minorTrills)) then
   endif
 endif
 
-if (present(graceOnBeat)) then
-  if (graceOnBeat) then
-    call SNIPPET_GRACE_ON_BEAT()
-    write(*,*)
-    write(11,*) 
-  endif
-endif
-
-if (present(graceMidiDuration)) then
-  call SNIPPET_GRACE_MIDI_DURATION(graceMidiDuration)
+if (present(trillSpeed)) then
+  call SNIPPET_TRILL_SPEED(trillSpeed) 
   write(*,*)
   write(11,*) 
 endif
 
+if (present(graceOnBeat)) then
+  if (graceOnBeat) then
+    call SNIPPET_GRACE_ON_BEAT()
+  endif
+endif
+
+if (present(graceMidiDuration)) then
+  call SNIPPET_GRACE_MIDI_DURATION(graceMidiDuration) 
+endif
+
+write(*,*)
+write(11,*) 
 write(*,*) "% ****************************************************************************************"
 write(11,*) "% ****************************************************************************************"
 write(*,*)

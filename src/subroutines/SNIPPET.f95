@@ -1,5 +1,6 @@
 ! add certain interesting snippets to the score. Should be called immediately after HEADER and
-subroutine SNIPPET(slashedGraces,repeatBracket,naturalizeMusic,timesigNote,modernStraightFlag,ottavate,liveElectronics)
+subroutine SNIPPET(slashedGraces,repeatBracket,naturalizeMusic,timesigNote,modernStraightFlag,ottavate,liveElectronics, &
+minorTrills,graceOnBeat,graceMidiDuration)
 
 logical, optional, intent(IN) :: slashedGraces ! this function adds a slash to grace notes in groups (single grace note automatically has a slash in LilyPond). Not that this function is still in beta.
 ! to use it, simply call SNIPPET(slashedGraces=.TRUE.) and then use the GRACE subroutine normally (no need to do anything else).
@@ -10,6 +11,9 @@ logical, optional, intent(IN) :: timesigNote ! This subroutine adds a snippet wh
 logical, optional, intent(IN) :: modernStraightFlag ! if true, then timesigNote will have modern straight flag style
 logical, optional, intent(IN) :: ottavate ! This subroutine adds a snippet whose function is to automatically deal with ottavation (and 15a, and 8b and 15b)
 logical, optional, intent(IN) :: liveElectronics ! This subroutine adds a snippet whose function is to create circled numbers with arrows below notes used for live electronics
+logical, optional, intent(IN) :: minorTrills ! if .TRUE., all trills will be minor in the MIDI playback. Default = .FALSE.
+logical, optional, intent(IN) :: graceOnBeat ! if .TRUE., grace notes will be played on the beat on the MIDI playback. Default = .FALSE.
+character (LEN=*), optional, intent(IN) :: graceMidiDuration ! should be a string containing an integer or a fraction, such as "1" or "8/10"
 
 write(*,*) "% *************************************** SNIPPETS ***************************************"
 write(11,*) "% *************************************** SNIPPETS ***************************************"
@@ -68,6 +72,28 @@ if (present(liveElectronics)) then
     write(*,*)
     write(11,*) 
   endif
+endif
+
+if (present(minorTrills)) then
+  if (minorTrills) then
+    call SNIPPET_MINOR_TRILLS()
+    write(*,*)
+    write(11,*) 
+  endif
+endif
+
+if (present(graceOnBeat)) then
+  if (graceOnBeat) then
+    call SNIPPET_GRACE_ON_BEAT()
+    write(*,*)
+    write(11,*) 
+  endif
+endif
+
+if (present(graceMidiDuration)) then
+  call SNIPPET_GRACE_MIDI_DURATION(graceMidiDuration)
+  write(*,*)
+  write(11,*) 
 endif
 
 write(*,*) "% ****************************************************************************************"

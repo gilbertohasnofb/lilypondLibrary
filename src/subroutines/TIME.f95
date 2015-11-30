@@ -41,17 +41,23 @@ if (present(doubleBarline) .AND. (doubleBarline)) call BAR("||")
 if (top < 10) then
   write(*,"(A, I1)",advance="NO") "  \time ", top
   write(11,"(A, I1)",advance="NO") "  \time ", top
-  else
+  else if (top < 100) then
     write(*,"(A, I2)",advance="NO") "  \time ", top
     write(11,"(A, I2)",advance="NO") "  \time ", top
+  else
+    write(*,"(A, I3)",advance="NO") "  \time ", top
+    write(11,"(A, I3)",advance="NO") "  \time ", top
 endif
 
 if (bottom < 10) then
   write(*,"(A, I1)") "/", bottom
   write(11,"(A, I1)") "/", bottom
-  else
+  else if (bottom < 100) then
     write(*,"(A, I2)") "/", bottom
-    write(11,"(A, I2)") "/", bottom  
+    write(11,"(A, I2)") "/", bottom
+  else
+    write(*,"(A, I3)") "/", bottom
+    write(11,"(A, I3)") "/", bottom    
 endif
 
 end subroutine TIME

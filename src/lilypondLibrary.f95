@@ -59,6 +59,7 @@ contains
   include "./subroutines/GLISSANDO.f95"
   include "./subroutines/GRACE.f95"
   include "./subroutines/HEADER.f95"
+  include "./subroutines/HIDE.f95"
   include "./subroutines/KEY.f95"
   include "./subroutines/LCASE.f95" ! private subroutine  
   include "./subroutines/LIVEELECTRONICS.f95"
@@ -68,6 +69,7 @@ contains
   include "./subroutines/NOTE.f95"
   include "./subroutines/NOTEHEAD_STYLE.f95"          
   include "./subroutines/NOTEHEAD_TRANSPARENT.f95"
+  include "./subroutines/OMIT.f95"
   include "./subroutines/OTTAVA.f95"
   include "./subroutines/OTTAVATE.f95"
   include "./subroutines/PAGEBREAK.f95"

@@ -18,6 +18,7 @@ List of available subroutines
 - CLEF
 - CADENZA
 - COMMAND
+- COMMENT
 - END_ANY
 - END_GRACE
 - END_MAKECLUSTERS
@@ -30,6 +31,7 @@ List of available subroutines
 - GLISSANDO
 - GRACE
 - HEADER
+- HIDE
 - KEY
 - LIVEELECTRONICS
 - MAKECLUSTERS
@@ -37,6 +39,7 @@ List of available subroutines
 - NOTE
 - NOTEHEAD_STYLE          
 - NOTEHEAD_TRANSPARENT
+- OMIT
 - OTTAVA
 - OTTAVATE
 - PAGEBREAK

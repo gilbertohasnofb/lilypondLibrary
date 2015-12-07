@@ -2,7 +2,8 @@
 ! All variables are optional
 subroutine PAPER(globalStaffSize, paperSize, landscape, topMargin, bottomMargin, leftMargin, rightMargin, indent, &
 printPageNumber, printFirstPageNumber, firstPageNumber, bottomPageNumber, raggedLast, raggedLastBottom, slashSeparator, &
-doubleSlashSeparator, minSystemsPerPage, maxSystemsPerPage, systemDistance, systemPadding, markupSystemSpacing)
+doubleSlashSeparator, minSystemsPerPage, maxSystemsPerPage, systemDistance, systemPadding, markupSystemDistance, &
+markupSystemPadding)
 
 real, optional, intent(in) :: globalStaffSize ! sets the staff size globally, format nn.n
 character (LEN=*), optional, intent(in) :: paperSize ! Paper size, values can be "a4", "a3", "ledger", "letter", etc.
@@ -24,7 +25,8 @@ integer, optional, intent(in) :: minSystemsPerPage ! sets a minimal number of sy
 integer, optional, intent(in) :: maxSystemsPerPage ! sets a maximal number of systems in one page
 real, optional, intent (in) :: systemDistance ! Vertical distance between systems. Format nn.n
 real, optional, intent (in) :: systemPadding ! Vertical distance between a system and the other system's objects. Format nn.n
-real, optional, intent (in) :: markupSystemSpacing ! Vertical distance between a markup and the next system, useful for controlling the distance between the title and the 1st system. Format nn.n
+real, optional, intent (in) :: markupSystemDistance ! Vertical distance between a markup (or title) and the next system, useful for controlling the distance between the title and the 1st system. Format nn.n
+real, optional, intent (in) :: markupSystemPadding ! padding between a markup (or title) and the next system. Format nn.n
 
 if (present(globalStaffSize)) then
   write(*,"(A,1X,F4.1,A)") "#(set-global-staff-size", globalStaffSize, ")"
@@ -191,20 +193,24 @@ if ( (present(systemDistance)) .AND. (present(systemPadding)) ) then
   write(*,"(F4.1,A,1X,F4.1,A)") systemDistance, ") (padding .", systemPadding, "))"
   write(11,"(F4.1,A,1X,F4.1,A)") systemDistance, ") (padding .", systemPadding, "))"
   else if (present(systemDistance)) then
-    write(*,"(A,1X)",advance="NO") "  system-system-spacing = #'(basic-distance ."
-    write(11,"(A,1X)",advance="NO") "  system-system-spacing = #'(basic-distance ."
-    write(*,"(F4.1,A,1X,F4.1,A)") systemDistance, ")"
-    write(11,"(F4.1,A,1X,F4.1,A)") systemDistance, ")"
+    write(*,"(A,1X,F4.1,A)") "  system-system-spacing = #'(basic-distance .", systemDistance, ")"
+    write(11,"(A,1X,F4.1,A)") "  system-system-spacing = #'(basic-distance .", systemDistance, ")"
   else if (present(systemPadding)) then
-    write(*,"(A,1X)",advance="NO") "  system-system-spacing = #'(padding ."
-    write(11,"(A,1X)",advance="NO") "  system-system-spacing = #'(padding ."
-    write(*,"(F4.1,A,1X,F4.1,A)") systemPadding, ")"
-    write(11,"(F4.1,A,1X,F4.1,A)") systemPadding, ")"
+    write(*,"(A,1X,F4.1,A)") "  system-system-spacing = #'(padding .", systemPadding, ")"
+    write(11,"(A,1X,F4.1,A)") "  system-system-spacing = #'(padding .", systemPadding, ")"
 endif
 
-if (present(markupSystemSpacing)) then
-  write(*,"(A,F4.1,A)") "  markup-system-spacing = #'((basic-distance . ", markupSystemSpacing, "))"
-  write(11,"(A,F4.1,A)") "  markup-system-spacing = #'((basic-distance . ", markupSystemSpacing, "))"
+if ( (present(markupSystemDistance)) .AND. (present(markupSystemPadding)) ) then
+  write(*,"(A,1X)",advance="NO") "  system-system-spacing = #'((basic-distance ."
+  write(11,"(A,1X)",advance="NO") "  system-system-spacing = #'((basic-distance ."
+  write(*,"(F4.1,A,1X,F4.1,A)") markupSystemDistance, ") (padding .", markupSystemPadding, "))"
+  write(11,"(F4.1,A,1X,F4.1,A)") markupSystemDistance, ") (padding .", markupSystemPadding, "))"
+  else if (present(markupSystemDistance)) then
+    write(*,"(A,1X,F4.1,A)") "  system-system-spacing = #'(basic-distance .", markupSystemDistance, ")"
+    write(11,"(A,1X,F4.1,A)") "  system-system-spacing = #'(basic-distance .", markupSystemDistance, ")"
+  else if (present(markupSystemPadding)) then
+    write(*,"(A,1X,F4.1,A)") "  system-system-spacing = #'(padding .", markupSystemPadding, ")"
+    write(11,"(A,1X,F4.1,A)") "  system-system-spacing = #'(padding .", markupSystemPadding, ")"
 endif
 
 write(*,"(A)") '}'

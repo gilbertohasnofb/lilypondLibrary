@@ -31,7 +31,7 @@ implicit none
 
 private :: LCASE, MIDI_PITCH_TO_LP, SNIPPET_GRACE_MIDI_DURATION, SNIPPET_GRACE_ON_BEAT, SNIPPET_LIVEELECTRONICS, &
 SNIPPET_MINOR_TRILLS, SNIPPET_NATURALIZEMUSIC, SNIPPET_OTTAVATE, SNIPPET_REPEATBRACKET, SNIPPET_SLASHEDGRACES, &
-SNIPPET_TIMESIG_NOTE, SNIPPET_TRILL_SPEED
+SNIPPET_TIMESIG_NOTE, SNIPPET_TRILL_SPEED, SNIPPET_CROSS_STAFF_ARPEGGIOS
 
 contains
 
@@ -79,6 +79,7 @@ contains
   include "./subroutines/REPEAT.f95"
   include "./subroutines/REPEATBRACKET.f95"
   include "./subroutines/SNIPPET.f95"
+  include "./subroutines/SNIPPET_CROSS_STAFF_ARPEGGIOS.f95" ! private subroutine
   include "./subroutines/SNIPPET_GRACE_MIDI_DURATION.f95" ! private subroutine
   include "./subroutines/SNIPPET_GRACE_ON_BEAT.f95" ! private subroutine
   include "./subroutines/SNIPPET_LIVEELECTRONICS.f95" ! private subroutine

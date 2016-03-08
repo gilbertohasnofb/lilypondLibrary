@@ -8,7 +8,6 @@ List of available subroutines
 
 - AL_NIENTE
 - ARPEGGIO
-- AUTOCHANGE
 - BAR_CHECK
 - BAR
 - BARREST
@@ -21,6 +20,7 @@ List of available subroutines
 - COMMENT
 - END_ANY
 - END_GRACE
+- END_ILY
 - END_MAKECLUSTERS
 - END_OTTAVATE
 - END_POLY
@@ -28,10 +28,13 @@ List of available subroutines
 - END_REPEATBRACKET          
 - END_STAFF
 - END_TUPLET
+- FORCE_CLOSE
 - GLISSANDO
 - GRACE
 - HEADER
 - HIDE
+- ILY
+- INCLUDE_FILE
 - KEY
 - LIVEELECTRONICS
 - MAKECLUSTERS
@@ -48,7 +51,7 @@ List of available subroutines
 - POLY
 - REPEAT
 - REPEATBRACKET
-- SNIPPET          
+- SNIPPET
 - SCORE
 - STAFF          
 - STAFF_LINE_COUNT
@@ -61,7 +64,6 @@ List of available subroutines
 - TIE
 - TIE_TYPE
 - TIME
-- TIMESIG_NOTE
 - TRILL
 - TUPLET
 - VOICE

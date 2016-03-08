@@ -1,16 +1,19 @@
 ! can be used to add ANY command to the code. E.g.:
 ! call COMMAND("\break c'1\startTrillSpan g'1\stopTrillSpan")
-subroutine COMMAND(text)
+subroutine COMMAND(text,lineSkip)
 
 character (LEN=*), intent(IN) :: text
+logical, intent(IN), optional :: lineSkip
 logical :: previousAdvanceNo ! used to find out what was the spacing before this subroutine was called. if it finished with an advance="NO" or not
 
 ! =========== spacing ==============
 rewind(unit=7)
 read(7,"(L1)") previousAdvanceNo
 if (previousAdvanceNo) then
-  write(*,*)
-  write(11,*)
+  if ((.NOT. present(lineSkip)) .OR. (lineSkip)) then
+    write(*,*)
+    write(11,*)
+  endif
 endif
 close(unit=7,status="delete")
 open(unit=7,file="temp3")

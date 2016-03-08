@@ -8,7 +8,7 @@ logical, dimension(999) :: startGroup, naturalizeMusic, autochange ! data about 
 integer, dimension(999) :: transpose, transposeMIDI ! data about each staff
 character (LEN=256) :: filename
 logical :: articulate ! checks if the articulate.ly is being used
-logical :: layout_AUX, MIDI_AUX, currentScoreMIDI, condition, error, layoutExtra ! auxiliary variables
+logical :: layout_AUX, MIDI_AUX, currentScoreMIDI, condition, layoutExtra ! auxiliary variables
 integer :: i, j, nScoreBlocks, nInstruments ! auxiliary variables
 
 ! ******************************************************************************
@@ -357,18 +357,16 @@ if (condition) then
   write(*,*)
   write(*,"(A)") "Your file "//TRIM(filename)//" was successfully created!"
   write(*,*)
-  error = .FALSE.
   else
     write(*,"(A)") "* * *"
     write(*,*)
     write(*,"(A)") "ERROR: something went wrong!"
     write(*,*)    
-    error = .TRUE.
 endif
 
 close(unit=11,status="keep") ! closing the file!
 
-if ( (present(autoCompile)) .AND. (.NOT. error) )then
+if ( (present(autoCompile)) .AND. (condition) )then
   if (autoCompile) then
     write(*,"(A)") "Compiling your code:"
     write(*,*)

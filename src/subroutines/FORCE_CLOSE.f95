@@ -3,7 +3,7 @@ subroutine FORCE_CLOSE(autoCompile)
 
 logical, optional, intent(IN) :: autoCompile ! if set to .TRUE., then the first will automatically compile your score when the executable finishes running automatically. Default = .FALSE.
 character (LEN=256) :: filename
-logical :: error, condition
+logical :: condition
 
 rewind(unit=10)
 read(10,"(A)") filename
@@ -20,18 +20,16 @@ if (condition) then
   write(*,*)
   write(*,"(A)") "Your file "//TRIM(filename)//" was successfully created!"
   write(*,*)
-  error = .FALSE.
   else
     write(*,"(A)") "* * *"
     write(*,*)
     write(*,"(A)") "ERROR: something went wrong!"
     write(*,*)    
-    error = .TRUE.
 endif
 
 close(unit=11,status="keep") ! closing the file!
 
-if ( (present(autoCompile)) .AND. (.NOT. error) )then
+if ( (present(autoCompile)) .AND. (condition) )then
   if (autoCompile) then
     write(*,"(A)") "Compiling your code:"
     write(*,*)

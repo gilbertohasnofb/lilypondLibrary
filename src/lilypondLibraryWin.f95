@@ -11,7 +11,7 @@
 !                                                                                                                                                            !
 ! - Tested with LilyPond version 2.19.15 (Linux) and GNU Fortran                                                                                             !
 !                                                                                                                                                            !
-! - Labels 7 and 11 are reserved (label 11 is used for writing the output .ly file. DO NOT USE ANY OF THEM DIRECTLY IN YOUR CODE!                            !
+! - Labels 7 through 13 are reserved (label 11 is used for writing the output .ly file. DO NOT USE ANY OF THEM DIRECTLY IN YOUR CODE!                        !
 !                                                                                                                                                            !
 ! ********************************************************************************************************************************************************** !
 !                                                                                                                                                            !
@@ -40,6 +40,7 @@ contains
   include "subroutines\BAR_CHECK.f95"
   include "subroutines\BAR.f95"
   include "subroutines\BARREST.f95"
+  include "subroutines\BARREST_COMPRESS.f95"
   include "subroutines\BREAK.f95"
   include "subroutines\CHANGE_STAFF.f95"
   include "subroutines\CHORD.f95"
@@ -47,6 +48,7 @@ contains
   include "subroutines\CADENZA.f95"
   include "subroutines\COMMAND.f95"
   include "subroutines\COMMENT.f95"
+  include "subroutines\COMPILE.f95"
   include "subroutines\END_ANY.f95"
   include "subroutines\END_GRACE.f95"
   include "subroutines\END_ILY.f95"

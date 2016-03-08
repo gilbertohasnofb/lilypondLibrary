@@ -1,6 +1,6 @@
 ! creates a variable which can be later used inside \score, for instance
 subroutine STAFF(instrumentName,groupName,staffType,startGroup,staffRefName,transpose,transposeMIDI,transposeAccidental, &
-naturalizeMusic,autochange)
+naturalizeMusic,autochange,variableName)
 
 character (LEN=*), optional, intent(IN) :: instrumentName ! name of the instrument. If left blank, then it won't be displayed.
 character (LEN=*), optional, intent(IN) :: groupName ! name of the group of staves. If left blank, then it won't be displayed.
@@ -9,9 +9,10 @@ logical, optional, intent(IN) :: startGroup ! If .TRUE., then this will consist 
 character (LEN=*), optional, intent(IN) :: staffRefName ! reference name for the staff. This won't show in the final score, but needs to be used if you plan to call STAFF_CHANGE(staffRefName)
 integer, optional, intent(IN) :: transpose, transposeMIDI ! transpose will affect both the score and the MIDI output, while transposeMIDI affects only the MIDI (useful for "Score in C" type of notation)
 character (LEN=*), optional, intent(IN) :: transposeAccidental ! if "is", "s" or "sharp, then the pitch will be notated with sharp accidental. If "es", "f" or "flat", then it will be notated as flat
+character (LEN=*), optional, intent(IN) :: variableName ! the name of the variable for this staff. Used just to make the .ly files look prettier
 logical, optional, intent(IN) :: naturalizeMusic ! this function avoids accidentals such as ces, bis, fes, eis by using the command \naturalizeMusic (remember to call SNIPPET with naturalizeMusic=.TRUE.)
 logical, optional, intent(IN) :: autochange ! if .TRUE., pitches above middle C will be written in the upper staff while the pitches below it will be written in the bottom staff. To be used together with either PianoStaff or GrandStaff.
-character (LEN=256) :: variableName, previous_staffType, staffType_AUX
+character (LEN=256) :: variableName_AUX, previous_staffType, staffType_AUX
 integer :: i, j
 
 ! opening another output file
@@ -46,22 +47,26 @@ close(unit=9,status="keep")
 ! anything about Fortran's amazing past compatibility?!)... </rant>
 
 ! creating a name for this staff
-variableName = ""
-do while (i > 0)
-  j = MOD(i,26) 
-  if (j==0) j = 26
-  variableName = TRIM(variableName) // ACHAR(64 + j)  
-  i = i - 26
-enddo
-if (variableName == "R") variableName = "R-not-a-rest" ! since R is reserved for whole bar rests
+if (present(variableName)) then
+  variableName_AUX = variableName
+  else
+    variableName_AUX = ""
+    do while (i > 0)
+      j = MOD(i,26) 
+      if (j==0) j = 26
+      variableName_AUX = TRIM(variableName_AUX) // ACHAR(64 + j)  
+      i = i - 26
+    enddo
+    if (variableName_AUX == "R") variableName_AUX = "R-not-a-rest" ! since R is reserved for whole bar rests
+endif
 
-write(*,"(A,A)") TRIM(variableName), " = {"
-write(11,"(A,A)") TRIM(variableName), " = {"
+write(*,"(A,A)") TRIM(variableName_AUX), " = {"
+write(11,"(A,A)") TRIM(variableName_AUX), " = {"
 
 ! outputting information about this staff to a temporary file
 open(unit=9,file="temp2",access="append")
 
-write(9,"(A)") TRIM(variableName)
+write(9,"(A)") TRIM(variableName_AUX)
 
 ! staff type
 if (present(staffType)) then

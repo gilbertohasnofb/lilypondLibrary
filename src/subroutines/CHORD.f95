@@ -117,8 +117,6 @@ if (pitch_array(1)==0) then
    call NOTE(0,duration)
    else if (pitch_array(1)==-1) then
      call NOTE(-1,duration)
-   else if (pitch_array(2)<=0) then
-     call NOTE(pitch_array(1),duration) 
      
    else
    
@@ -132,8 +130,10 @@ if (pitch_array(1)==0) then
     enddo 
 
     ! Writing the pitches themselves and dealing with individual ties
-    write(*,"(A)",advance="NO") "<"
-    write(11,"(A)",advance="NO") "<"
+    if (pitch_array(2) > 0) then
+      write(*,"(A)",advance="NO") "<"
+      write(11,"(A)",advance="NO") "<"
+    endif
     do i=1,(relevantChordSize-1)
       call MIDI_PITCH_TO_LP(pitch_array(i),accidental_AUX(i),enharmonic_AUX(i),doubleAccidental_AUX(i),quartertone_AUX(i)) 
       if (present(tieVector)) then
@@ -153,8 +153,10 @@ if (pitch_array(1)==0) then
        write(11,"(A)",advance="NO") "~"
       endif
     endif
-    write(*,"(A)",advance="NO") ">"
-    write(11,"(A)",advance="NO") ">"
+    if (pitch_array(2) > 0) then
+      write(*,"(A)",advance="NO") ">"
+      write(11,"(A)",advance="NO") ">"
+    endif
 
     ! pitch duration
     if (present(duration)) then

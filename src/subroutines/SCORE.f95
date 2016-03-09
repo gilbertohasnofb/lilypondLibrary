@@ -370,10 +370,9 @@ if ( (present(autoCompile)) .AND. (condition) )then
   if (autoCompile) then
     write(*,"(A)") "Compiling your code:"
     write(*,*)
-    call SYSTEM("lilypond "//TRIM(filename))
+    call SYSTEM('lilypond "'//TRIM(filename)//'"')
     write(*,*)
   endif
 endif
-
 
 end subroutine SCORE

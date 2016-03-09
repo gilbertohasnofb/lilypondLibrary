@@ -11,7 +11,7 @@ close(unit=11,status="keep") ! closing the file
 if (condition)then
   write(*,"(A)") "Compiling your code:"
   write(*,*)
-  call SYSTEM("lilypond "//TRIM(filename))
+  call SYSTEM('lilypond "'//TRIM(filename)//'"')
   write(*,*)
   else
     write(*,"(A,A,A)") "The file "//TRIM(filename)//" does not exist"

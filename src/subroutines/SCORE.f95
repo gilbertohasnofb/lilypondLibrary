@@ -1,23 +1,26 @@
-subroutine SCORE(layout,MIDI,autoCompile,baseShortestDuration)
+subroutine SCORE(layout,MIDI,autoCompile,baseShortestDuration,unfoldRepeats)
 
 logical, optional, intent(IN) :: layout, MIDI ! score and MIDI output. Default .TRUE. and .FALSE., respectively.
 logical, optional, intent(IN) :: autoCompile ! if set to .TRUE., then the first will automatically compile your score when the executable finishes running automatically. Default = .FALSE.
 character (LEN=*), optional, intent(IN) :: baseShortestDuration ! changes the horizontal spacing
+logical, optional, intent(IN) :: unfoldRepeats ! unfolds all repeats in the MIDI score block. Default = .TRUE.
 character (LEN=256), dimension(999) :: variableName, staffType, instrumentName, groupName, staffRefName, transposeAccidental ! data about each staff
 logical, dimension(999) :: startGroup, naturalizeMusic, autochange ! data about each staff
 integer, dimension(999) :: transpose, transposeMIDI ! data about each staff
 character (LEN=256) :: filename
 logical :: articulate ! checks if the articulate.ly is being used
-logical :: layout_AUX, MIDI_AUX, currentScoreMIDI, condition, layoutExtra ! auxiliary variables
+logical :: layout_AUX, MIDI_AUX, unfoldRepeats_AUX, currentScoreMIDI, condition, layoutExtra ! auxiliary variables
 integer :: i, j, nScoreBlocks, nInstruments ! auxiliary variables
 
 ! ******************************************************************************
 ! initialization
 layout_AUX = .TRUE.
 MIDI_AUX = .FALSE.
+unfoldRepeats_AUX = .TRUE.
 if (present(layout)) layout_AUX = layout
 if (present(MIDI)) MIDI_AUX = MIDI
 if (present(baseShortestDuration)) layoutExtra = .TRUE. ! this will become useful once there is more than one single option for the layout block. Currently it does look silly, but so is life...
+if (present(unfoldRepeats)) unfoldRepeats_AUX = unfoldRepeats
 
 ! reading filename and articulate from the temp file
 rewind(unit=10)
@@ -76,9 +79,15 @@ do j=1,nScoreBlocks
     write(*,"(A)") "\score {"
     write(11,"(A)") "\score {"
     else ! i.e., if current \score \MIDI block
-      if (.NOT. articulate) then
+      if ((.NOT. articulate) .AND. (.NOT. unfoldRepeats_AUX)) then
         write(*,"(A)") "\score { \unfoldRepeats"
         write(11,"(A)") "\score { \unfoldRepeats"
+        else if ((articulate) .AND. (.NOT. unfoldRepeats_AUX)) then
+          write(*,"(A)") "\score { \articulate"
+          write(11,"(A)") "\score { \articulate"
+        else if ((.NOT. articulate) .AND. (unfoldRepeats_AUX)) then
+          write(*,"(A)") "\score { \unfoldRepeats"
+          write(11,"(A)") "\score { \unfoldRepeats"
         else
           write(*,"(A)") "\score { \unfoldRepeats \articulate"
           write(11,"(A)") "\score { \unfoldRepeats \articulate"

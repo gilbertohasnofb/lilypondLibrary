@@ -1,7 +1,7 @@
 ! makes LilyPond compile a file. Not necessary if using either SCORE or FORCE_CLOSE with the option autoCompile set to .TRUE.
 subroutine COMPILE(filename)
 
-character (LEN=256), intent(IN) :: filename
+character (LEN=*), intent(IN) :: filename
 logical :: error, condition
 
 inquire(file=filename,exist=condition)

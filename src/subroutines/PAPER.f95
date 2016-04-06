@@ -179,13 +179,13 @@ if (present(slashSeparator)) then
 endif
 
 if (present(minSystemsPerPage)) then
-  write(*,"(A,1X,I1)") "  min-systems-per-page =", minSystemsPerPage
-  write(11,"(A,1X,I1)") "  min-systems-per-page =", minSystemsPerPage
+  write(*,"(A,1X,I2)") "  min-systems-per-page =", minSystemsPerPage
+  write(11,"(A,1X,I2)") "  min-systems-per-page =", minSystemsPerPage
 endif
 
 if (present(maxSystemsPerPage)) then
-  write(*,"(A,1X,I1)") "  max-systems-per-page =", maxSystemsPerPage
-  write(11,"(A,1X,I1)") "  max-systems-per-page =", maxSystemsPerPage
+  write(*,"(A,1X,I2)") "  max-systems-per-page =", maxSystemsPerPage
+  write(11,"(A,1X,I2)") "  max-systems-per-page =", maxSystemsPerPage
 endif
 
 if ( (present(systemDistance)) .AND. (present(systemPadding)) ) then

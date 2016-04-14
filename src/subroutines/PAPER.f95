@@ -40,8 +40,8 @@ if (present(paperSize)) then
   write(11,"(A,A,A)",advance="NO") '#(set-default-paper-size "', paperSize, '"'
   if (present(landscape)) then
     if (landscape) then
-      write(*,"(A)") 'landscape )'
-      write(11,"(A)") 'landscape )'
+      write(*,"(A)") " 'landscape )"
+      write(11,"(A)") " 'landscape )"
       else
         write(*,"(A)") ' )'
         write(11,"(A)") ' )'

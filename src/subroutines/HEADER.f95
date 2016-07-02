@@ -33,9 +33,6 @@ write(7,"(L1)") .FALSE. ! this will mean to the next subroutine that this one di
 if (present(version)) then
   write(*,"(A,A,A)") '\version "', TRIM(version), '"'
   write(11,"(A,A,A)") '\version "', TRIM(version), '"'
-  else
-    write(*,"(A)") '\version "2.19.15"'
-    write(11,"(A)") '\version "2.19.15"'
 endif
 
 ! skipping a line

@@ -31,7 +31,7 @@ implicit none
 
 private :: LCASE, MIDI_PITCH_TO_LP, SNIPPET_GRACE_MIDI_DURATION, SNIPPET_GRACE_ON_BEAT, SNIPPET_LIVEELECTRONICS, &
 SNIPPET_MINOR_TRILLS, SNIPPET_NATURALIZEMUSIC, SNIPPET_OTTAVATE, SNIPPET_REPEATBRACKET, SNIPPET_SLASHEDGRACES, &
-SNIPPET_TIMESIG_NOTE, SNIPPET_TRILL_SPEED, SNIPPET_CROSS_STAFF_ARPEGGIOS
+SNIPPET_TIMESIG_NOTE, SNIPPET_TRILL_SPEED, SNIPPET_CROSS_STAFF_ARPEGGIOS, SNIPPET_NUMERICOTTAVA
 
 contains
 
@@ -75,6 +75,7 @@ contains
   include "./subroutines/NOTE.f95"
   include "./subroutines/NOTEHEAD_STYLE.f95"          
   include "./subroutines/NOTEHEAD_TRANSPARENT.f95"
+  include "./subroutines/NUMERICOTTAVA.f95"  
   include "./subroutines/OMIT.f95"
   include "./subroutines/OTTAVA.f95"
   include "./subroutines/OTTAVATE.f95"
@@ -91,6 +92,7 @@ contains
   include "./subroutines/SNIPPET_LIVEELECTRONICS.f95" ! private subroutine
   include "./subroutines/SNIPPET_MINOR_TRILLS.f95" ! private subroutine
   include "./subroutines/SNIPPET_NATURALIZEMUSIC.f95" ! private subroutine
+  include "./subroutines/SNIPPET_NUMERICOTTAVA.f95" ! private subroutine  
   include "./subroutines/SNIPPET_OTTAVATE.f95" ! private subroutine
   include "./subroutines/SNIPPET_REPEATBRACKET.f95" ! private subroutine
   include "./subroutines/SNIPPET_SLASHEDGRACES.f95" ! private subroutine

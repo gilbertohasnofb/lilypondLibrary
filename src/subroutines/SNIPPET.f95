@@ -1,6 +1,6 @@
 ! add certain interesting snippets to the score. Should be called immediately after HEADER and
 subroutine SNIPPET(slashedGraces,repeatBracket,naturalizeMusic,timesigNote,modernStraightFlag,ottavate,liveElectronics, &
-minorTrills,graceOnBeat,graceMidiDuration,trillSpeed,crossStaffArpeggios,numericOttava)
+minorTrills,graceOnBeat,graceMidiDuration,trillSpeed,crossStaffArpeggios,numericOttava,tupletAngles,horizontalTuplets)
 
 logical, optional, intent(IN) :: slashedGraces ! this function adds a slash to grace notes in groups (single grace note automatically has a slash in LilyPond). Not that this function is still in beta.
 ! to use it, simply call SNIPPET(slashedGraces=.TRUE.) and then use the GRACE subroutine normally (no need to do anything else).
@@ -17,6 +17,8 @@ logical, optional, intent(IN) :: crossStaffArpeggios ! if .TRUE., cross staff ar
 logical, optional, intent(IN) :: numericOttava ! if .TRUE., \numericOttava will output 8--| and 8___| instead of 8va---| and 8vb___|
 character (LEN=*), optional, intent(IN) :: graceMidiDuration ! should be a string containing an integer or a fraction, such as "1" or "8/10"
 character (LEN=*), optional, intent(IN) :: trillSpeed ! should be a string containing an integer or a fraction. Default = "1/64". The larger the denominator the faster the trill
+logical, optional, intent(IN) :: tupletAngles ! if .TRUE., then use call TUPLET_ANGLES to offset and change angles of tuplet brackets
+logical, optional, intent(IN) :: horizontalTuplets ! if .TRUE., then use call HORIZONTAL_TUPLETS to force all tuplet brackets to be horizontal
 
 write(*,*) "% *************************************** SNIPPETS ***************************************"
 write(11,*) "% *************************************** SNIPPETS ***************************************"
@@ -110,6 +112,17 @@ endif
 if (present(numericOttava)) then
   if (numericOttava) then
     call SNIPPET_NUMERICOTTAVA()
+  endif
+endif
+
+if (present(tupletAngles)) then
+  if (tupletAngles) then
+    call SNIPPET_TUPLET_ANGLES()
+  endif
+endif
+if (present(horizontalTuplets)) then
+  if (horizontalTuplets) then
+    call SNIPPET_HORIZONTAL_TUPLETS()
   endif
 endif
 

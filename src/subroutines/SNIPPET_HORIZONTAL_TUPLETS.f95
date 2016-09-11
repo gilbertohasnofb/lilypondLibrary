@@ -1,3 +1,4 @@
+! By Thomas Morley. From: lilypond.1069038.n5.nabble.com/Tuplet-bracket-and-cross-staff-td191922.html
 subroutine SNIPPET_HORIZONTAL_TUPLETS()
 
 write(*,"(A)") "  horizontalTuplets ="

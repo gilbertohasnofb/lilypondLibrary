@@ -81,6 +81,7 @@ if ((.NOT. ca_AUX).AND.(.NOT. modernStraightFlag_AUX)) then
   endif
  
   else
+
   
     write(*,"(A)") "  \tempo \markup {\concat { \normal-text \normalsize { "
     write(11,"(A)") "  \tempo \markup {\concat { \normal-text \normalsize { "        

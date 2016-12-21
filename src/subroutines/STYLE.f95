@@ -2,7 +2,7 @@
 subroutine STYLE(barNumberVisibility, autoBeam, dodecaphonic, dodecaphonicNoRepeat, hideTiedAccidentalAfterBreak, &
 pedalSustainStyleMixed, countPercentRepeats, numericTimeSignature, compressFullBarRests, Kirchenpausen, modernStraightFlag, &
 stemlet, autoKneeGap, trillToBarline, breakableBeam, dynamicPadding, hideBarline, hideTimeSignature, spacingIncrement, &
-spacingIncrementRevert, textLength, dynamicTextExtraSpacing, markFormatter, arpeggio)
+spacingIncrementRevert, textLength, dynamicTextExtraSpacing, markFormatter)
 
 logical, optional, intent(IN) :: barNumberVisibility ! If .TRUE., then every system will display bar numbers. If .FALSE., then bar numbers are hidden. Affects whole Score. Default = .TRUE.
 logical, optional, intent(IN) :: autoBeam ! If .TRUE., then notes of value 8 or lower will be beamed automatically. Affects Staff only. Default = .TRUE.
@@ -27,8 +27,7 @@ logical, optional, intent(IN) :: spacingIncrementRevert ! if spacingIncrement ha
 logical, optional, intent(IN) :: textLength ! if .TRUE., Lilypond waits for a text string to finish before continuing to the next note (so no vertical shift due to colliding text). Does NOT influence dynamic text (use dyn_text_spacing for that). Affects Staff only. Default = .FALSE.
 logical, optional, intent(IN) :: dynamicTextExtraSpacing ! If .TRUE., Lilypond extends the horizontal spacing between two notes in order to avoid collision between two dynamic texts Affects Staff only. Default = .FALSE.
 character (LEN=*), optional, intent(in) :: markFormatter ! if markFormatter = "" (empty) or "default" then default layout. If = "box", then boxed rehearsal marks, if = "circle", circled rehearsal marks. Note: only works with \default (i.e., if no text is presen when calling MARK). Capitalization doesn't matter.
-character (LEN=*), optional, intent(in) :: arpeggio ! if arpeggio = "" (empty), "normal" or "default" then default arpeggios. Other options are: "arrowup", "arrowdown", "bracket", "parenthesis" and "parenthesisdashed". Capitalization doesn't matter.
-character (LEN=256) :: markFormatter_AUX, arpeggio_AUX
+character (LEN=256) :: markFormatter_AUX
 logical :: previousAdvanceNo ! used to find out what was the spacing before this subroutine was called. if it finished with an advance="NO" or not
 
 ! =========== spacing ==============
@@ -286,53 +285,6 @@ if (present(markFormatter)) then
     case default
     write(*,"(A)") "  \set Score.markFormatter = #format-mark-alphabet"
     write(11,"(A)") "  \set Score.markFormatter = #format-mark-alphabet"  
-    
-  end select
-  
-endif
-
-if (present(arpeggio)) then  
-
-  arpeggio_AUX = TRIM(arpeggio)
-  call LCASE(arpeggio_AUX)  
-  
-  select case(TRIM(arpeggio_AUX))
-  
-    case("")
-    write(*,"(A)") "  \arpeggioNormal"
-    write(11,"(A)") "  \arpeggioNormal"  
-    
-    case("default")
-    write(*,"(A)") "  \arpeggioNormal"
-    write(11,"(A)") "  \arpeggioNormal"
-    
-    case("normal")
-    write(*,"(A)") "  \arpeggioNormal"
-    write(11,"(A)") "  \arpeggioNormal"    
-    
-    case("arrowup")
-    write(*,"(A)") "  \arpeggioArrowUp"
-    write(11,"(A)") "  \arpeggioArrowUp"  
-    
-    case("arrowdown")
-    write(*,"(A)") "  \arpeggioArrowDown"
-    write(11,"(A)") "  \arpeggioArrowDown"  
-    
-    case("bracket")
-    write(*,"(A)") "  \arpeggioBracket"
-    write(11,"(A)") "  \arpeggioBracket"  
-    
-    case("parenthesis")
-    write(*,"(A)") "  \arpeggioParenthesis"
-    write(11,"(A)") "  \arpeggioParenthesis"  
-    
-    case("parenthesisdashed")
-    write(*,"(A)") "  \arpeggioParenthesisDashed"
-    write(11,"(A)") "  \arpeggioParenthesisDashed"  
-    
-    case default
-    write(*,"(A)") "  \arpeggioNormal"
-    write(11,"(A)") "  \arpeggioNormal"
     
   end select
   

@@ -13,7 +13,7 @@ logical, optional, intent(IN) :: ottavate ! This subroutine adds a snippet whose
 logical, optional, intent(IN) :: liveElectronics ! This subroutine adds a snippet whose function is to create circled numbers with arrows below notes used for live electronics
 logical, optional, intent(IN) :: minorTrills ! if .TRUE., all trills will be minor in the MIDI playback. Default = .FALSE.
 logical, optional, intent(IN) :: graceOnBeat ! if .TRUE., grace notes will be played on the beat on the MIDI playback. Default = .FALSE.
-logical, optional, intent(IN) :: crossStaffArpeggios ! if .TRUE., cross staff arpeggios will be affected by \arpeggioArrowUp, \arpeggioArrowDown, \arpeggioBracket and \arpeggioNormal
+logical, optional, intent(IN) :: crossStaffArpeggios ! if .TRUE., cross staff arpeggios will be affected by ARPEGGIO_TYPE
 logical, optional, intent(IN) :: numericOttava ! if .TRUE., \numericOttava will output 8--| and 8___| instead of 8va---| and 8vb___|
 character (LEN=*), optional, intent(IN) :: graceMidiDuration ! should be a string containing an integer or a fraction, such as "1" or "8/10"
 character (LEN=*), optional, intent(IN) :: trillSpeed ! should be a string containing an integer or a fraction. Default = "1/64". The larger the denominator the faster the trill

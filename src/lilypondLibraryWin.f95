@@ -38,6 +38,7 @@ contains
 
   include "subroutines\AL_NIENTE.f95"
   include "subroutines\ARPEGGIO.f95"
+  include "subroutines\ARPEGGIO_TYPE.f95"
   include "subroutines\BAR_CHECK.f95"
   include "subroutines\BAR.f95"
   include "subroutines\BARREST.f95"

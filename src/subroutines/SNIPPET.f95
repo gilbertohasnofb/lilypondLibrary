@@ -96,38 +96,49 @@ endif
 if (present(graceOnBeat)) then
   if (graceOnBeat) then
     call SNIPPET_GRACE_ON_BEAT()
+    write(*,*)
+    write(11,*) 
   endif
 endif
 
 if (present(graceMidiDuration)) then
   call SNIPPET_GRACE_MIDI_DURATION(graceMidiDuration) 
+  write(*,*)
+  write(11,*) 
 endif
 
 if (present(crossStaffArpeggios)) then
   if (crossStaffArpeggios) then
     call SNIPPET_CROSS_STAFF_ARPEGGIOS()
+    write(*,*)
+    write(11,*) 
   endif
 endif
 
 if (present(numericOttava)) then
   if (numericOttava) then
     call SNIPPET_NUMERICOTTAVA()
+    write(*,*)
+    write(11,*) 
   endif
 endif
 
 if (present(tupletAngles)) then
   if (tupletAngles) then
     call SNIPPET_TUPLET_ANGLES()
-  endif
-endif
-if (present(horizontalTuplets)) then
-  if (horizontalTuplets) then
-    call SNIPPET_HORIZONTAL_TUPLETS()
+    write(*,*)
+    write(11,*) 
   endif
 endif
 
-write(*,*)
-write(11,*) 
+if (present(horizontalTuplets)) then
+  if (horizontalTuplets) then
+    call SNIPPET_HORIZONTAL_TUPLETS()
+    write(*,*)
+    write(11,*) 
+  endif
+endif
+
 write(*,*) "% ****************************************************************************************"
 write(11,*) "% ****************************************************************************************"
 write(*,*)

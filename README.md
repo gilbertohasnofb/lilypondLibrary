@@ -8,9 +8,11 @@ List of available subroutines
 
 - AL_NIENTE
 - ARPEGGIO
+- ARPEGGIO_TYPE
 - BAR_CHECK
 - BAR
 - BARREST
+- BARREST_COMPRESS
 - BREAK
 - CHANGE_STAFF
 - CHORD
@@ -18,6 +20,7 @@ List of available subroutines
 - CADENZA
 - COMMAND
 - COMMENT
+- COMPILE
 - END_ANY
 - END_GRACE
 - END_ILY
@@ -33,6 +36,7 @@ List of available subroutines
 - GRACE
 - HEADER
 - HIDE
+- HORIZONTAL_TUPLETS
 - ILY
 - INCLUDE_FILE
 - KEY
@@ -42,6 +46,7 @@ List of available subroutines
 - NOTE
 - NOTEHEAD_STYLE          
 - NOTEHEAD_TRANSPARENT
+- NUMERICOTTAVA  
 - OMIT
 - OTTAVA
 - OTTAVATE
@@ -66,6 +71,7 @@ List of available subroutines
 - TIME
 - TRILL
 - TUPLET
+- TUPLET_ANGLES
 - VOICE
 - XNOTE
 
@@ -76,8 +82,8 @@ Usage in Linux
 - immediately after declaring your program name, add the line "use lilypondLibrary"
 - compile your code with the following command:
 	$ gfortran yourcode.f95 lilypondLibrary.o
-- if you also wish to use a set of predefined constants as arguments for the subroutines, copy the file "arguments.f95" to your project's directory and add the following line in your code immediately before declaring your variables:
-	include "arguments.f95"
+- if you also wish to use a set of predefined constants as arguments for the subroutines, copy the file "arguments to your project's directory and add the following line in your code immediately before declaring your variables:
+	include "arguments
 	
 Usage in Windows
 ----------------
@@ -86,8 +92,8 @@ Usage in Windows
 - immediately after declaring your program name, add the line "use lilypondLibraryWin"
 - compile your code with the following command:
 	gfortran yourcode.f95 lilypondLibraryWin.o
-- if you also wish to use a set of predefined constants as arguments for the subroutines, copy the file "arguments.f95" to your project's directory and add the following line in your code immediately before declaring your variables:
-	include "arguments.f95"
+- if you also wish to use a set of predefined constants as arguments for the subroutines, copy the file "arguments to your project's directory and add the following line in your code immediately before declaring your variables:
+	include "arguments
 
 Please note that I do not recompile the Windows version of this library as often as the Linux version, so you may want to compile it by yourself. To do so, simply navigate to the sourceCode folder and execute the following command in the terminal (then follow the instructions above):
 gfortran -c lilypondLibraryWin.f95

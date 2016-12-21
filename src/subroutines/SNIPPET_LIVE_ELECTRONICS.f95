@@ -1,0 +1,53 @@
+subroutine SNIPPET_LIVE_ELECTRONICS()
+
+write(*,"(A)") "LE = #(define-event-function"
+write(*,"(A)") "     (parser location N vlength description)"
+write(*,"(A)") "     (number? number? string?)"
+write(*,"(A)") "     (define Nstring (number->string N))"
+write(*,"(A)") "     (if (< N 10)"
+write(*,"(A)") '         (set! Nstring (string-append "  " Nstring "  "))'
+write(*,"(A)") "     )"
+write(*,"(A)") "     (if (and (>= N 10) (< N 100)) "
+write(*,"(A)") '         (set! Nstring (string-append " " Nstring " "))'
+write(*,"(A)") "     )"
+write(*,"(A)") "      #{"
+write(*,"(A)") "        -\markup {"
+write(*,"(A)") "          \hspace #-1.2"
+write(*,"(A)") "          \center-column {"
+write(*,"(A)") "            \raise #1"
+write(*,"(A)") "            \combine"     
+write(*,"(A)") "            \arrow-head #Y #UP ##t"
+write(*,"(A)") "            \draw-line #(cons 0 (* -1 vlength))"
+write(*,"(A)") "            \circle #Nstring"
+write(*,"(A)") "          }"
+write(*,"(A)") "          \raise #(+ -2 (* -1 vlength)) $description"
+write(*,"(A)") "        }"
+write(*,"(A)") "      #}"
+write(*,"(A)") "      )"
+
+write(11,"(A)") "LE = #(define-event-function"
+write(11,"(A)") "     (parser location N vlength description)"
+write(11,"(A)") "     (number? number? string?)"
+write(11,"(A)") "     (define Nstring (number->string N))"
+write(11,"(A)") "     (if (< N 10)"
+write(11,"(A)") '         (set! Nstring (string-append "  " Nstring "  "))'
+write(11,"(A)") "     )"
+write(11,"(A)") "     (if (and (>= N 10) (< N 100)) "
+write(11,"(A)") '         (set! Nstring (string-append " " Nstring " "))'
+write(11,"(A)") "     )"
+write(11,"(A)") "      #{"
+write(11,"(A)") "        -\markup {"
+write(11,"(A)") "          \hspace #-1.2"
+write(11,"(A)") "          \center-column {"
+write(11,"(A)") "            \raise #1"
+write(11,"(A)") "            \combine"     
+write(11,"(A)") "            \arrow-head #Y #UP ##t"
+write(11,"(A)") "            \draw-line #(cons 0 (* -1 vlength))"
+write(11,"(A)") "            \circle #Nstring"
+write(11,"(A)") "          }"
+write(11,"(A)") "          \raise #(+ -2 (* -1 vlength)) $description"
+write(11,"(A)") "        }"
+write(11,"(A)") "      #}"
+write(11,"(A)") "      )"
+
+end subroutine SNIPPET_LIVE_ELECTRONICS

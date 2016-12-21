@@ -73,7 +73,7 @@ endif
 
 if (present(liveElectronics)) then
   if (liveElectronics) then
-    call SNIPPET_LIVEELECTRONICS()
+    call SNIPPET_LIVE_ELECTRONICS()
     write(*,*)
     write(11,*) 
   endif

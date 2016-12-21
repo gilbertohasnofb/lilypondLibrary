@@ -29,7 +29,7 @@
 module lilypondLibraryWin
 implicit none
 
-private :: LCASE, MIDI_PITCH_TO_LP, SNIPPET_GRACE_MIDI_DURATION, SNIPPET_GRACE_ON_BEAT, SNIPPET_LIVEELECTRONICS, &
+private :: LCASE, MIDI_PITCH_TO_LP, SNIPPET_GRACE_MIDI_DURATION, SNIPPET_GRACE_ON_BEAT, SNIPPET_LIVE_ELECTRONICS, &
 SNIPPET_MINOR_TRILLS, SNIPPET_NATURALIZEMUSIC, SNIPPET_OTTAVATE, SNIPPET_REPEATBRACKET, SNIPPET_SLASHEDGRACES, &
 SNIPPET_TIMESIG_NOTE, SNIPPET_TRILL_SPEED, SNIPPET_CROSS_STAFF_ARPEGGIOS, SNIPPET_NUMERICOTTAVA, SNIPPET_TUPLET_ANGLES, &
 SNIPPET_HORIZONTAL_TUPLETS
@@ -58,7 +58,7 @@ contains
   include "subroutines\END_OTTAVATE.f95"
   include "subroutines\END_POLY.f95"
   include "subroutines\END_REPEAT.f95"
-  include "subroutines\END_REPEATBRACKET.f95"      
+  include "subroutines\END_REPEATBRACKET.f95"          
   include "subroutines\END_STAFF.f95"
   include "subroutines\END_TUPLET.f95"
   include "subroutines\FORCE_CLOSE.f95"
@@ -70,8 +70,8 @@ contains
   include "subroutines\ILY.f95"
   include "subroutines\INCLUDE_FILE.f95"
   include "subroutines\KEY.f95"
-  include "subroutines\LCASE.f95" ! private subroutine
-  include "subroutines\LIVEELECTRONICS.f95"
+  include "subroutines\LCASE.f95" ! private subroutine  
+  include "subroutines\LIVE_ELECTRONICS.f95"
   include "subroutines\MAKECLUSTERS.f95"
   include "subroutines\MARK.f95"
   include "subroutines\MIDI_PITCH_TO_LP.f95" ! private subroutine
@@ -93,14 +93,14 @@ contains
   include "subroutines\SNIPPET_GRACE_MIDI_DURATION.f95" ! private subroutine
   include "subroutines\SNIPPET_GRACE_ON_BEAT.f95" ! private subroutine
   include "subroutines\SNIPPET_HORIZONTAL_TUPLETS.f95" ! private subroutine
-  include "subroutines\SNIPPET_LIVEELECTRONICS.f95" ! private subroutine
+  include "subroutines\SNIPPET_LIVE_ELECTRONICS.f95" ! private subroutine
   include "subroutines\SNIPPET_MINOR_TRILLS.f95" ! private subroutine
   include "subroutines\SNIPPET_NATURALIZEMUSIC.f95" ! private subroutine
   include "subroutines\SNIPPET_NUMERICOTTAVA.f95" ! private subroutine  
   include "subroutines\SNIPPET_OTTAVATE.f95" ! private subroutine
   include "subroutines\SNIPPET_REPEATBRACKET.f95" ! private subroutine
   include "subroutines\SNIPPET_SLASHEDGRACES.f95" ! private subroutine
-  include "subroutines\SNIPPET_TIMESIG_NOTE.f95" ! private subroutine 
+  include "subroutines\SNIPPET_TIMESIG_NOTE.f95" ! private subroutine
   include "subroutines\SNIPPET_TRILL_SPEED.f95" ! private subroutine
   include "subroutines\SNIPPET_TUPLET_ANGLES.f95" ! private subroutine
   include "subroutines\SCORE.f95"

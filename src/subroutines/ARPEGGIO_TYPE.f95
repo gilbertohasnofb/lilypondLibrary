@@ -16,17 +16,17 @@ write(7,"(L1)") .FALSE. ! this will mean to the next subroutine that this one di
 ! =================================
 
 if (TRIM(c) == "arrowup") then
-  write(*,"(A)",advance="NO") "  \connectArpeggioArrowUp"
-  write(11,"(A)",advance="NO") "  \connectArpeggioArrowUp"
+  write(*,"(A)") "  \connectArpeggioArrowUp"
+  write(11,"(A)") "  \connectArpeggioArrowUp"
   else if (TRIM(c) == "arrowdown") then
-    write(*,"(A)",advance="NO") "  \connectArpeggioArrowDown"
-    write(11,"(A)",advance="NO") "  \connectArpeggioArrowDown"
+    write(*,"(A)") "  \connectArpeggioArrowDown"
+    write(11,"(A)") "  \connectArpeggioArrowDown"
   else if (TRIM(c) == "bracket") then
-    write(*,"(A)",advance="NO") "  \connectArpeggioBracket"
-    write(11,"(A)",advance="NO") "  \connectArpeggioBracket"
+    write(*,"(A)") "  \connectArpeggioBracket"
+    write(11,"(A)") "  \connectArpeggioBracket"
   else
-    write(*,"(A)",advance="NO") "  \connectArpeggioNormal"
-    write(11,"(A)",advance="NO") "  \connectArpeggioNormal"
+    write(*,"(A)") "  \connectArpeggioNormal"
+    write(11,"(A)") "  \connectArpeggioNormal"
 endif
 
 end subroutine ARPEGGIO_TYPE

@@ -17,15 +17,16 @@ if (previousAdvanceNo) then
 endif
 close(unit=7,status="delete")
 open(unit=7,file="temp3")
-write(7,"(L1)") .FALSE. ! this will mean to the next subroutine that this one didn't finish with an advance="NO"
 ! =================================
 
 if (present(advanceNo) .AND. (advanceNo)) then
   write(*,"(A)",advance="NO") text
   write(11,"(A)",advance="NO") text
+  write(7,"(L1)") .TRUE. ! this will mean to the next subroutine that this one did finish with an advance="NO"
   else
     write(*,"(A)") text
     write(11,"(A)") text
+    write(7,"(L1)") .FALSE. ! this will mean to the next subroutine that this one didn't finish with an advance="NO"
 endif
 
 end subroutine COMMAND

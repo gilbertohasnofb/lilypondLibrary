@@ -7,7 +7,7 @@
 ! That is, if pitch_array is dimension(4), but consists of (/60,64,67,0/), only a three note chord is created. The same is true for the dimension(6) pitch_arrayB=(/60,64,67,0,50,57/), which will also output a C major chord.
 
 subroutine CHORD(pitch_array,duration,D,A,H,S,P,text,trem,accidental,accidentalVector,enharmonic,enharmonicVector,doubleAccidental,&
-doubleAccidentalVector,quartertone,quartertoneVector,tie,tieVector,beam)
+doubleAccidentalVector,quartertone,quartertoneVector,tie,tieVector,beam,auxiliaryVector)
 
 integer, intent(in), dimension(:) :: pitch_array ! in MIDI no., i.e., 60 = C4. Obviously, no rests can be used here (i.e., no pitches = 0)
 character (LEN=*), optional, intent(in) :: duration ! Durations in LilyPond notation, such as "2." or "8.." or "64"
@@ -42,6 +42,7 @@ logical, optional, intent(in) :: tie ! if .TRUE., a tie "~" is added after the n
 logical, optional, intent(in), dimension(:) :: tieVector ! a vector with individual values for ties of individual pitches
 character(LEN=*), optional, intent(in) :: beam ! manual beam, should be either "[" or "]"
 ! if using "arguments.f95", then it can be substituted by variables such as startBeam and stopBeam
+character(LEN=*), dimension(:), optional, intent(in) :: auxiliaryVector ! can be used to add individual parameters to each pitch, such as '\harmonic' for instance
 character (LEN=256), dimension(:), allocatable :: accidental_AUX, doubleAccidental_AUX, quartertone_AUX ! Auxiliary variable
 logical, dimension(:), allocatable :: enharmonic_AUX ! auxiliary variable
 integer :: i, relevantChordSize ! Auxiliary variables
@@ -63,7 +64,7 @@ write(7,"(L1)") .TRUE. ! this will mean to the next subroutine that this one did
 ! =================================
 
 allocate( accidental_AUX(SIZE(pitch_array)), enharmonic_AUX(SIZE(pitch_array)), doubleAccidental_AUX(SIZE(pitch_array)), &
-quartertone_AUX(SIZE(pitch_array)) )
+quartertone_AUX(SIZE(pitch_array)))
 
 ! dealing with optional variables
 accidental_AUX="sharp"
@@ -136,6 +137,10 @@ if (pitch_array(1)==0) then
     endif
     do i=1,(relevantChordSize-1)
       call MIDI_PITCH_TO_LP(pitch_array(i),accidental_AUX(i),enharmonic_AUX(i),doubleAccidental_AUX(i),quartertone_AUX(i)) 
+      if (present(auxiliaryVector)) then
+          write(*,"(A)",advance="NO") TRIM(auxiliaryVector(i))
+          write(11,"(A)",advance="NO") TRIM(auxiliaryVector(i))
+      endif
       if (present(tieVector)) then
         if (tieVector(i)) then
          write(*,"(A)",advance="NO") "~"
@@ -147,6 +152,10 @@ if (pitch_array(1)==0) then
     enddo
     i = relevantChordSize
     call MIDI_PITCH_TO_LP(pitch_array(i),accidental_AUX(i),enharmonic_AUX(i),doubleAccidental_AUX(i),quartertone_AUX(i)) 
+    if (present(auxiliaryVector)) then
+        write(*,"(A)",advance="NO") TRIM(auxiliaryVector(i))
+        write(11,"(A)",advance="NO") TRIM(auxiliaryVector(i))
+    endif
     if (present(tieVector)) then
       if (tieVector(i)) then
        write(*,"(A)",advance="NO") "~"

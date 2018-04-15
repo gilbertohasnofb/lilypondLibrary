@@ -1,6 +1,6 @@
-subroutine HEADER(title,composer,subtitle,dedication,version,filename,articulate)
+subroutine HEADER(title,composer,subtitle,dedication,subsubtitle,instrument,poet,meter,arranger,version,filename,articulate)
 
-character (LEN=*), optional, intent(IN) :: title, composer, subtitle, dedication
+character (LEN=*), optional, intent(IN) :: title, composer, subtitle, dedication, subsubtitle, instrument, poet, meter, arranger
 character (LEN=*), optional, intent(IN) :: version ! if called without this argument, it will assume version 2.19.15, which is the version this library was tested with
 character (LEN=*), optional, intent(IN) :: filename ! if called without this argument, it will create a file output.ly
 logical, optional, intent(IN) :: articulate ! if .TRUE., it will include the script articulate.ly. Remember to also activate it in the SCORE subroutine
@@ -71,6 +71,31 @@ endif
 if (present(dedication)) then
   write(*,"(A,A,A)") '  dedication = \markup{', TRIM(dedication), '}'
   write(11,"(A,A,A)") '  dedication = \markup{', TRIM(dedication), '}'
+endif
+
+if (present(subsubtitle)) then
+  write(*,"(A,A,A)") '  dedication = \markup{', TRIM(subsubtitle), '}'
+  write(11,"(A,A,A)") '  dedication = \markup{', TRIM(subsubtitle), '}'
+endif
+
+if (present(instrument)) then
+  write(*,"(A,A,A)") '  dedication = \markup{', TRIM(instrument), '}'
+  write(11,"(A,A,A)") '  dedication = \markup{', TRIM(instrument), '}'
+endif
+
+if (present(poet)) then
+  write(*,"(A,A,A)") '  dedication = \markup{', TRIM(poet), '}'
+  write(11,"(A,A,A)") '  dedication = \markup{', TRIM(poet), '}'
+endif
+
+if (present(meter)) then
+  write(*,"(A,A,A)") '  dedication = \markup{', TRIM(meter), '}'
+  write(11,"(A,A,A)") '  dedication = \markup{', TRIM(meter), '}'
+endif
+
+if (present(arranger)) then
+  write(*,"(A,A,A)") '  dedication = \markup{', TRIM(arranger), '}'
+  write(11,"(A,A,A)") '  dedication = \markup{', TRIM(arranger), '}'
 endif
 
 write(*,"(A)") '  tagline = ""'

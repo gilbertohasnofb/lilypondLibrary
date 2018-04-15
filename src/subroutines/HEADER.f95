@@ -74,28 +74,28 @@ if (present(dedication)) then
 endif
 
 if (present(subsubtitle)) then
-  write(*,"(A,A,A)") '  dedication = \markup{', TRIM(subsubtitle), '}'
-  write(11,"(A,A,A)") '  dedication = \markup{', TRIM(subsubtitle), '}'
+  write(*,"(A,A,A)") '  subsubtitle = \markup{', TRIM(subsubtitle), '}'
+  write(11,"(A,A,A)") '  subsubtitle = \markup{', TRIM(subsubtitle), '}'
 endif
 
 if (present(instrument)) then
-  write(*,"(A,A,A)") '  dedication = \markup{', TRIM(instrument), '}'
-  write(11,"(A,A,A)") '  dedication = \markup{', TRIM(instrument), '}'
+  write(*,"(A,A,A)") '  instrument = \markup{', TRIM(instrument), '}'
+  write(11,"(A,A,A)") '  instrument = \markup{', TRIM(instrument), '}'
 endif
 
 if (present(poet)) then
-  write(*,"(A,A,A)") '  dedication = \markup{', TRIM(poet), '}'
-  write(11,"(A,A,A)") '  dedication = \markup{', TRIM(poet), '}'
+  write(*,"(A,A,A)") '  poet = \markup{', TRIM(poet), '}'
+  write(11,"(A,A,A)") '  poet = \markup{', TRIM(poet), '}'
 endif
 
 if (present(meter)) then
-  write(*,"(A,A,A)") '  dedication = \markup{', TRIM(meter), '}'
-  write(11,"(A,A,A)") '  dedication = \markup{', TRIM(meter), '}'
+  write(*,"(A,A,A)") '  meter = \markup{', TRIM(meter), '}'
+  write(11,"(A,A,A)") '  meter = \markup{', TRIM(meter), '}'
 endif
 
 if (present(arranger)) then
-  write(*,"(A,A,A)") '  dedication = \markup{', TRIM(arranger), '}'
-  write(11,"(A,A,A)") '  dedication = \markup{', TRIM(arranger), '}'
+  write(*,"(A,A,A)") '  arranger = \markup{', TRIM(arranger), '}'
+  write(11,"(A,A,A)") '  arranger = \markup{', TRIM(arranger), '}'
 endif
 
 write(*,"(A)") '  tagline = ""'

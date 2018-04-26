@@ -162,8 +162,8 @@ do j=1,nScoreBlocks
           endif
           
           if (LEN_TRIM(instrumentName(i)) > 0) then
-            write(*,"(A,A,A)",advance="NO")  '\with { instrumentName = #"', TRIM(instrumentName(i)), ' " } '
-            write(11,"(A,A,A)",advance="NO")  '\with { instrumentName = #"', TRIM(instrumentName(i)), ' " } '
+            write(*,"(A,A,A)",advance="NO")  '\with { instrumentName = \markup{', TRIM(instrumentName(i)), '}} '
+            write(11,"(A,A,A)",advance="NO")  '\with { instrumentName = \markup{', TRIM(instrumentName(i)), '}} '
           endif
           
           if ((naturalizeMusic(i)) .AND. (.NOT. currentScoreMIDI)) then
@@ -206,8 +206,8 @@ do j=1,nScoreBlocks
                 write(*,"(A,A,1x)",advance="NO") "    \new ", TRIM(staffType(i))
                 write(11,"(A,A,1x)",advance="NO") "    \new ", TRIM(staffType(i))
                 if (LEN_TRIM(groupName(i)) > 0) then
-                  write(*,"(A,A,A)",advance="NO")  '\with { instrumentName = #"', TRIM(groupName(i)), ' " } '
-                  write(11,"(A,A,A)",advance="NO")  '\with { instrumentName = #"', TRIM(groupName(i)), ' " } '
+                  write(*,"(A,A,A)",advance="NO")  '\with { instrumentName = \markup{', TRIM(groupName(i)), '}} '
+                  write(11,"(A,A,A)",advance="NO")  '\with { instrumentName = \markup{', TRIM(groupName(i)), '}} '
                 endif
                 write(*,"(A)") "<<"
                 write(11,"(A)") "<<"
@@ -222,8 +222,8 @@ do j=1,nScoreBlocks
               endif
             
               if (LEN_TRIM(instrumentName(i)) > 0) then
-                write(*,"(A,A,A)",advance="NO")  '\with { instrumentName = #"', TRIM(instrumentName(i)), ' " } '
-                write(11,"(A,A,A)",advance="NO")  '\with { instrumentName = #"', TRIM(instrumentName(i)), ' " } '
+                write(*,"(A,A,A)",advance="NO")  '\with { instrumentName = \markup{', TRIM(instrumentName(i)), '}} '
+                write(11,"(A,A,A)",advance="NO")  '\with { instrumentName = \markup{', TRIM(instrumentName(i)), '}} '
               endif
             
               if ((naturalizeMusic(i)) .AND. (.NOT. currentScoreMIDI)) then
@@ -269,8 +269,8 @@ do j=1,nScoreBlocks
                   write(*,"(A,A,1x)",advance="NO") "    \new ", TRIM(staffType(i))
                   write(11,"(A,A,1x)",advance="NO") "    \new ", TRIM(staffType(i))
                   if (LEN_TRIM(groupName(i)) > 0) then
-                    write(*,"(A,A,A)",advance="NO")  '\with { instrumentName = #"', TRIM(groupName(i)), ' " } '
-                    write(11,"(A,A,A)",advance="NO")  '\with { instrumentName = #"', TRIM(groupName(i)), ' " } '
+                    write(*,"(A,A,A)",advance="NO")  '\with { instrumentName = \markup{', TRIM(groupName(i)), '}} '
+                    write(11,"(A,A,A)",advance="NO")  '\with { instrumentName = \markup{', TRIM(groupName(i)), '}} '
                   endif
                   write(*,"(A)") "{"
                   write(11,"(A)") "{"

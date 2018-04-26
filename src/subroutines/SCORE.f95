@@ -107,8 +107,8 @@ do j=1,nScoreBlocks
     
     ! instrument name
     if (LEN_TRIM(instrumentName(1)) > 0) then
-      write(*,"(A,A,A)",advance="NO")  '\with { instrumentName = #"', TRIM(instrumentName(1)), ' " } '
-      write(11,"(A,A,A)",advance="NO")  '\with { instrumentName = #"', TRIM(instrumentName(1)), ' " } '
+      write(*,"(A,A,A)",advance="NO")  '\with { instrumentName = \markup{', TRIM(instrumentName(1)), '}} '
+      write(11,"(A,A,A)",advance="NO")  '\with { instrumentName = \markup{', TRIM(instrumentName(1)), '}} '
     endif
     
     if ((naturalizeMusic(1)) .AND. (.NOT. currentScoreMIDI)) then

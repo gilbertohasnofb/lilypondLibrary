@@ -67,8 +67,22 @@ allocate( accidental_AUX(SIZE(pitch_array)), enharmonic_AUX(SIZE(pitch_array)), 
 quartertone_AUX(SIZE(pitch_array)))
 
 ! dealing with optional variables
-accidental_AUX="sharp"
-if (present(accidental)) accidental_AUX = TRIM(accidental)
+if (present(accidental)) then
+    accidental_AUX = TRIM(accidental)
+else if (present(accidentalVector)) then
+    do i=1,SIZE(accidentalVector)
+        accidental_AUX(i) = TRIM(accidentalVector(i))
+    enddo
+else
+    do i=1,SIZE(accidentalVector)
+        if ((MOD(pitch_array(i), 12) == 1) .OR. (MOD(pitch_array(i), 12) == 6)) then  ! by default, C# and F# but Eb, Ab and Bb
+            accidental_AUX(i)="sharp"
+        else
+            accidental_AUX(i)="flat"
+        endif
+    enddo
+endif
+
 
 enharmonic_AUX=.FALSE.
 if (present(enharmonic)) enharmonic_AUX = enharmonic
@@ -78,12 +92,6 @@ if (present(doubleAccidental)) doubleAccidental_AUX = TRIM(doubleAccidental)
 
 quartertone_AUX="neuter"
 if (present(quartertone)) quartertone_AUX = TRIM(quartertone)
-
-if (present(accidentalVector)) then
-  do i=1,SIZE(accidentalVector)
-    accidental_AUX(i) = TRIM(accidentalVector(i))
-  enddo
-endif
 
 if (present(enharmonicVector)) then
   do i=1,SIZE(enharmonicVector)

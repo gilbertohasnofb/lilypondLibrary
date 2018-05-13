@@ -53,7 +53,11 @@ write(7,"(L1)") .TRUE. ! this will mean to the next subroutine that this one did
 ! =================================
 
 ! dealing with optional variables
-accidental_AUX="sharp"
+if ((MOD(pitch, 12) == 1) .OR. (MOD(pitch, 12) == 6)) then  ! by default, C# and F# but Eb, Ab and Bb
+    accidental_AUX="sharp"
+else
+    accidental_AUX="flat"
+endif
 enharmonic_AUX=.FALSE.
 doubleAccidental_AUX=""
 quartertone_AUX="neuter"

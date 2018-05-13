@@ -74,7 +74,7 @@ else if (present(accidentalVector)) then
         accidental_AUX(i) = TRIM(accidentalVector(i))
     enddo
 else
-    do i=1,SIZE(accidentalVector)
+    do i=1,SIZE(pitch_array)
         if ((MOD(pitch_array(i), 12) == 1) .OR. (MOD(pitch_array(i), 12) == 6)) then  ! by default, C# and F# but Eb, Ab and Bb
             accidental_AUX(i)="sharp"
         else

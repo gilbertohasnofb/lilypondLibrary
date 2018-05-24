@@ -3,78 +3,6 @@ lilypondLibrary
 
 A library of Fortran subroutines for outputting LilyPond code, by Gilberto Agostinho (gilbertohasnofb@gmail.com).
 
-List of available subroutines
------------------------------
-
-- AL_NIENTE
-- ARPEGGIO
-- ARPEGGIO_TYPE
-- BAR_CHECK
-- BAR
-- BARREST
-- BARREST_COMPRESS
-- BREAK
-- CHANGE_STAFF
-- CHORD
-- CLEF
-- CADENZA
-- COMMAND
-- COMMENT
-- COMPILE
-- END_ANY
-- END_GRACE
-- END_ILY
-- END_MAKECLUSTERS
-- END_OTTAVATE
-- END_POLY
-- END_REPEAT
-- END_REPEATBRACKET          
-- END_STAFF
-- END_TUPLET
-- FORCE_CLOSE
-- GLISSANDO
-- GRACE
-- HEADER
-- HIDE
-- HORIZONTAL_TUPLETS
-- ILY
-- INCLUDE_FILE
-- KEY
-- LIVEELECTRONICS
-- MAKECLUSTERS
-- MARK
-- NOTE
-- NOTEHEAD_STYLE          
-- NOTEHEAD_TRANSPARENT
-- NUMERICOTTAVA  
-- OMIT
-- OTTAVA
-- OTTAVATE
-- PAGEBREAK
-- PAPER
-- PITCHEDTRILL
-- POLY
-- REPEAT
-- REPEATBRACKET
-- SNIPPET
-- SCORE
-- STAFF          
-- STAFF_LINE_COUNT
-- STEM
-- STOPSTAFF
-- STYLE
-- SYMBOL
-- TEMPO
-- TEXT
-- TIE
-- TIE_TYPE
-- TIME
-- TRILL
-- TUPLET
-- TUPLET_ANGLES
-- VOICE
-- XNOTE
-
 Usage in Linux
 --------------
 
@@ -120,4 +48,78 @@ Structure of .f95 file
 Compability
 -----------
 
-These subroutines have only been tested with Linux Mint 17 Cinnamon 64-bit, LilyPond 2.19.15 and GNU Fortran 4.8.2 (Ubuntu 4.8.2-19ubuntu1).
+These subroutines have only been tested with Linux Mint 18.3 Cinnamon 64-bit, LilyPond 2.19.81 and GNU Fortran 5.4.0 (Ubuntu 5.4.0-6ubuntu1~16.04.9).
+
+
+List of available subroutines
+-----------------------------
+
+- AL_NIENTE
+- ARPEGGIO
+- ARPEGGIO_TYPE
+- BAR_CHECK
+- BAR
+- BARREST
+- BARREST_COMPRESS
+- BREAK
+- CHANGE_STAFF
+- CHORD
+- CLEF
+- CADENZA
+- COMMAND
+- COMMENT
+- COMPILE
+- END_ANY
+- END_GRACE
+- END_ILY
+- END_MAKECLUSTERS
+- END_OTTAVATE
+- END_POLY
+- END_REPEAT
+- END_REPEATBRACKET          
+- END_STAFF
+- END_TUPLET
+- FORCE_CLOSE
+- GLISSANDO
+- GRACE
+- HARMONIC
+- HEADER
+- HIDE
+- HORIZONTAL_TUPLETS
+- ILY
+- INCLUDE_FILE
+- KEY
+- LIVEELECTRONICS
+- MAKECLUSTERS
+- MARK
+- NOTE
+- NOTEHEAD_STYLE          
+- NOTEHEAD_TRANSPARENT
+- NUMERICOTTAVA  
+- OMIT
+- OTTAVA
+- OTTAVATE
+- PAGEBREAK
+- PAPER
+- PITCHEDTRILL
+- POLY
+- REPEAT
+- REPEATBRACKET
+- SNIPPET
+- SCORE
+- STAFF          
+- STAFF_LINE_COUNT
+- STEM
+- STOPSTAFF
+- STYLE
+- SYMBOL
+- TEMPO
+- TEXT
+- TIE
+- TIE_TYPE
+- TIME
+- TRILL
+- TUPLET
+- TUPLET_ANGLES
+- VOICE
+- XNOTE

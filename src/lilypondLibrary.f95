@@ -64,6 +64,7 @@ contains
   include "./subroutines/FORCE_CLOSE.f95"
   include "./subroutines/GLISSANDO.f95"
   include "./subroutines/GRACE.f95"
+  include "./subroutines/HARMONIC.f95"
   include "./subroutines/HEADER.f95"
   include "./subroutines/HIDE.f95"
   include "./subroutines/HORIZONTAL_TUPLETS.f95"

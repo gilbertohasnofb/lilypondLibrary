@@ -167,8 +167,8 @@ if (present(slashSeparator)) then
   endif
 endif
 
-if (present(slashSeparator)) then
-  if (slashSeparator) then
+if (present(doubleSlashSeparator)) then
+  if (doubleSlashSeparator) then
     write(*,"(A)",advance="NO") '  system-separator-markup = '
     write(11,"(A)",advance="NO") '  system-separator-markup = '
     write(*,"(A)") '\markup { \fill-line { \slashSeparator \slashSeparator }}'
